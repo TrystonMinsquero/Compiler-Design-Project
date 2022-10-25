@@ -1,0 +1,67 @@
+
+import java_cup.runtime.*;
+
+terminal COMMENT;   //2
+terminal CLASS;     //3
+terminal VOID;      //4
+terminal INT;       //5
+terminal FLOAT;     //6
+terminal BOOL;      //7
+terminal CHAR;      //8
+terminal FINAL;     //9 
+terminal IF;        //10
+terminal ELSE;      //11
+terminal WHILE;     //12
+terminal RETURN;    //13
+terminal PRINTLINE; //14
+terminal PRINT;     //15
+terminal READ;      //16
+terminal LBRACE;    //17
+terminal RBRACE;    //18
+terminal SEMI;      //19
+terminal LPAREN;    //20
+terminal RPAREN;    //21
+terminal LBRACKET;  //22
+terminal RBRACKET;  //23
+terminal ASTERISK;  //24
+terminal SLASH;     //25
+terminal PLUS;      //26
+terminal MINUS;     //27
+terminal LTHAN;     //28
+terminal GTHAN;     //29
+terminal LTHANEQ;   //30
+terminal GTHANEQ;   //31
+terminal EQUAL;     //32
+terminal NOTEQUAL;  //33
+terminal NOT;       //34
+terminal QUESTION;  //35
+terminal OR;        //36
+terminal AND;       //37
+terminal INCREMENT; //38
+terminal DECREMENT; //39
+terminal ASSIGN;    //40
+terminal COLON;     //41
+terminal COMMA;     //42
+terminal TRUE;      //43
+terminal FALSE;     //44
+
+terminal String ID; //45
+terminal Integer INTLIT; //46
+terminal Float FLOATLIT; //47
+terminal Character CHARLIT; //48
+terminal String STRINGLIT; //49
+
+
+non terminal Program program; //50
+non terminal StatementsList statementsList; //51
+non terminal Statement statement; //52
+non terminal IfEnd ifEnd; //53
+non terminal Name name; //54
+non terminal Args Args; //55
+non terminal ReadList readList; //56
+non terminal PrintList printList; //57
+non terminal PrintlineList printlineList; //58
+non terminal Expression expression; //59
+non terminal BinaryOperator binaryOperator; //60
+
+program ::= 
