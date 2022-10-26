@@ -30,7 +30,7 @@ basicFails.txt: all
 		cat -n basicFails-output.txt
 
 basicRegex.txt: all
-		$(JAVA) -cp $(CP) LexerTest BasicRegex.txt > BasicRegex-output.txt
+		$(JAVA) -cp $(CP) LexerTest basicRegex.txt > basicRegex-output.txt
 		cat -n BasicRegex.txt
 		cat -n BasicRegex-output.txt
 
