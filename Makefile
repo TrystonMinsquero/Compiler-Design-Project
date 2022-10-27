@@ -31,8 +31,8 @@ basicFails.txt: all
 
 basicRegex.txt: all
 		$(JAVA) -cp $(CP) LexerTest basicRegex.txt > basicRegex-output.txt
-		cat -n BasicRegex.txt
-		cat -n BasicRegex-output.txt
+		cat -n basicRegex.txt
+		cat -n basicRegex-output.txt
 
 clean:
 		rm -f *.class *~ *.bak Lexer.java parser.java sym.java
