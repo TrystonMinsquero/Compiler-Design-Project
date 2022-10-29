@@ -1,4 +1,4 @@
-public class BinaryExpression {
+public class BinaryExpression extends Expression {
     private BinaryOperator op;
     private Expression e1;
     private Expression e2;
