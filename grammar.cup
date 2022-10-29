@@ -198,7 +198,7 @@ expression ::= ID:id
     {: RESULT = new FunctionalExpression(id, a); :}
     |
     INTLIT:i
-    {: System.out.println(f); 
+    {: System.out.println(i); 
     RESULT = new LiteralExpression(i); :}
     |
     FLOATLIT:f
