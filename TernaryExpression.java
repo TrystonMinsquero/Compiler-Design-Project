@@ -10,6 +10,6 @@ public class TernaryExpression extends Expression{
     }
 
     public String toString(int t) {
-        return "(" + trueExpr.toString(0) + " ? " + condition.toString(0) + " : " + falseExpr.toString(0) + ")";
+        return "(" + condition.toString(0) + " ? " + trueExpr.toString(0) + " : " + falseExpr.toString(0) + ")";
     }
 }

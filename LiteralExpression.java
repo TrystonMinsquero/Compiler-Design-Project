@@ -22,9 +22,14 @@ public class LiteralExpression extends Expression{
         this.type = "char";
     }
 
-    public LiteralExpression(String s, String type) {
+    public LiteralExpression(String s) {
         this.value = s;
-        this.type = type;
+        this.type = "string";
+    }
+
+    public LiteralExpression(Name n) {
+        this.value = n.toString(0);
+        this.type = "variable";
     }
 
 

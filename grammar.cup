@@ -135,16 +135,16 @@ statement ::=
 // ;
 
 type ::= INT:i
-    {: RESULT = i; :}
+    {: RESULT = "int"; :}
     |
     FLOAT:f
-    {: RESULT = f; :}
+    {: RESULT = "float"; :}
     |
     BOOL:b
-    {: RESULT = b; :}
+    {: RESULT = "bool"; :}
     |
     CHAR:c
-    {: RESULT = c; :}
+    {: RESULT = "char"; :}
 ;
 
 // ifEnd ::= ELSE LBRACE statements:s RBRACE
@@ -155,10 +155,10 @@ type ::= INT:i
 
 
 name ::= ID:id
-    {: RESULT = id; :}
+    {: RESULT = new Name(id); :}
     |
     ID:id LBRACKET expression:e RBRACKET
-    {: RESULT = id; :}
+    {: RESULT = new Name(id, e); :}
 ;
 
 // args ::= expression:e COMMA args:a
@@ -189,7 +189,7 @@ name ::= ID:id
 // ;
 
 expression ::= name:n
-    {: RESULT = LiteralExpression(n, "variable"); :}
+    {: RESULT = LiteralExpression(n); :}
     |
     ID:id LPAREN RPAREN
     {: RESULT = new FunctionalExpression(id); :}
@@ -204,7 +204,7 @@ expression ::= name:n
     {: RESULT = new LiteralExpression(c); :}
     |
     STRINGLIT:s
-    {: RESULT = new LiteralExpression(s, "string"); :}
+    {: RESULT = new LiteralExpression(s); :}
     |
     FLOATLIT:f
     {: RESULT = new LiteralExpression(f); :}
@@ -234,7 +234,7 @@ expression ::= name:n
     expression:e1 binaryOperator:bo expression:e2
     {: RESULT = new BinaryExpression(bo, e1, e2); :}
     |
-    expression:e1 QUESTION expression:co COLON expression:e2
+    expression:co QUESTION expression:e1 COLON expression:e2
     {: RESULT = new TerarnyExpression(co, e1, e2); :}
 ;
 

@@ -1,12 +1,12 @@
 public class AssignStatement extends Statement {
-    private String id;
+    private Name id_name;
     private Expression expr;
 
-    public AssignStatement(String n, Expression e) {
-        id = n;
+    public AssignStatement(Name n, Expression e) {
+        id_name = n;
         expr = e;
     }
 
     public String toString(int t) {
-        return getTabs(t) + id + " = " + expr.toString(0) + ";\n"; }
+        return getTabs(t) + id_name + " = " + expr.toString(0) + ";\n"; }
 }
