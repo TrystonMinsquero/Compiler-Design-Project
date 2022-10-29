@@ -14,11 +14,11 @@ default: run
 
 FILE=	Lexer.java parser.java sym.java \
     LexerTest.java ScannerTest.java Token.java \
-	Program.java Statments.java Statment.java \
+	Program.java Statements.java Statement.java \
 	Expression.java UnaryExpression.java \
 	BinaryExpression.java TernaryExpression.java \
 	FunctionalExpression.java CastExpression.java \
-	AssignStatemntjava Args.java\
+	AssignStatemnt.java Args.java Name.java\
 	# Args.java AssignStatemnt.java BinaryExpression.java BinaryOperator.java \
 	# CastExpression.java Expression.java FunctionalExpression.java \
 	# LiteralExpresion.java Program.java Statement.java \
