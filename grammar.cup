@@ -52,18 +52,18 @@ terminal Character CHARLIT; //48
 terminal String STRINGLIT; //49
 
 
-non terminal BinaryOperator program; //50
+non terminal Program program; //50
 non terminal Statements statements; //51
 non terminal Statement statement; //52
-// non terminal IfEnd ifEnd; //53
+non terminal IfEnd ifEnd; //53
 non terminal Name name; //54
 non terminal Args args; //55
-// non terminal ReadList readList; //56
-// non terminal PrintList printList; //57
-// non terminal PrintlineList printlineList; //58
+non terminal ReadList readList; //56
+non terminal PrintList printList; //57
+non terminal PrintlineList printlineList; //58
 non terminal Expression expression; //59
 non terminal BinaryOperator binaryOperator; //60
-// non terminal OptionalSemi optionalSemi; //61
+non terminal OptionalSemi optionalSemi; //61
 non terminal String type; //62
 
 precedence left LPAREN, RPAREN, LBRACKET, RBRACKET;
@@ -77,8 +77,8 @@ precedence left AND;
 precedence left OR;
 precedence right QUESTION, COLON;
 
-program ::= binaryOperator:b 
-    {: RESULT = b; :}
+program ::= statements:s 
+    {: RESULT = new Program(s); :}
 ;
 
 statements ::= statement:s statements:sl
