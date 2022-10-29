@@ -20,6 +20,8 @@ FILE=	Lexer.java parser.java sym.java \
 	FunctionalExpression.java CastExpression.java \
 	AssignStatement.java Args.java Name.java BinaryOperator.java\
 	IntLiteralExpression.java FloatLiteralExpression.java \
+	IfStatement.java OptionalElseStatement.java WhileStatement.java \
+	CallStatement.java ReturnStatement.java \
 	# Args.java AssignStatemnt.java BinaryExpression.java BinaryOperator.java \
 	# CastExpression.java Expression.java FunctionalExpression.java \
 	# LiteralExpresion.java Program.java Statement.java \

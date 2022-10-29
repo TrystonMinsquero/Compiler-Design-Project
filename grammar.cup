@@ -63,7 +63,7 @@ non terminal PrintList printList; //57
 non terminal PrintlineList printlineList; //58
 non terminal Expression expression; //59
 non terminal BinaryOperator binaryOperator; //60
-non terminal OptionalSemi optionalSemi; //61
+non terminal String optionalSemi; //61
 non terminal String type; //62
 
 precedence right QUESTION, COLON;
@@ -92,12 +92,24 @@ statement ::=
     {: RESULT = new AssignStatement(n, e); :}
     |
     IF LPAREN expression:e RPAREN LBRACE statements:s RBRACE ifEnd:ie
-    {: RESULT = new IfStatement(e, s, ie); :};
-//     |
-//     WHILE LPAREN expression:e RPAREN LBRACE statements:s RBRACE
-//     {: RESULT = new WhileStatement(e, s); :}
-//     |
-//     READ LPAREN readList:rl RPAREN SEMI
+    {: RESULT = new IfStatement(e, s, ie); :}
+    |
+    WHILE LPAREN expression:e RPAREN LBRACE statements:s RBRACE
+    {: RESULT = new WhileStatement(e, s); :}
+    |
+    ID:id LPAREN RPAREN SEMI
+    {: RESULT = new CallStatement(id); :}
+    |
+    ID:id LPAREN args:a RPAREN SEMI
+    {: RESULT = new CallStatement(id, a); :}
+    |
+    RETURN SEMI
+    {: RESULT = new ReturnStatement(); :}
+    |
+    RETURN expression:e SEMI
+    {: RESULT = new ReturnStatement(e); :};
+    // |
+    //     READ LPAREN readList:rl RPAREN SEMI
 //     {: RESULT = new ReadStatement(rl); :}
 //     |
 //     PRINT LPAREN printList:pl RPAREN SEMI
@@ -105,18 +117,6 @@ statement ::=
 //     |
 //     PRINTLINE LPAREN printlineList:pll RPAREN SEMI
 //     {: RESULT = new PrintlineStatement(pll); :}
-//     |
-//     ID:id LPAREN RPAREN SEMI
-//     {: RESULT = new CallStatement(id); :}
-//     |
-//     ID:id LPAREN args:a RPAREN SEMI
-//     {: RESULT = new CallStatement(id, a); :}
-//     |
-//     RETURN SEMI
-//     {: RESULT = new ReturnStatement(); :}
-//     |
-//     RETURN expression:e SEMI
-//     {: RESULT = new ReturnStatement(e); :}
 //     |
 //     name INCREMENT SEMI
 //     {: RESULT = new AddStatement(n, 1); :}
