@@ -58,9 +58,9 @@ non terminal Statement statement; //52
 non terminal OptionalElseStatement ifEnd; //53
 non terminal Name name; //54
 non terminal Args args; //55
-non terminal ReadList readList; //56
-non terminal PrintList printList; //57
-non terminal PrintlineList printlineList; //58
+non terminal Args readList; //56
+non terminal Args printList; //57
+non terminal Args printlineList; //58
 non terminal Expression expression; //59
 non terminal BinaryOperator binaryOperator; //60
 non terminal String optionalSemi; //61
@@ -107,16 +107,16 @@ statement ::=
     {: RESULT = new ReturnStatement(); :}
     |
     RETURN expression:e SEMI
-    {: RESULT = new ReturnStatement(e); :};
-    // |
-    //     READ LPAREN readList:rl RPAREN SEMI
-//     {: RESULT = new ReadStatement(rl); :}
-//     |
-//     PRINT LPAREN printList:pl RPAREN SEMI
-//     {: RESULT = new PrintStatement(pl); :}
-//     |
-//     PRINTLINE LPAREN printlineList:pll RPAREN SEMI
-//     {: RESULT = new PrintlineStatement(pll); :}
+    {: RESULT = new ReturnStatement(e); :}
+    |
+    READ LPAREN readList:rl RPAREN SEMI
+    {: RESULT = new CallStatement("read", rl); :}
+    |
+    PRINT LPAREN printList:pl RPAREN SEMI
+    {: RESULT = new CallStatement("print", pl); :}
+    |
+    PRINTLINE LPAREN printlineList:pll RPAREN SEMI
+    {: RESULT = new CallStatement("printline", pll); :};
 //     |
 //     name INCREMENT SEMI
 //     {: RESULT = new AddStatement(n, 1); :}
@@ -168,28 +168,28 @@ args ::= expression:e COMMA args:a
     {: RESULT = new Args(e); :}
 ;
 
-// readList ::= name:n COMMA readList:rl
-//     {: RESULT = rl.prepend(id); :}
-//     |
-//     name:n
-//     {: RESULT = new ReadList(n); :}
-// ;
+readList ::= name:n COMMA readList:rl
+    {: RESULT = rl.prepend(id); :}
+    |
+    name:n
+    {: RESULT = new ReadList(n); :}
+;
 
-// printList ::= expression:e COMMA printList:pl
-//     {: RESULT = pl.prepend(e); :}
-//     |
-//     expression:e
-//     {: RESULT = new PrintList(e); :}
-// ;
+printList ::= expression:e COMMA printList:pl
+    {: RESULT = pl.prepend(e); :}
+    |
+    expression:e
+    {: RESULT = new Args(e); :}
+;
 
-// printlineList ::= printList::pl
-//     {: RESULT = new PrintlineList(pl); :}
-//     |
-//     {: RESULT = new PrintlineList(); :}
-// ;
+printlineList ::= printList::pl
+    {: RESULT = pl; :}
+    |
+    {: RESULT = new Args() :}
+;
 
-expression ::= ID:id
-    {: RESULT = new LiteralExpression(id, "variable"); :}
+expression ::= name:n
+    {: RESULT = new LiteralExpression(n); :}
     |
     ID:id LPAREN RPAREN
     {: RESULT = new FunctionalExpression(id); :}

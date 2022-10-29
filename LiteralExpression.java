@@ -12,6 +12,11 @@ public class LiteralExpression extends Expression{
         this.type = type;
     }
 
+    public LiteralExpression(Name n) {
+        this.value = n.toString(0);
+        this.type = "variable";
+    }
+
     public String toString(int t) {
         return value;
     }

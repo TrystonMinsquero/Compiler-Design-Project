@@ -1,6 +1,6 @@
 public class CallStatement extends Statement {
-    private String name;
-    private Args arguments;
+    protected String name;
+    protected Args arguments;
 
     public CallStatement(String n) {
         name = n;
