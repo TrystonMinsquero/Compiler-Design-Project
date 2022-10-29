@@ -224,11 +224,11 @@ expression ::= name:n
     {:
     RESULT = new UnaryExpression("~", e); :}
     |
-    PREMINUS expression:e
-    {: RESULT = new UnaryExpression("-", e); :}
+    MINUS expression:e
+    {: RESULT = new UnaryExpression("-", e); :} %prec PREMINUS
     |
-    PREPLUS expression:e
-    {: RESULT = new UnaryExpression("+", e); :}
+    PLUS expression:e
+    {: RESULT = new UnaryExpression("+", e); :} %prec PREPLUS
     |
     LPAREN type:t RPAREN expression:e
     {: RESULT = new CastExpression(t, e); :}
