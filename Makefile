@@ -12,9 +12,12 @@ default: run
 .java.class:
 		$(JAVAC) -cp $(CP) $*.java
 
-FILE=    Lexer.java      parser.java    sym.java \
-    LexerTest.java ScannerTest.java Program.java Statement.java \
-	Statments.java Tokens/*.java
+FILE=	Lexer.java parser.java sym.java \
+    LexerTest.java ScannerTest.java Token.java \
+	Args.java AssignStatemnt.java BinaryExpression.java BinaryOperator.java \
+	CastExpression.java Expression.java FunctionalExpression.java \
+	LiteralExpresion.java Program.java Statement.java \
+	Statements.java Token.java UnaryExpression.java
 
 run: Phase1_expressions.txt
 
