@@ -198,16 +198,16 @@ expression ::= ID:id
     {: RESULT = new FunctionalExpression(id, a); :}
     |
     INTLIT:i
-    {: RESULT = new LiteralExpression(i, "int"); :}
+    {: RESULT = new LiteralExpression(String.valueOf(i), "int"); :}
     |
     FLOATLIT:f
-    {: RESULT = new LiteralExpression(f, "float"); :}
+    {: RESULT = new LiteralExpression(String.valueOf(f), "float"); :}
     |
     CHARLIT:c
-    {: RESULT = new LiteralExpression(c, "char"); :}
+    {: RESULT = new LiteralExpression(String.valueOf(c), "char"); :}
     |
     STRINGLIT:s
-    {: RESULT = new LiteralExpression(s, "string"); :}
+    {: RESULT = new LiteralExpression(String.valueOf(s), "string"); :}
     |
     TRUE
     {: RESULT = new LiteralExpression(true); :}
