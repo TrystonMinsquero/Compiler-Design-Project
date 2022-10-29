@@ -120,10 +120,10 @@ statement ::=
     PRINTLINE LPAREN printlineList:pll RPAREN SEMI
     {: RESULT = new CallStatement("printline", pll); :}
     |
-    name INCREMENT SEMI
+    name:n INCREMENT SEMI
     {: RESULT = new AddToStatement(n, new IntLiteralExpression(1)); :}
-    |s
-    name DECREMENT SEMI
+    |
+    name:n DECREMENT SEMI
     {: RESULT = new AddStatement(n, new IntLiteralExpression(-1)); :}
     |
     LBRACE statements:s RBRACE optionalSemi:os
