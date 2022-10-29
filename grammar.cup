@@ -64,7 +64,7 @@ non terminal PrintlineList printlineList; //58
 non terminal Expression expression; //59
 non terminal BinaryOperator binaryOperator; //60
 non terminal OptionalSemi optionalSemi; //61
-non terminal Type type; //62
+non terminal String type; //62
 
 precedence left LPAREN, RPAREN, LBRACKET, RBRACKET;
 precedence right PLUS, MINUS, NOT, INCREMENT, DECREMENT;
