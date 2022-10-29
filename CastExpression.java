@@ -1,4 +1,4 @@
-public class CastExpression {
+public class CastExpression extends Expression{
     private String type;
     private Expression expr;
 

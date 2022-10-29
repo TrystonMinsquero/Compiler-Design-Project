@@ -235,44 +235,44 @@ expression ::= name:n
     {: RESULT = new BinaryExpression(bo, e1, e2); :}
     |
     expression:co QUESTION expression:e1 COLON expression:e2
-    {: RESULT = new TerarnyExpression(co, e1, e2); :}
+    {: RESULT = new TernaryExpression(co, e1, e2); :}
 ;
 
 binaryOperator ::= ASTERISK
-    {: RESULT = new BinaryOperator("*"); :}
+    {: RESULT = "*"; :}
     |
-    SLASH:o
-    {: RESULT = new BinaryOperator("/"); :}
+    SLASH
+    {: RESULT = "/"; :}
     |
     PLUS
-    {: RESULT = new BinaryOperator("+"); :}
+    {: RESULT = "+"; :}
     |
     MINUS
-    {: RESULT = new BinaryOperator("-"); :}
+    {: RESULT = "-"; :}
     |
     LTHAN
-    {: RESULT = new BinaryOperator("<"); :}
+    {: RESULT = "<"; :}
     |
     GTHAN
-    {: RESULT = new BinaryOperator(">"); :}
+    {: RESULT = ">"; :}
     |
     LTHANEQ
-    {: RESULT = new BinaryOperator("<="); :}
+    {: RESULT = "<="; :}
     |
     GTHANEQ
-    {: RESULT = new BinaryOperator(">="); :}
+    {: RESULT = ">="; :}
     |
     EQUAL
-    {: RESULT = new BinaryOperator("=="); :}
+    {: RESULT = "=="; :}
     |
     NOTEQUAL
-    {: RESULT = new BinaryOperator("<>"); :}
+    {: RESULT = "<>"; :}
     |
     OR
-    {: RESULT = new BinaryOperator("||"); :}
+    {: RESULT = "||"; :}
     |
     AND
-    {: RESULT = new BinaryOperator("&&"); :}
+    {: RESULT = "&&"; :}
 ;
 
 
