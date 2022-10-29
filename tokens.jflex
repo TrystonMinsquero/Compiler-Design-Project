@@ -85,8 +85,8 @@ print           {return newSym(sym.PRINT, "print");}
 printline       {return newSym(sym.PRINT, "printline");}
 read            {return newSym(sym.READ, "read");}
 
-"{"             {return newSym(sym.LBRACE);}
-"}"             {return newSym(sym.RBRACE);}
+"{"             {return newSym(sym.LBRACE, "{");}
+"}"             {return newSym(sym.RBRACE, "}");}
 ";"             {return newSym(sym.SEMI, ";");}
 "("             {return newSym(sym.LPAREN, "(");}
 ")"             {return newSym(sym.RPAREN, ")");}
@@ -129,38 +129,3 @@ false	    	{return newSym(sym.FALSE, "false");}
 .               { System.out.println("Illegal char, '" + yytext() +
                     "' line: " + yyline + ", column: " + yychar); } 
 
-
-// utd lang
-// start           {return newSym(sym.START, "start");}
-// end             {return newSym(sym.END, "end");}
-// in              {return newSym(sym.IN, "in");}
-// out             {return newSym(sym.OUT, "out");}
-// ":)"            {return newSym(sym.SMILE, ":)");}
-// "("             {return newSym(sym.LPAREN, "(");}
-// ")"             {return newSym(sym.RPAREN, ")");}
-// ":"             {return newSym(sym.COLON, ":");}
-// number          {return newSym(sym.NUMBER, "number");}
-// string          {return newSym(sym.STRING, "string");}
-// flag            {return newSym(sym.FLAG, "flag");}
-// main            {return newSym(sym.MAIN, "main");}
-// "<-"            {return newSym(sym.ASSIGN, "<-");}
-// read            {return newSym(sym.READ, "read");}
-// write           {return newSym(sym.WRITE, "write");}
-// call            {return newSym(sym.CALL, "call");}
-// when            {return newSym(sym.WHEN, "when");}
-// do              {return newSym(sym.DO, "do");}
-// done            {return newSym(sym.DONE, "done");}
-// "-"             {return newSym(sym.MINUS, "-");}
-// "+"             {return newSym(sym.PLUS, "+");}
-// "*"             {return newSym(sym.MULTIPLY, "*");}
-// "/"             {return newSym(sym.DIVIDE, "/");}
-// up              {return newSym(sym.UP, "up");}
-// down            {return newSym(sym.DOWN, "down");}
-// flip            {return newSym(sym.FLIP, "flip");}
-// "?"             {return newSym(sym.QUESTION, "?");}
-// {id}            {return newSym(sym.ID, yytext());}
-// {number}        {return newSym(sym.NUMBERLIT, new Integer(yytext()));}
-// {string}        {return newSym(sym.STRINGLIT, yytext());}
-// {whitespace}    { /* Ignore whitespace. */ }
-// .               { System.out.println("Illegal char, '" + yytext() +
-//                     "' line: " + yyline + ", column: " + yychar); } 
