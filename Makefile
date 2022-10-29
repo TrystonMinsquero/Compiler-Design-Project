@@ -13,12 +13,12 @@ default: run
 		$(JAVAC) -cp $(CP) $*.java
 
 FILE=	Lexer.java parser.java sym.java \
-    LexerTest.java ScannerTest.java Tokens/Token.java \
-	Tokens/Program.java Tokens/Statments.java Tokens/Statment.java \
-	Tokens/Expression.java Tokens/UnaryExpression.java \
-	Tokens/BinaryExpression.java Tokens/TernaryExpression.java \
-	Tokens/FunctionalExpression.java Tokens/CastExpression.java \
-	Tokens/AssignStatemntjava Tokens/Args.java\
+    LexerTest.java ScannerTest.java Token.java \
+	Program.java Statments.java Statment.java \
+	Expression.java UnaryExpression.java \
+	BinaryExpression.java TernaryExpression.java \
+	FunctionalExpression.java CastExpression.java \
+	AssignStatemntjava Args.java\
 	# Args.java AssignStatemnt.java BinaryExpression.java BinaryOperator.java \
 	# CastExpression.java Expression.java FunctionalExpression.java \
 	# LiteralExpresion.java Program.java Statement.java \
