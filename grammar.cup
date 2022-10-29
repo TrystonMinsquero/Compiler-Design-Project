@@ -46,8 +46,8 @@ terminal TRUE;      //43
 terminal FALSE;     //44
 
 terminal String ID; //45
-terminal Integer INTLIT; //46
-terminal Float FLOATLIT; //47
+terminal Float FLOATLIT; //46
+terminal Integer INTLIT; //47
 terminal Character CHARLIT; //48
 terminal String STRINGLIT; //49
 
@@ -66,7 +66,6 @@ non terminal BinaryOperator binaryOperator; //60
 non terminal OptionalSemi optionalSemi; //61
 non terminal String type; //62
 
-precedence left ID;
 precedence left LPAREN, RPAREN, LBRACKET, RBRACKET;
 precedence right PLUS, MINUS, NOT, INCREMENT, DECREMENT;
 precedence left LPAREN, RPAREN;
