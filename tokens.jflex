@@ -99,7 +99,9 @@ read            {return newSym(sym.READ, "read");}
 "*"             {return newSym(sym.ASTERISK, "*");}
 "/"             {return newSym(sym.SLASH, "/");}
 "+"             {return newSym(sym.PLUS, "+");}
+"+"             {return newSym(sym.PREPLUS, "+");}
 "-"             {return newSym(sym.MINUS, "-");}
+"-"             {return newSym(sym.PREMINUS, "-");}
 "<"             {return newSym(sym.LTHAN, "<");}
 ">"             {return newSym(sym.GTHAN, ">");}
 "<="            {return newSym(sym.LTHANEQ, "<=");}

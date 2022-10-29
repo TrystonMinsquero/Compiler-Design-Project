@@ -26,7 +26,9 @@ terminal RBRACKET;  //23
 terminal ASTERISK;  //24
 terminal SLASH;     //25
 terminal PLUS;      //26
+terminal PREPLUS;   //26.5
 terminal MINUS;     //27
+terminal PREMINUS;  //27.5
 terminal LTHAN;     //28
 terminal GTHAN;     //29
 terminal LTHANEQ;   //30
@@ -74,7 +76,7 @@ precedence left LTHAN, GTHAN, LTHANEQ, GTHANEQ;
 precedence left PLUS, MINUS;
 precedence left ASTERISK, SLASH;
 precedence left LPAREN, RPAREN;
-precedence right PLUS, MINUS, NOT, INCREMENT, DECREMENT;
+precedence right PREPLUS, PREMINUS, NOT, INCREMENT, DECREMENT;
 precedence left LPAREN, RPAREN, LBRACKET, RBRACKET;
 
 program ::= statements:s 
@@ -222,10 +224,10 @@ expression ::= name:n
     {:
     RESULT = new UnaryExpression("~", e); :}
     |
-    MINUS expression:e
+    PREMINUS expression:e
     {: RESULT = new UnaryExpression("-", e); :}
     |
-    PLUS expression:e
+    PREPLUS expression:e
     {: RESULT = new UnaryExpression("+", e); :}
     |
     LPAREN type:t RPAREN expression:e
