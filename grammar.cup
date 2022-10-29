@@ -46,8 +46,8 @@ terminal TRUE;      //43
 terminal FALSE;     //44
 
 terminal String ID; //45
-terminal String FLOATLIT; //46
-terminal String INTLIT; //47
+terminal Float FLOATLIT; //46
+terminal Integer INTLIT; //47
 terminal String CHARLIT; //48
 terminal String STRINGLIT; //49
 
