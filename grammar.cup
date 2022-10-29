@@ -66,6 +66,17 @@ non terminal BinaryOperator binaryOperator; //60
 non terminal OptionalSemi optionalSemi; //61
 non terminal Type type; //62
 
+precedence left LPAREN, RPAREN, LBRACKET, RBRACKET;
+precedence right PLUS, MINUS, NOT, INCREMENT, DECREMENT;
+precedence left LPAREN, RPAREN;
+precedence left ASTERISK, SLASH;
+precedence left PLUS, MINUS;
+precedence left LTHAN, GTHAN, LTHANEQ, GTHANEQ;
+precedence left NOTEQUAL, EQUAL;
+precedence left AND;
+precedence left OR;
+precedence right QUESTION, COLON;
+
 program ::= statements:s 
     {: RESULT = new Program(s); :}
 ;
