@@ -55,7 +55,7 @@ terminal String STRINGLIT; //49
 non terminal Program program; //50
 non terminal Statements statements; //51
 non terminal Statement statement; //52
-non terminal IfEnd ifEnd; //53
+non terminal OptionalElseStatement ifEnd; //53
 non terminal Name name; //54
 non terminal Args args; //55
 non terminal ReadList readList; //56
@@ -66,16 +66,16 @@ non terminal BinaryOperator binaryOperator; //60
 non terminal OptionalSemi optionalSemi; //61
 non terminal String type; //62
 
-precedence left LPAREN, RPAREN, LBRACKET, RBRACKET;
-precedence right PLUS, MINUS, NOT, INCREMENT, DECREMENT;
-precedence left LPAREN, RPAREN;
-precedence left ASTERISK, SLASH;
-precedence left PLUS, MINUS;
-precedence left LTHAN, GTHAN, LTHANEQ, GTHANEQ;
-precedence left NOTEQUAL, EQUAL;
-precedence left AND;
-precedence left OR;
 precedence right QUESTION, COLON;
+precedence left OR;
+precedence left AND;
+precedence left NOTEQUAL, EQUAL;
+precedence left LTHAN, GTHAN, LTHANEQ, GTHANEQ;
+precedence left PLUS, MINUS;
+precedence left ASTERISK, SLASH;
+precedence left LPAREN, RPAREN;
+precedence right PLUS, MINUS, NOT, INCREMENT, DECREMENT;
+precedence left LPAREN, RPAREN, LBRACKET, RBRACKET;
 
 program ::= statements:s 
     {: RESULT = new Program(s); :}
@@ -89,10 +89,10 @@ statements ::= statement:s statements:sl
 
 statement ::= 
     ID:n ASSIGN expression:e SEMI
-    {: RESULT = new AssignStatement(n, e); :};
-    // |
-//     IF LPAREN expression:e RPAREN LBRACE statements:s RBRACE ifEnd:ie
-//     {: RESULT = new IfStatement(e, s, ie); :}
+    {: RESULT = new AssignStatement(n, e); :}
+    |
+    IF LPAREN expression:e RPAREN LBRACE statements:s RBRACE ifEnd:ie
+    {: RESULT = new IfStatement(e, s, ie); :};
 //     |
 //     WHILE LPAREN expression:e RPAREN LBRACE statements:s RBRACE
 //     {: RESULT = new WhileStatement(e, s); :}
@@ -147,11 +147,11 @@ type ::= INT:i
     {: RESULT = "char"; :}
 ;
 
-// ifEnd ::= ELSE LBRACE statements:s RBRACE
-//     {: RESULT = new IfEnd(s); :}
-//     |
-//     {: RESULT = new IfEnd(); :}
-// ;
+ifEnd ::= ELSE LBRACE statements:s RBRACE
+    {: RESULT = new OptionalElseStatement(s); :}
+    |
+    {: RESULT = new OptionalElseStatement(); :}
+;
 
 
 name ::= ID:id
