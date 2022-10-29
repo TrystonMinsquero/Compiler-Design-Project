@@ -182,7 +182,7 @@ printList ::= expression:e COMMA printList:pl
     {: RESULT = new Args(e); :}
 ;
 
-printlineList ::= printList::pl
+printlineList ::= printList:pl
     {: RESULT = pl; :}
     |
     {: RESULT = new Args() :}
