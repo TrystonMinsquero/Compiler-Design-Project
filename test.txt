@@ -11,3 +11,6 @@ x = true;
 x = false;
 x = (x);
 x = ~x;
+x = -x;
+x = +x;
+x = (int)x;
