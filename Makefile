@@ -18,7 +18,7 @@ FILE=	Lexer.java parser.java sym.java \
 	Expression.java UnaryExpression.java \
 	BinaryExpression.java TernaryExpression.java \
 	FunctionalExpression.java CastExpression.java \
-	AssignStatemnt.java Args.java Name.java\
+	AssignStatemnt.java Args.java Name.java BinaryOperator.java\
 	# Args.java AssignStatemnt.java BinaryExpression.java BinaryOperator.java \
 	# CastExpression.java Expression.java FunctionalExpression.java \
 	# LiteralExpresion.java Program.java Statement.java \

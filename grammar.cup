@@ -239,40 +239,40 @@ expression ::= name:n
 ;
 
 binaryOperator ::= ASTERISK
-    {: RESULT = "*"; :}
+    {: RESULT = new BinaryOperator("*"); :}
     |
     SLASH
-    {: RESULT = "/"; :}
+    {: RESULT = new BinaryOperator("/"); :}
     |
     PLUS
-    {: RESULT = "+"; :}
+    {: RESULT = new BinaryOperator("+"); :}
     |
     MINUS
-    {: RESULT = "-"; :}
+    {: RESULT = new BinaryOperator("-"); :}
     |
     LTHAN
-    {: RESULT = "<"; :}
+    {: RESULT = new BinaryOperator("<"); :}
     |
     GTHAN
-    {: RESULT = ">"; :}
+    {: RESULT = new BinaryOperator(">"); :}
     |
     LTHANEQ
-    {: RESULT = "<="; :}
+    {: RESULT = new BinaryOperator("<="); :}
     |
     GTHANEQ
-    {: RESULT = ">="; :}
+    {: RESULT = new BinaryOperator(">="); :}
     |
     EQUAL
-    {: RESULT = "=="; :}
+    {: RESULT = new BinaryOperator("=="); :}
     |
     NOTEQUAL
-    {: RESULT = "<>"; :}
+    {: RESULT = new BinaryOperator("<>"); :}
     |
     OR
-    {: RESULT = "||"; :}
+    {: RESULT = new BinaryOperator("||"); :}
     |
     AND
-    {: RESULT = "&&"; :}
+    {: RESULT = new BinaryOperator("&&"); :}
 ;
 
 
