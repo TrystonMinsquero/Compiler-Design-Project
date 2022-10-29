@@ -70,7 +70,7 @@ program ::= statements:s
     {: RESULT = new Program(s); :}
 ;
 
-statementsList ::= statement:s Statements:sl
+statements ::= statement:s Statements:sl
     {: RESULT = sl.prepend(s); :}
     |
     {: RESULT = new Statements(); :}
