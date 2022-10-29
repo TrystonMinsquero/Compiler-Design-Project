@@ -46,9 +46,9 @@ terminal TRUE;      //43
 terminal FALSE;     //44
 
 terminal String ID; //45
-terminal Float FLOATLIT; //46
-terminal Integer INTLIT; //47
-terminal Character CHARLIT; //48
+terminal String FLOATLIT; //46
+terminal String INTLIT; //47
+terminal String CHARLIT; //48
 terminal String STRINGLIT; //49
 
 
@@ -198,15 +198,13 @@ expression ::= ID:id
     {: RESULT = new FunctionalExpression(id, a); :}
     |
     INTLIT:i
-    {: System.out.println(i); 
-    RESULT = new LiteralExpression(i); :}
+    {: RESULT = new LiteralExpression(i, "int"); :}
     |
     FLOATLIT:f
-    {: System.out.println(f); 
-    RESULT = new LiteralExpression(f); :}
+    {: RESULT = new LiteralExpression(f, "float"); :}
     |
     CHARLIT:c
-    {: RESULT = new LiteralExpression(c); :}
+    {: RESULT = new LiteralExpression(c, "char"); :}
     |
     STRINGLIT:s
     {: RESULT = new LiteralExpression(s, "string"); :}
