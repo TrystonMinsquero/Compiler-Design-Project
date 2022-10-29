@@ -238,41 +238,41 @@ expression ::= name:n
     {: RESULT = new TerarnyExpression(co, e1, e2); :}
 ;
 
-binaryOperator ::= ASTERISK:o
-    {: RESULT = o; :}
+binaryOperator ::= ASTERISK
+    {: RESULT = new BinaryOperator("*"); :}
     |
     SLASH:o
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator("/"); :}
     |
     PLUS
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator("+"); :}
     |
     MINUS
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator("-"); :}
     |
     LTHAN
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator("<"); :}
     |
     GTHAN
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator(">"); :}
     |
     LTHANEQ
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator("<="); :}
     |
     GTHANEQ
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator(">="); :}
     |
     EQUAL
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator("=="); :}
     |
     NOTEQUAL
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator("<>"); :}
     |
     OR
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator("||"); :}
     |
     AND
-    {: RESULT = o; :}
+    {: RESULT = new BinaryOperator("&&"); :}
 ;
 
 
