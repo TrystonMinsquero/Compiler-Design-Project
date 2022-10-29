@@ -3,12 +3,12 @@ public class FunctionalExpression extends Expression {
     private Args args;
 
     public FunctionalExpression(Name id) {
-        this.id = id.toString();
+        this.id = id.toString(0);
         this.args = null;
     }
 
     public FunctionalExpression(Name id, Args args) {
-        this.id = id.toString();
+        this.id = id.toString(0);
         this.args = args;
     }
 

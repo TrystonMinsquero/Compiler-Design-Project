@@ -191,11 +191,11 @@ name ::= ID:id
 expression ::= name:n
     {: RESULT = new LiteralExpression(n); :}
     |
-    ID:id LPAREN RPAREN
-    {: RESULT = new FunctionalExpression(id); :}
+    name:n LPAREN RPAREN
+    {: RESULT = new FunctionalExpression(n); :}
     |
-    ID:id LPAREN args:a RPAREN
-    {: RESULT = new FunctionalExpression(id, a); :}
+    name:n LPAREN args:a RPAREN
+    {: RESULT = new FunctionalExpression(n, a); :}
     |
     INTLIT:i
     {: RESULT = new LiteralExpression(i); :}
