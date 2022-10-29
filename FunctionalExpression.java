@@ -2,13 +2,13 @@ public class FunctionalExpression extends Expression {
     private String id;
     private Args args;
 
-    public FunctionalExpression(Name id) {
-        this.id = id.toString(0);
+    public FunctionalExpression(String id) {
+        this.id = id;
         this.args = null;
     }
 
-    public FunctionalExpression(Name id, Args args) {
-        this.id = id.toString(0);
+    public FunctionalExpression(String id, Args args) {
+        this.id = id;
         this.args = args;
     }
 
