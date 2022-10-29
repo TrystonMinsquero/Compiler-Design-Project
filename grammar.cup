@@ -220,7 +220,7 @@ expression ::= name:n
     |
     NOT expression:e
     {:
-    RESULT = new UnaryExpression("~", e) :}
+    RESULT = new UnaryExpression("~", e); :}
     |
     MINUS expression:e
     {: RESULT = new UnaryExpression("-", e); :}
@@ -232,7 +232,7 @@ expression ::= name:n
     {: RESULT = new CastExpression(t, e); :}
     |
     expression:e1 binaryOperator:bo expression:e2
-    {: RESULT = new BinaryExpression(bo, e1, e2) :}
+    {: RESULT = new BinaryExpression(bo, e1, e2); :}
     |
     expression:e1 QUESTION expression:co COLON expression:e2
     {: RESULT = new TerarnyExpression(co, e1, e2); :}
