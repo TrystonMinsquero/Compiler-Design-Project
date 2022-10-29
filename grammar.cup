@@ -197,11 +197,11 @@ expression ::= ID:id
     ID:id LPAREN args:a RPAREN
     {: RESULT = new FunctionalExpression(id, a); :}
     |
-    FLOATLIT:f
-    {: RESULT = new LiteralExpression(f); :}
-    |
     INTLIT:i
     {: RESULT = new LiteralExpression(i); :}
+    |
+    FLOATLIT:f
+    {: RESULT = new LiteralExpression(f); :}
     |
     CHARLIT:c
     {: RESULT = new LiteralExpression(c); :}

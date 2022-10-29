@@ -2,12 +2,12 @@ public class LiteralExpression extends Expression{
     private String value;
     private String type;
 
-    public LiteralExpression(int i) {
+    public LiteralExpression(Integer i) {
         this.value = String.valueOf(i);
         this.type = "int";
     }
 
-    public LiteralExpression(float f) {
+    public LiteralExpression(Float f) {
         this.value = String.valueOf(f);
         this.type = "float";
     }
@@ -17,7 +17,7 @@ public class LiteralExpression extends Expression{
         this.type = "bool";
     }
 
-    public LiteralExpression(char c) {
+    public LiteralExpression(Character c) {
         this.value = String.valueOf(c);
         this.type = "char";
     }
