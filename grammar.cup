@@ -77,172 +77,191 @@ statements ::= statement:s statements:sl
 ;
 
 statement ::= 
-    IF LPAREN expression:e RPAREN LBRACE statements:s RBRACE ifEnd:ie
-    {: RESULT = new IfStatement(e, s, ie); :}
-    |
-    WHILE LPAREN expression:e RPAREN LBRACE statements:s RBRACE
-    {: RESULT = new WhileStatement(e, s); :}
-    |
     name:n ASSIGN expression:e SEMI
-    {: RESULT = new AssignStatement(n, e); :}
-    |
-    READ LPAREN readList:rl RPAREN SEMI
-    {: RESULT = new ReadStatement(rl); :}
-    |
-    PRINT LPAREN printList:pl RPAREN SEMI
-    {: RESULT = new PrintStatement(pl); :}
-    |
-    PRINTLINE LPAREN printlineList:pll RPAREN SEMI
-    {: RESULT = new PrintlineStatement(pll); :}
-    |
-    ID:id LPAREN RPAREN SEMI
-    {: RESULT = new CallStatement(id); :}
-    |
-    ID:id LPAREN args:a RPAREN SEMI
-    {: RESULT = new CallStatement(id, a); :}
-    |
-    RETURN SEMI
-    {: RESULT = new ReturnStatement(); :}
-    |
-    RETURN expression:e SEMI
-    {: RESULT = new ReturnStatement(e); :}
-    |
-    name INCREMENT SEMI
-    {: RESULT = new AddStatement(n, 1); :}
-    |
-    name DECREMENT SEMI
-    {: RESULT = new AddStatement(n, -1); :}
-    |
-    LBRACE statements:s RBRACE op
-    {: RESULT = new BlockStatement(s); :}
+    {: RESULT = new AssignStatement(n, e); :};
+    // |
+//     IF LPAREN expression:e RPAREN LBRACE statements:s RBRACE ifEnd:ie
+//     {: RESULT = new IfStatement(e, s, ie); :}
+//     |
+//     WHILE LPAREN expression:e RPAREN LBRACE statements:s RBRACE
+//     {: RESULT = new WhileStatement(e, s); :}
+//     |
+//     READ LPAREN readList:rl RPAREN SEMI
+//     {: RESULT = new ReadStatement(rl); :}
+//     |
+//     PRINT LPAREN printList:pl RPAREN SEMI
+//     {: RESULT = new PrintStatement(pl); :}
+//     |
+//     PRINTLINE LPAREN printlineList:pll RPAREN SEMI
+//     {: RESULT = new PrintlineStatement(pll); :}
+//     |
+//     ID:id LPAREN RPAREN SEMI
+//     {: RESULT = new CallStatement(id); :}
+//     |
+//     ID:id LPAREN args:a RPAREN SEMI
+//     {: RESULT = new CallStatement(id, a); :}
+//     |
+//     RETURN SEMI
+//     {: RESULT = new ReturnStatement(); :}
+//     |
+//     RETURN expression:e SEMI
+//     {: RESULT = new ReturnStatement(e); :}
+//     |
+//     name INCREMENT SEMI
+//     {: RESULT = new AddStatement(n, 1); :}
+//     |
+//     name DECREMENT SEMI
+//     {: RESULT = new AddStatement(n, -1); :}
+//     |
+//     LBRACE statements:s RBRACE optionalSemi:os
+//     {: RESULT = new BlockStatement(statements); :}
+// ;
 
+// optionalSemi ::= SEMI:s
+//     {: RESULT = s :}
+//     |
+//     {: RESULT = ""; :}
+// ;
 
+type ::= INT:i
+    {: RESULT = i; :}
+    |
+    FLOAT:f
+    {: RESULT = f; :}
+    |
+    BOOL:b
+    {: RESULT = b; :}
+    |
+    CHAR:c
+    {: RESULT = c; :}
 ;
 
-type ::= 
-
-ifEnd ::= ELSE LBRACE statements:s RBRACE
-    {: RESULT = new IfEnd(s); :}
-    |
-    {: RESULT = new IfEnd(); :}
-;
+// ifEnd ::= ELSE LBRACE statements:s RBRACE
+//     {: RESULT = new IfEnd(s); :}
+//     |
+//     {: RESULT = new IfEnd(); :}
+// ;
 
 
 name ::= ID:id
-    {: RESULT = new Name(id); :}
+    {: RESULT = id; :}
     |
     ID:id LBRACKET expression:e RBRACKET
-    {: RESULT = new Name(id, e); :}
+    {: RESULT = id; :}
 ;
 
-args ::= expression:e COMMA args:args
-    {: RESULT = args.prepend(e); :}
-    |
-    expression:e
-    {: RESULT = new Args(e); :}
-;
+// args ::= expression:e COMMA args:a
+//     {: RESULT = a.prepend(e); :}
+//     |
+//     expression:e
+//     {: RESULT = new Args(e); :}
+// ;
 
-readList ::= name:n COMMA readList:rl
-    {: RESULT = rl.prepend(id); :}
-    |
-    name:n
-    {: RESULT = new ReadList(n); :}
-;
+// readList ::= name:n COMMA readList:rl
+//     {: RESULT = rl.prepend(id); :}
+//     |
+//     name:n
+//     {: RESULT = new ReadList(n); :}
+// ;
 
-printList ::= expression:e COMMA printList:pl
-    {: RESULT = pl.prepend(e); :}
-    |
-    expression:e
-    {: RESULT = new PrintList(e); :}
-;
+// printList ::= expression:e COMMA printList:pl
+//     {: RESULT = pl.prepend(e); :}
+//     |
+//     expression:e
+//     {: RESULT = new PrintList(e); :}
+// ;
 
-printlineList ::= printList::pl
-    {: RESULT = new PrintlineList(pl); :}
-    |
-    {: RESULT = new PrintlineList(); :}
-;
+// printlineList ::= printList::pl
+//     {: RESULT = new PrintlineList(pl); :}
+//     |
+//     {: RESULT = new PrintlineList(); :}
+// ;
 
 expression ::= name:n
-    {: RESULT = new Expression(n); :}
+    {: RESULT = LiteralExpression(n, "variable"); :}
     |
     ID:id LPAREN RPAREN
-    {: RESULT = new Expression(id); :}
+    {: RESULT = new FunctionalExpression(id); :}
     |
     ID:id LPAREN args:a RPAREN
-    {: RESULT = new Expression(id, a); :}
+    {: RESULT = new FunctionalExpression(id, a); :}
     |
     INTLIT:i
-    {: RESULT = new Expression(i); :}
+    {: RESULT = new LiteralExpression(i); :}
     |
     CHARLIT:c
-    {: RESULT = new Expression(c); :}
+    {: RESULT = new LiteralExpression(c); :}
     |
     STRINGLIT:s
-    {: RESULT = new Expression(s); :}
+    {: RESULT = new LiteralExpression(s, "string"); :}
     |
     FLOATLIT:f
-    {: RESULT = new Expression(f); :}
+    {: RESULT = new LiteralExpression(f); :}
     |
     TRUE
-    {: RESULT = new Expression(true); :}
+    {: RESULT = new LiteralExpression(true); :}
     |
     FALSE
-    {: RESULT = new Expression(false); :}
+    {: RESULT = new LiteralExpression(false); :}
     |
     LPAREN expression:e RPAREN
-    {: RESULT = new Expression(e); :}
+    {: RESULT = e; :}
     |
     NOT expression:e
-    {: RESULT = e.negate(); :}
+    {:
+    RESULT = new UnaryExpression("~", e) :}
     |
     MINUS expression:e
-    {: RESULT = e.minus(); :}
+    {: RESULT = new UnaryExpression("-", e); :}
     |
     PLUS expression:e
-    {: RESULT = e.plus(); :}
+    {: RESULT = new UnaryExpression("+", e); :}
     |
-    expression:e binaryOperator:bo expression:e2
-    {: RESULT = bo.apply(e, e2); :}
+    LPAREN type:t RPAREN expression:e
+    {: RESULT = new CastExpression(t, e); :}
     |
-    expression:e1 QUESTION expression:e2 COLON expression:e3
-    {: RESULT = new Expression(e1, e2, e3); :}
+    expression:e1 binaryOperator:bo expression:e2
+    {: RESULT = new BinaryExpression(bo, e1, e2) :}
+    |
+    expression:e1 QUESTION expression:co COLON expression:e2
+    {: RESULT = new TerarnyExpression(co, e1, e2); :}
 ;
 
-binaryOperator ::= ASTERISK
-    {: RESULT = new BinaryOperator("*"); :}
+binaryOperator ::= ASTERISK:o
+    {: RESULT = o; :}
     |
-    SLASH
-    {: RESULT = new BinaryOperator("/"); :}
+    SLASH:o
+    {: RESULT = o; :}
     |
     PLUS
-    {: RESULT = new BinaryOperator("+"); :}
+    {: RESULT = o; :}
     |
     MINUS
-    {: RESULT = new BinaryOperator("-"); :}
+    {: RESULT = o; :}
     |
     LTHAN
-    {: RESULT = new BinaryOperator("<"); :}
+    {: RESULT = o; :}
     |
     GTHAN
-    {: RESULT = new BinaryOperator(">"); :}
+    {: RESULT = o; :}
     |
     LTHANEQ
-    {: RESULT = new BinaryOperator("<="); :}
+    {: RESULT = o; :}
     |
     GTHANEQ
-    {: RESULT = new BinaryOperator(">="); :}
+    {: RESULT = o; :}
     |
     EQUAL
-    {: RESULT = new BinaryOperator("=="); :}
+    {: RESULT = o; :}
     |
     NOTEQUAL
-    {: RESULT = new BinaryOperator("<>"); :}
+    {: RESULT = o; :}
     |
     OR
-    {: RESULT = new BinaryOperator("||"); :}
+    {: RESULT = o; :}
     |
     AND
-    {: RESULT = new BinaryOperator("&&"); :}
+    {: RESULT = o; :}
 ;
 
 

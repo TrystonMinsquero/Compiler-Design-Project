@@ -15,24 +15,44 @@ default: run
 FILE=    Lexer.java      parser.java    sym.java \
     LexerTest.java ScannerTest.java Tokens/*.java \
 
-run: basicFails.txt basicTerminals.txt basicRegex.txt
+run: Phase1_expressions.txt
 
 all: Lexer.java parser.java $(FILE:java=class)
 
-basicTerminals.txt: all
-		$(JAVA) -cp $(CP) LexerTest basicTerminals.txt > basicTerminals-output.txt
-		cat -n basicTerminals.txt
-		cat -n basicTerminals-output.txt
+test.txt: all
+		$(JAVA) -cp $(CP) ScannerTest test.txt > output.txt
+		cat -n test.txt
+		cat -n output.txt
 		
-basicFails.txt: all
-		$(JAVA) -cp $(CP) LexerTest basicFails.txt > basicFails-output.txt
-		cat -n basicFails.txt
-		cat -n basicFails-output.txt
+Phase1_expressions.txt: all
+		$(JAVA) -cp $(CP) ScannerTest Phase1_expressions.txt > output.txt
+		cat -n Phase1_expressions.txt
+		cat -n output.txt
 
-basicRegex.txt: all
-		$(JAVA) -cp $(CP) LexerTest basicRegex.txt > basicRegex-output.txt
-		cat -n basicRegex.txt
-		cat -n basicRegex-output.txt
+Phase1_order_of_ops.txt: all
+		$(JAVA) -cp $(CP) ScannerTest Phase1_order_of_ops.txt > output.txt
+		cat -n Phase1_order_of_ops.txt
+		cat -n output.txt
+
+Phase1_statements.txt: all
+		$(JAVA) -cp $(CP) ScannerTest Phase1_statements.txt > output.txt
+		cat -n Phase1_statements.txt
+		cat -n output.txt
+# Part 1 tests
+# basicTerminals.txt: all
+# 		$(JAVA) -cp $(CP) LexerTest basicTerminals.txt > basicTerminals-output.txt
+# 		cat -n basicTerminals.txt
+# 		cat -n basicTerminals-output.txt
+		
+# basicFails.txt: all
+# 		$(JAVA) -cp $(CP) LexerTest basicFails.txt > basicFails-output.txt
+# 		cat -n basicFails.txt
+# 		cat -n basicFails-output.txt
+
+# basicRegex.txt: all
+# 		$(JAVA) -cp $(CP) LexerTest basicRegex.txt > basicRegex-output.txt
+# 		cat -n basicRegex.txt
+# 		cat -n basicRegex-output.txt
 
 clean:
 		rm -f *.class *~ *.bak Lexer.java parser.java sym.java
