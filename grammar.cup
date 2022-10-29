@@ -185,7 +185,7 @@ printList ::= expression:e COMMA printList:pl
 printlineList ::= printList:pl
     {: RESULT = pl; :}
     |
-    {: RESULT = new Args() :}
+    {: RESULT = new Args(); :}
 ;
 
 expression ::= name:n
