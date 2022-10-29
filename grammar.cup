@@ -189,7 +189,7 @@ name ::= ID:id
 // ;
 
 expression ::= name:n
-    {: RESULT = LiteralExpression(n); :}
+    {: RESULT = new LiteralExpression(n); :}
     |
     ID:id LPAREN RPAREN
     {: RESULT = new FunctionalExpression(id); :}
