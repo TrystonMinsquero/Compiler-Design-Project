@@ -90,7 +90,7 @@ statements ::= statement:s statements:sl
 ;
 
 statement ::= 
-    ID:n ASSIGN expression:e SEMI
+    name:n ASSIGN expression:e SEMI
     {: RESULT = new AssignStatement(n, e); :}
     |
     IF LPAREN expression:e RPAREN LBRACE statements:s RBRACE ifEnd:ie
