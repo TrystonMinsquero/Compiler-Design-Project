@@ -58,7 +58,7 @@ non terminal Statement statement; //52
 non terminal OptionalElseStatement ifEnd; //53
 non terminal Name name; //54
 non terminal Args args; //55
-non terminal Args readList; //56
+non terminal NameArgs readList; //56
 non terminal Args printList; //57
 non terminal Args printlineList; //58
 non terminal Expression expression; //59
@@ -110,7 +110,7 @@ statement ::=
     {: RESULT = new ReturnStatement(e); :}
     |
     READ LPAREN readList:rl RPAREN SEMI
-    {: RESULT = new CallStatement("read", rl); :}
+    {: RESULT = new ReadStatement(rl); :}
     |
     PRINT LPAREN printList:pl RPAREN SEMI
     {: RESULT = new CallStatement("print", pl); :}
@@ -169,10 +169,10 @@ args ::= expression:e COMMA args:a
 ;
 
 readList ::= name:n COMMA readList:rl
-    {: RESULT = rl.prepend(id); :}
+    {: RESULT = rl.prepend(n); :}
     |
     name:n
-    {: RESULT = new ReadList(n); :}
+    {: RESULT = new NameArgs(n); :}
 ;
 
 printList ::= expression:e COMMA printList:pl
