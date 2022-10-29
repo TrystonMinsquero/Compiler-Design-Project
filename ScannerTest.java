@@ -45,6 +45,4 @@ public class ScannerTest{
           e.printStackTrace();
         }
     }
-} {
-    
 }
