@@ -198,10 +198,12 @@ expression ::= ID:id
     {: RESULT = new FunctionalExpression(id, a); :}
     |
     INTLIT:i
-    {: RESULT = new LiteralExpression(i); :}
+    {: System.out.println(f); 
+    RESULT = new LiteralExpression(i); :}
     |
     FLOATLIT:f
-    {: RESULT = new LiteralExpression(f); :}
+    {: System.out.println(f); 
+    RESULT = new LiteralExpression(f); :}
     |
     CHARLIT:c
     {: RESULT = new LiteralExpression(c); :}
