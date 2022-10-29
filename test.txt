@@ -4,3 +4,6 @@ while ( x ) { x = 0; }
 x = 0;
 read ( x );
 read (x,x);
+print(x);
+printline(x);
+printline();
