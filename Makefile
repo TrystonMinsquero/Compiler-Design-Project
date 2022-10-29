@@ -24,7 +24,7 @@ FILE=	Lexer.java parser.java sym.java \
 	# LiteralExpresion.java Program.java Statement.java \
 	# Statements.java TernaryExpression Token.java UnaryExpression.java
 
-run: test.txt
+run: Phase1_expressions.txt
 
 all: Lexer.java parser.java $(FILE:java=class)
 
