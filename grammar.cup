@@ -124,7 +124,7 @@ statement ::=
     {: RESULT = new AddToStatement(n, new IntLiteralExpression(1)); :}
     |
     name:n DECREMENT SEMI
-    {: RESULT = new AddStatement(n, new IntLiteralExpression(-1)); :}
+    {: RESULT = new AddToStatement(n, new IntLiteralExpression(-1)); :}
     |
     LBRACE statements:s RBRACE optionalSemi:os
     {: RESULT = new BlockStatement(s, os); :}
