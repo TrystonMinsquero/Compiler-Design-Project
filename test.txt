@@ -9,7 +9,3 @@ return;
 return x;
 read ( x );
 read (x,x);
-print(x);
-print(x+1,x);
-printline(x);
-printline();
