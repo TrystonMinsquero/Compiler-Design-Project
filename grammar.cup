@@ -131,7 +131,7 @@ statement ::=
 ;
 
 optionalSemi ::= SEMI
-    {: RESULT = ";" :}
+    {: RESULT = ";"; :}
     |
     {: RESULT = ""; :}
 ;
