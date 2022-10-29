@@ -162,12 +162,12 @@ name ::= ID:id
     {: RESULT = new Name(id, e); :}
 ;
 
-// args ::= expression:e COMMA args:a
-//     {: RESULT = a.prepend(e); :}
-//     |
-//     expression:e
-//     {: RESULT = new Args(e); :}
-// ;
+args ::= expression:e COMMA args:a
+    {: RESULT = a.prepend(e); :}
+    |
+    expression:e
+    {: RESULT = new Args(e); :}
+;
 
 // readList ::= name:n COMMA readList:rl
 //     {: RESULT = rl.prepend(id); :}
