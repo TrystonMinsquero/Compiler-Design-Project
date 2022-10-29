@@ -184,8 +184,11 @@ printList ::= expression:e COMMA printList:pl
     {: RESULT = new Args(e); :}
 ;
 
-printlineList ::= printList:pl
-    {: RESULT = pl; :}
+printlineList ::= expression:e COMMA printlineList:pll
+    {: RESULT = pll.prepend(e); :}
+    |
+    expression:e
+    {: RESULT = new Args(e); :}
     |
     {: RESULT = new Args(); :}
 ;
