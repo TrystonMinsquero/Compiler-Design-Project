@@ -64,7 +64,7 @@ non terminal NameArgs readList; //56
 non terminal Args printList; //57
 non terminal Args printlineList; //58
 non terminal Expression expression; //59
-non terminal BinaryOperator binaryOperator; //60
+non terminal String binaryOperator; //60
 non terminal String optionalSemi; //61
 non terminal String type; //62
 
@@ -240,40 +240,40 @@ expression ::= name:n
 ;
 
 binaryOperator ::= ASTERISK
-    {: RESULT = new BinaryOperator("*"); :}
+    {: RESULT = "*"; :}
     |
     SLASH
-    {: RESULT = new BinaryOperator("/"); :}
+    {: RESULT = "/"; :}
     |
     PLUS
-    {: RESULT = new BinaryOperator("+"); :}
+    {: RESULT = "+"; :}
     |
     MINUS
-    {: RESULT = new BinaryOperator("-"); :}
+    {: RESULT = "-"; :}
     |
     LTHAN
-    {: RESULT = new BinaryOperator("<"); :}
+    {: RESULT = "<"; :}
     |
     GTHAN
-    {: RESULT = new BinaryOperator(">"); :}
+    {: RESULT = ">"; :}
     |
     LTHANEQ
-    {: RESULT = new BinaryOperator("<="); :}
+    {: RESULT = "<="; :}
     |
     GTHANEQ
-    {: RESULT = new BinaryOperator(">="); :}
+    {: RESULT = ">="; :}
     |
     EQUAL
-    {: RESULT = new BinaryOperator("=="); :}
+    {: RESULT = "=="; :}
     |
     NOTEQUAL
-    {: RESULT = new BinaryOperator("<>"); :}
+    {: RESULT = "<>"; :}
     |
     OR
-    {: RESULT = new BinaryOperator("||"); :}
+    {: RESULT = "||"; :}
     |
     AND
-    {: RESULT = new BinaryOperator("&&"); :}
+    {: RESULT = "&&"; :}
 ;
 
 
