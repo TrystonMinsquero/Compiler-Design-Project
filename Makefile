@@ -13,7 +13,8 @@ default: run
 		$(JAVAC) -cp $(CP) $*.java
 
 FILE=    Lexer.java      parser.java    sym.java \
-    LexerTest.java ScannerTest.java Tokens/*.java \
+    LexerTest.java ScannerTest.java Program.java Statement.java \
+	Statments.java Tokens/*.java
 
 run: Phase1_expressions.txt
 

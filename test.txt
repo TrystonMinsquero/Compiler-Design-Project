@@ -1,1 +1,1 @@
-bool a = true || false
+a = 1
