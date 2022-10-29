@@ -15,4 +15,9 @@ public class Name extends Token{
     public String toString(int t) {
         return indexExpr == null ? id : id + "[" + indexExpr.toString(0) + "]";
     }
+
+    @Override
+    public String toString() {
+        return indexExpr == null ? id : id + "[" + indexExpr.toString(0) + "]";
+    }
 }
