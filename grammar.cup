@@ -197,11 +197,11 @@ expression ::= ID:id
     ID:id LPAREN args:a RPAREN
     {: RESULT = new FunctionalExpression(id, a); :}
     |
-    INTLIT:i
-    {: RESULT = new LiteralExpression(String.valueOf(i), "int"); :}
-    |
     FLOATLIT:f
-    {: RESULT = new LiteralExpression(String.valueOf(f), "float"); :}
+    {: RESULT = new FloatLiteralExpression(f); :}
+    |
+    INTLIT:i
+    {: RESULT = new IntLiteralExpression(i); :}
     |
     CHARLIT:c
     {: RESULT = new LiteralExpression(String.valueOf(c), "char"); :}

@@ -1,6 +1,6 @@
 public class LiteralExpression extends Expression{
-    private String value;
-    private String type;
+    protected String value;
+    protected String type;
 
     public LiteralExpression(boolean b) {
         this.value = String.valueOf(b);
