@@ -117,6 +117,9 @@ statement ::=
     PRINT LPAREN printList:pl RPAREN SEMI
     {: RESULT = new CallStatement("print", pl); :}
     |
+    PRINTLINE LPAREN RPAREN SEMI
+    {: RESULT = new CallStatement("printline"); :}
+    |
     PRINTLINE LPAREN printlineList:pll RPAREN SEMI
     {: RESULT = new CallStatement("printline", pll); :}
     |
