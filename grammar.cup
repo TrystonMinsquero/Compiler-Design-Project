@@ -118,23 +118,23 @@ statement ::=
     {: RESULT = new CallStatement("print", pl); :}
     |
     PRINTLINE LPAREN printlineList:pll RPAREN SEMI
-    {: RESULT = new CallStatement("printline", pll); :};
-//     |
-//     name INCREMENT SEMI
-//     {: RESULT = new AddStatement(n, 1); :}
-//     |
-//     name DECREMENT SEMI
-//     {: RESULT = new AddStatement(n, -1); :}
-//     |
-//     LBRACE statements:s RBRACE optionalSemi:os
-//     {: RESULT = new BlockStatement(statements); :}
-// ;
+    {: RESULT = new CallStatement("printline", pll); :}
+    |
+    name INCREMENT SEMI
+    {: RESULT = new AddToStatement(n, new IntLiteralExpression(1)); :}
+    |s
+    name DECREMENT SEMI
+    {: RESULT = new AddStatement(n, new IntLiteralExpression(-1)); :}
+    |
+    LBRACE statements:s RBRACE optionalSemi:os
+    {: RESULT = new BlockStatement(statements, os); :}
+;
 
-// optionalSemi ::= SEMI:s
-//     {: RESULT = s :}
-//     |
-//     {: RESULT = ""; :}
-// ;
+optionalSemi ::= SEMI:s
+    {: RESULT = ";" :}
+    |
+    {: RESULT = ""; :}
+;
 
 type ::= INT:i
     {: RESULT = "int"; :}
@@ -206,10 +206,10 @@ expression ::= name:n
     {: RESULT = new IntLiteralExpression(i); :}
     |
     CHARLIT:c
-    {: RESULT = new LiteralExpression(String.valueOf(c), "char"); :}
+    {: RESULT = new LiteralExpression(c, "char"); :}
     |
     STRINGLIT:s
-    {: RESULT = new LiteralExpression(String.valueOf(s), "string"); :}
+    {: RESULT = new LiteralExpression(s, "string"); :}
     |
     TRUE
     {: RESULT = new LiteralExpression(true); :}

@@ -22,12 +22,13 @@ FILE=	Lexer.java parser.java sym.java \
 	IntLiteralExpression.java FloatLiteralExpression.java \
 	IfStatement.java OptionalElseStatement.java WhileStatement.java \
 	CallStatement.java ReturnStatement.java NameArgs.java ReadStatement.java \
+	AddToStatement.java BlockStatement.java \
 	# Args.java AssignStatemnt.java BinaryExpression.java BinaryOperator.java \
 	# CastExpression.java Expression.java FunctionalExpression.java \
 	# LiteralExpresion.java Program.java Statement.java \
 	# Statements.java TernaryExpression Token.java UnaryExpression.java
 
-run: Phase1_expressions.txt
+run: test.txt
 
 all: Lexer.java parser.java $(FILE:java=class)
 
