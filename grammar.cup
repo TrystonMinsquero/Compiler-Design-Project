@@ -127,10 +127,10 @@ statement ::=
     {: RESULT = new AddStatement(n, new IntLiteralExpression(-1)); :}
     |
     LBRACE statements:s RBRACE optionalSemi:os
-    {: RESULT = new BlockStatement(statements, os); :}
+    {: RESULT = new BlockStatement(s, os); :}
 ;
 
-optionalSemi ::= SEMI:s
+optionalSemi ::= SEMI
     {: RESULT = ";" :}
     |
     {: RESULT = ""; :}
