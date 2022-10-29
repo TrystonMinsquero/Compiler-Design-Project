@@ -66,14 +66,14 @@ non terminal BinaryOperator binaryOperator; //60
 non terminal OptionalSemi optionalSemi; //61
 non terminal Type type; //62
 
-program ::= statementsList:s 
+program ::= statements:s 
     {: RESULT = new Program(s); :}
 ;
 
-statementsList ::= statement:s StatementsList:sl
+statementsList ::= statement:s Statements:sl
     {: RESULT = sl.prepend(s); :}
     |
-    {: RESULT = new StatementsList(); :}
+    {: RESULT = new Statements(); :}
 ;
 
 statement ::= 

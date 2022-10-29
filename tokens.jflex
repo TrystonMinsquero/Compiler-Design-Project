@@ -57,7 +57,7 @@ charlit = '{character}'
 floatlit = [+|\-]?[0-9]+\.[0-9]+
 stringlit = \"{character}*\"
 whitespace = [ \n\t\r]
-type = int|float|char|bool
+// type = int|float|char|bool
 comment = \\\*[^\*\\]*\*\\|\\\\.*
 
 
