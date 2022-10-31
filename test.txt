@@ -5,4 +5,4 @@ x = 0;
 read ( x );
 read (x,x);
 print(x);
-x = x+1;
+x = x + 1;
