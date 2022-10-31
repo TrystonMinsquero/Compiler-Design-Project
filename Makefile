@@ -34,23 +34,24 @@ all: Lexer.java parser.java $(FILE:java=class)
 
 test.txt: all
 		$(JAVA) -cp $(CP) ScannerTest test.txt > output.txt
-		cat -n test.txt
+		cat test.txt
 		cat -n output.txt
 		
 Phase1_expressions.txt: all
 		$(JAVA) -cp $(CP) ScannerTest Phase1_expressions.txt > output.txt
-		cat -n Phase1_expressions.txt
+		cat Phase1_expressions.txt
 		cat -n output.txt
 
 Phase1_order_of_ops.txt: all
 		$(JAVA) -cp $(CP) ScannerTest Phase1_order_of_ops.txt > output.txt
-		cat -n Phase1_order_of_ops.txt
+		cat Phase1_order_of_ops.txt
 		cat -n output.txt
 
 Phase1_statements.txt: all
 		$(JAVA) -cp $(CP) ScannerTest Phase1_statements.txt > output.txt
-		cat -n Phase1_statements.txt
+		cat Phase1_statements.txt
 		cat -n output.txt
+
 # Part 1 tests
 # basicTerminals.txt: all
 # 		$(JAVA) -cp $(CP) LexerTest basicTerminals.txt > basicTerminals-output.txt
