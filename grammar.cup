@@ -3,7 +3,7 @@ import java_cup.runtime.*;
 
 import java_cup.runtime.*;
 
-terminal CLASS;           //2
+// terminal CLASS;           //2
 terminal AND;             //3
 terminal ELSE;            //4
 terminal IF;              //5
@@ -39,8 +39,8 @@ terminal CONDITION;       //34
 terminal COLON;           //35
 terminal ASSMNT;          //36
 terminal COMMA;           //37
-terminal FINAL;           //38
-terminal VOID;            //39
+// terminal FINAL;           //38
+// terminal VOID;            //39
 terminal TRUE;            //40
 terminal FALSE;           //41
 
@@ -55,7 +55,6 @@ terminal Float FLOATLIT;  //48
 terminal String CHARLIT;  //49
 terminal String STRINGLIT;//50
 
-
 non terminal Program program; //50
 non terminal Statements statements; //51
 non terminal Statement statement; //52
@@ -69,7 +68,6 @@ non terminal Expression expression; //59
 non terminal LiteralExpression literalExpression; //60
 non terminal BinaryExpression binaryExpression; //61
 non terminal UnaryExpression unaryExpression; //62
-non terminal String binaryOperator;
 non terminal String optionalSemi;
 non terminal String type;
 
