@@ -94,9 +94,7 @@ statements ::= statement:s statements:sl
     {: RESULT = new Statements(); :}
 ;
 
-statement ::= COMMENT
-    {: RESULT = new Comment(); :}
-    |
+statement ::= 
     name:n ASSMNT expression:e SEMI
     {: RESULT = new AssignStatement(n, e); :}
     |
