@@ -239,10 +239,10 @@ expression ::= name:n
     {: RESULT = new UnaryExpression("~", e); :}
     |
     MINUS expression:e
-    {: RESULT = new UnaryExpression("-", e); :} %prec PREMINUS
+    {: RESULT = new UnaryExpression("-", e); :}
     |
     PLUS expression:e
-    {: RESULT = new UnaryExpression("+", e); :} %prec PREPLUS
+    {: RESULT = new UnaryExpression("+", e); :}
 ;
 
 binaryOperator ::= ASTERISK
