@@ -82,7 +82,7 @@ precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE;
 precedence left LEFT_PAREN, RT_PAREN;
 precedence right PREFIXPLUS, PREFIXMINUS, NOT, PLUSPLUS, MINUSMINUS;
-precedence left LEFT_PAREN, RT_PAREN, LEFT_BRKT, R_BRKT;
+precedence left LEFT_PAREN, RT_PAREN, LEFT_BRKT, RT_BRKT;
 
 program ::= statements:s 
     {: RESULT = new Program(s); :}
@@ -169,7 +169,7 @@ ifEnd ::= ELSE LEFT_BRACE statements:s RT_BRACE
 name ::= ID:id
     {: RESULT = new Name(id); :}
     |
-    ID:id LEFT_BRKT expression:e R_BRKT
+    ID:id LEFT_BRKT expression:e RT_BRKT
     {: RESULT = new Name(id, e); :}
 ;
 
