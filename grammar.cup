@@ -65,6 +65,7 @@ non terminal Args printList; //57
 non terminal Args printlineList; //58
 non terminal Expression expression; //59
 non terminal LiteralExpression literalExpression; //60
+non terminal BinaryExpression binaryExpression; //61
 non terminal String binaryOperator; //60
 non terminal String optionalSemi; //61
 non terminal String type; //62
@@ -234,48 +235,57 @@ expression ::= literalExpression:e
     LPAREN type:t RPAREN expression:e
     {: RESULT = new CastExpression(t, e); :}
     |
-    expression:e1 binaryOperator:bo expression:e2
-    {: RESULT = new BinaryExpression(bo, e1, e2); :}
+    binaryExpression:e
+    {: RESULT = e; :}
     |
     expression:co QUESTION expression:e1 COLON expression:e2
     {: RESULT = new TernaryExpression(co, e1, e2); :}
+    |
+    NOT expression:e
+    {: RESULT = new UnaryExpression("~", e); :}
+    |
+    PREMINUS expression:e
+    {: RESULT = new UnaryExpression("-", e); :}
+    |
+    PREPLUS expression:e
+    {: RESULT = new UnaryExpression("+", e); :}
 ;
 
-binaryOperator ::= ASTERISK
-    {: RESULT = "*"; :}
+binaryExpression ::= expression:e1 ASTERISK expression:e2
+    {: RESULT = new BinaryExpression("*", e1, e2); :}
     |
-    SLASH
-    {: RESULT = "/"; :}
+    expression:e1 SLASH expression:e2
+    {: RESULT = new BinaryExpression("/", e1, e2); :}
     |
-    PLUS
-    {: RESULT = "+"; :}
+    expression:e1 PLUS expression:e2
+    {: RESULT = new BinaryExpression("+", e1, e2); :}
     |
-    MINUS
-    {: RESULT = "-"; :}
+    expression:e1 MINUS expression:e2
+    {: RESULT = new BinaryExpression("-", e1, e2); :}
     |
-    LTHAN
-    {: RESULT = "<"; :}
+    expression:e1 LTHAN expression:e2
+    {: RESULT = new BinaryExpression("<", e1, e2); :}
     |
-    GTHAN
-    {: RESULT = ">"; :}
+    expression:e1 GTHAN expression:e2
+    {: RESULT = new BinaryExpression(">", e1, e2); :}
     |
-    LTHANEQ
-    {: RESULT = "<="; :}
+    expression:e1 LTHANEQ expression:e2
+    {: RESULT = new BinaryExpression("<=", e1, e2); :}
     |
-    GTHANEQ
-    {: RESULT = ">="; :}
+    expression:e1 GTHANEQ expression:e2
+    {: RESULT = new BinaryExpression(">=", e1, e2); :}
     |
-    EQUAL
-    {: RESULT = "=="; :}
+    expression:e1 EQUAL expression:e2
+    {: RESULT = new BinaryExpression("==", e1, e2); :}
     |
-    NOTEQUAL
-    {: RESULT = "<>"; :}
+    expression:e1 NOTEQUAL expression:e2
+    {: RESULT = new BinaryExpression("<>", e1, e2); :}
     |
-    OR
-    {: RESULT = "||"; :}
+    expression:e1 OR expression:e2
+    {: RESULT = new BinaryExpression("||", e1, e2); :}
     |
-    AND
-    {: RESULT = "&&"; :}
+    expression:e1 AND expression:e2
+    {: RESULT = new BinaryExpression("&&", e1, e2); :}
 ;
 
 
