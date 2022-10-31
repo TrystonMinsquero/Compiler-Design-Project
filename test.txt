@@ -6,3 +6,4 @@ x();
 x(4);
 read ( x );
 read (x,x);
+printline();
