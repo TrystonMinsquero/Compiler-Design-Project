@@ -4,4 +4,5 @@ while ( x ) { x = 0; }
 x = 0;
 x();
 x(4);
-printline();
+print(x);
+printline(x);
