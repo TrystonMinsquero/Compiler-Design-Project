@@ -18,6 +18,6 @@ public class LiteralExpression extends Expression{
     }
 
     public String toString(int t) {
-        return value;
+        return "(" + value + ")";
     }
 }

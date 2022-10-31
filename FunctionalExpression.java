@@ -16,7 +16,7 @@ public class FunctionalExpression extends Expression {
         if (args == null) {
             return id + "()";
         } else {
-            return id + "(" + args.toString(0) + ")";
+            return "(" + id + "(" + args.toString(0) + "))";
         }
     }
 
