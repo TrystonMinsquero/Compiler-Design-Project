@@ -114,14 +114,14 @@ statement ::=
     READ LPAREN readList:rl RPAREN SEMI
     {: RESULT = new ReadStatement(rl); :}
     |
-    PRINT LPAREN printList:pl RPAREN SEMI
-    {: RESULT = new CallStatement("print", pl); :}
-    |
     PRINTLINE LPAREN RPAREN SEMI
     {: RESULT = new CallStatement("printline"); :}
     |
     PRINTLINE LPAREN printlineList:pll RPAREN SEMI
     {: RESULT = new CallStatement("printline", pll); :}
+    |
+    PRINT LPAREN printList:pl RPAREN SEMI
+    {: RESULT = new CallStatement("print", pl); :}
     |
     name:n INCREMENT SEMI
     {: RESULT = new AddToStatement(n, new IntLiteralExpression(1)); :}

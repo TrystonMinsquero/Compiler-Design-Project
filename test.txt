@@ -4,6 +4,4 @@ while ( x ) { x = 0; }
 x = 0;
 x();
 x(4);
-read ( x );
-read (x,x);
-printline(x);
+printline();
