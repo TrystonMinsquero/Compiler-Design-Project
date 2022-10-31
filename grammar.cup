@@ -238,10 +238,10 @@ expression ::= name:n
     NOT expression:e
     {: RESULT = new UnaryExpression("~", e); :}
     |
-    MINUS expression:e
+    PREMINUS expression:e
     {: RESULT = new UnaryExpression("-", e); :}
     |
-    PLUS expression:e
+    PREPLUS expression:e
     {: RESULT = new UnaryExpression("+", e); :}
 ;
 
