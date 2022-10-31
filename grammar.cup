@@ -291,6 +291,7 @@ unaryExpression ::= NOT expression:e
     |
     PLUS expression:e
     {: RESULT = new UnaryExpression("+", e); :}
+;
 
 
 
