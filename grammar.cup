@@ -64,6 +64,7 @@ non terminal NameArgs readList; //56
 non terminal Args printList; //57
 non terminal Args printlineList; //58
 non terminal Expression expression; //59
+non terminal LiteralExpression literalExpression; //60
 non terminal String binaryOperator; //60
 non terminal String optionalSemi; //61
 non terminal String type; //62
@@ -196,7 +197,7 @@ printlineList ::= expression:e COMMA printlineList:pll
     {: RESULT = new Args(); :}
 ;
 
-expression ::= name:n
+literalExpression ::= name:n
     {: RESULT = new LiteralExpression(n); :}
     |
     ID:id LPAREN RPAREN
@@ -222,6 +223,10 @@ expression ::= name:n
     |
     FALSE
     {: RESULT = new LiteralExpression(false); :}
+;
+
+expression ::= literalExpression:e
+    {: RESULT = e; :}
     |
     LPAREN expression:e RPAREN
     {: RESULT = e; :}
@@ -234,15 +239,6 @@ expression ::= name:n
     |
     expression:co QUESTION expression:e1 COLON expression:e2
     {: RESULT = new TernaryExpression(co, e1, e2); :}
-    |
-    NOT expression:e
-    {: RESULT = new UnaryExpression("~", e); :}
-    |
-    PREMINUS expression:e
-    {: RESULT = new UnaryExpression("-", e); :}
-    |
-    PREPLUS expression:e
-    {: RESULT = new UnaryExpression("+", e); :}
 ;
 
 binaryOperator ::= ASTERISK
