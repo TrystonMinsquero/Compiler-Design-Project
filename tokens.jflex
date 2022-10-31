@@ -126,7 +126,7 @@ true		        { return newSym(sym.TRUE, "true"); }
 false		        { return newSym(sym.FALSE, "false"); }
 {id}    	      { return newSym(sym.ID, yytext()); }
 {intlit}        { return newSym(sym.INTLIT, new Integer(yytext())); }
-{floatlit}      { return newSym(sym.FLOATLIT, new Double(yytext())); }
+{floatlit}      { return newSym(sym.FLOATLIT, new Float(yytext())); }
 {charlit}       { return newSym(sym.CHARLIT, yytext()); }
 {stringlit}	    { return newSym(sym.STRINGLIT, yytext()); }
 {inlinecomment} { /* For this stand-alone lexer, print out comments. */}
