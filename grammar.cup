@@ -66,6 +66,7 @@ non terminal Args printlineList; //58
 non terminal Expression expression; //59
 non terminal LiteralExpression literalExpression; //60
 non terminal BinaryExpression binaryExpression; //61
+non terminal UnaryExpression unaryExpression; //62
 non terminal String binaryOperator; //60
 non terminal String optionalSemi; //61
 non terminal String type; //62
@@ -235,20 +236,14 @@ expression ::= literalExpression:e
     LPAREN type:t RPAREN expression:e
     {: RESULT = new CastExpression(t, e); :}
     |
+    unaryExpression:e
+    {: RESULT = e; :}
+    |
     binaryExpression:e
     {: RESULT = e; :}
     |
     expression:co QUESTION expression:e1 COLON expression:e2
     {: RESULT = new TernaryExpression(co, e1, e2); :}
-    |
-    NOT expression:e
-    {: RESULT = new UnaryExpression("~", e); :}
-    |
-    PREMINUS expression:e
-    {: RESULT = new UnaryExpression("-", e); :}
-    |
-    PREPLUS expression:e
-    {: RESULT = new UnaryExpression("+", e); :}
 ;
 
 binaryExpression ::= expression:e1 ASTERISK expression:e2
@@ -287,6 +282,15 @@ binaryExpression ::= expression:e1 ASTERISK expression:e2
     expression:e1 AND expression:e2
     {: RESULT = new BinaryExpression("&&", e1, e2); :}
 ;
+
+unaryExpression ::= NOT expression:e
+    {: RESULT = new UnaryExpression("~", e); :}
+    |
+    MINUS expression:e
+    {: RESULT = new UnaryExpression("-", e); :}
+    |
+    PLUS expression:e
+    {: RESULT = new UnaryExpression("+", e); :}
 
 
 
