@@ -4,7 +4,7 @@ public class FunctionalExpression extends Expression {
 
     public FunctionalExpression(String id) {
         this.id = id;
-        this.args = null;
+        this.args = new Args();
     }
 
     public FunctionalExpression(String id, Args args) {
@@ -13,11 +13,7 @@ public class FunctionalExpression extends Expression {
     }
 
     public String toString(int t) {
-        if (args == null) {
-            return id + "()";
-        } else {
-            return "(" + id + "(" + args.toString(0) + "))";
-        }
+        return "(" + id + "(" + args.toString(0) + "))";
     }
 
     
