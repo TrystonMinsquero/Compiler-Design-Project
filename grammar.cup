@@ -200,12 +200,6 @@ printlineList ::= expression:e COMMA printlineList:pll
 literalExpression ::= name:n
     {: RESULT = new LiteralExpression(n); :}
     |
-    ID:id LPAREN RPAREN
-    {: RESULT = new FunctionalExpression(id); :}
-    |
-    ID:id LPAREN args:a RPAREN
-    {: RESULT = new FunctionalExpression(id, a); :}
-    |
     FLOATLIT:f
     {: RESULT = new FloatLiteralExpression(f); :}
     |
@@ -227,6 +221,12 @@ literalExpression ::= name:n
 
 expression ::= literalExpression:e
     {: RESULT = e; :}
+    |
+    ID:id LPAREN RPAREN
+    {: RESULT = new FunctionalExpression(id); :}
+    |
+    ID:id LPAREN args:a RPAREN
+    {: RESULT = new FunctionalExpression(id, a); :}
     |
     LPAREN expression:e RPAREN
     {: RESULT = e; :}
