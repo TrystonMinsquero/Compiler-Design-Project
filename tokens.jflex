@@ -81,8 +81,8 @@ else            {return newSym(sym.ELSE, "else");}
 while           {return newSym(sym.WHILE, "while");}
 //functions
 return          {return newSym(sym.RETURN, "return");}
-print           {return newSym(sym.PRINT, "print");}
 printline       {return newSym(sym.PRINT, "printline");}
+print           {return newSym(sym.PRINT, "print");}
 read            {return newSym(sym.READ, "read");}
 
 "{"             {return newSym(sym.LBRACE, "{");}

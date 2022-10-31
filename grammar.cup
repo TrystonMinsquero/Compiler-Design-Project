@@ -114,14 +114,14 @@ statement ::=
     READ LPAREN readList:rl RPAREN SEMI
     {: RESULT = new ReadStatement(rl); :}
     |
+    PRINT LPAREN printList:pl RPAREN SEMI
+    {: RESULT = new CallStatement("print", pl); :}
+    |
     PRINTLINE LPAREN RPAREN SEMI
     {: RESULT = new CallStatement("printline"); :}
     |
     PRINTLINE LPAREN printlineList:pll RPAREN SEMI
     {: RESULT = new CallStatement("printline", pll); :}
-    |
-    PRINT LPAREN printList:pl RPAREN SEMI
-    {: RESULT = new CallStatement("print", pl); :}
     |
     name:n INCREMENT SEMI
     {: RESULT = new AddToStatement(n, new IntLiteralExpression(1)); :}
@@ -199,6 +199,12 @@ printlineList ::= expression:e COMMA printlineList:pll
 expression ::= name:n
     {: RESULT = new LiteralExpression(n); :}
     |
+    ID:id LPAREN RPAREN
+    {: RESULT = new FunctionalExpression(id); :}
+    |
+    ID:id LPAREN args:a RPAREN
+    {: RESULT = new FunctionalExpression(id, a); :}
+    |
     FLOATLIT:f
     {: RESULT = new FloatLiteralExpression(f); :}
     |
@@ -220,6 +226,15 @@ expression ::= name:n
     LPAREN expression:e RPAREN
     {: RESULT = e; :}
     |
+    LPAREN type:t RPAREN expression:e
+    {: RESULT = new CastExpression(t, e); :}
+    |
+    expression:e1 binaryOperator:bo expression:e2
+    {: RESULT = new BinaryExpression(bo, e1, e2); :}
+    |
+    expression:co QUESTION expression:e1 COLON expression:e2
+    {: RESULT = new TernaryExpression(co, e1, e2); :}
+    |
     NOT expression:e
     {: RESULT = new UnaryExpression("~", e); :}
     |
@@ -228,16 +243,6 @@ expression ::= name:n
     |
     PLUS expression:e
     {: RESULT = new UnaryExpression("+", e); :} %prec PREPLUS
-    |
-    expression:e1 binaryOperator:bo expression:e2
-    {: RESULT = new BinaryExpression(bo, e1, e2); :}
-    |
-    expression:co QUESTION expression:e1 COLON expression:e2
-    {: RESULT = new TernaryExpression(co, e1, e2); :}
-    |
-    LPAREN type:t RPAREN expression:e
-    {: RESULT = new CastExpression(t, e); :}
-    
 ;
 
 binaryOperator ::= ASTERISK
