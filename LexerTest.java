@@ -12,7 +12,7 @@ public class LexerTest{
 
                 System.out.println("Token " + sym +
                     ", with value = " + sym.value + 
-                    "; at line " + (sym.left + 1) + ", column " + sym.right);
+                    "; at line " + sym.left + ", column " + sym.right);
 
             }
         }
