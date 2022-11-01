@@ -1,4 +1,3 @@
-
 JAVA=java
 JAVAC=javac
 JFLEX=$(JAVA) -jar jflex-full-1.8.2.jar
