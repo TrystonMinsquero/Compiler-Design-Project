@@ -24,27 +24,27 @@ FILE=	Lexer.java parser.java sym.java \
 	CallStatement.java ReturnStatement.java NameArgs.java ReadStatement.java \
 	AddToStatement.java BlockStatement.java
 
-run: test.txt
+run: Phase1_expressions.txt Phase1_order_of_ops.txt Phase1_statements.txt
 
 all: Lexer.java parser.java $(FILE:java=class)
 
 test.txt: all
-		$(JAVA) -cp $(CP) ScannerTest test.txt > output.txt
+		$(JAVA) -cp $(CP) ScannerTest test.txt > test-output.txt
 		cat test.txt
 		cat -n output.txt
 		
 Phase1_expressions.txt: all
-		$(JAVA) -cp $(CP) ScannerTest Phase1_expressions.txt > output.txt
+		$(JAVA) -cp $(CP) ScannerTest Phase1_expressions.txt > Phase1_expressions-output.txt
 		cat Phase1_expressions.txt
 		cat -n output.txt
 
 Phase1_order_of_ops.txt: all
-		$(JAVA) -cp $(CP) ScannerTest Phase1_order_of_ops.txt > output.txt
+		$(JAVA) -cp $(CP) ScannerTest Phase1_order_of_ops.txt > Phase1_order_of_ops-output.txt
 		cat Phase1_order_of_ops.txt
 		cat -n output.txt
 
 Phase1_statements.txt: all
-		$(JAVA) -cp $(CP) ScannerTest Phase1_statements.txt > output.txt
+		$(JAVA) -cp $(CP) ScannerTest Phase1_statements.txt > Phase1_statements-output.txt
 		cat Phase1_statements.txt
 		cat -n output.txt
 
