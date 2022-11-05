@@ -1,13 +1,12 @@
-//Program.java
-
 class Program extends Token {
-    private Statements statements;
+    private Class clas;
+
     //Constructor
-    public Program(Statements s) {
-        statements = s;
+    public Program(Class c) {
+        clas = c;
     }
   
     public String toString(int t) {
-      return "Program:\n" + statements.toString(t+1) + "\n";
+      return "Program:\n" + clas.toString(t+1) + "\n";
     }
   }

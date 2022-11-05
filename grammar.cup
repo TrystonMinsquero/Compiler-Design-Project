@@ -55,7 +55,13 @@ terminal Float FLOATLIT;  //48
 terminal String CHARLIT;  //49
 terminal String STRINGLIT;//50
 
-non terminal Program program; //50
+non terminal Class program; //50
+non terminal FieldDeclarations fieldDeclarations;
+non terminal FieldDeclaration fieldDeclaration;
+non terminal MethodDeclarations methodDeclarations;
+non terminal MethodDeclaration methodDeclaration;
+non terminal ArgDeclerations argDeclerations;
+non terminal ArgDecleration argDecleration;
 non terminal Statements statements; //51
 non terminal Statement statement; //52
 non terminal OptionalElseStatement ifEnd; //53
@@ -65,11 +71,14 @@ non terminal NameArgs readList; //56
 non terminal Args printList; //57
 non terminal Args printlineList; //58
 non terminal Expression expression; //59
+non terminal Expression optionalExpression; //60
 non terminal LiteralExpression literalExpression; //60
 non terminal BinaryExpression binaryExpression; //61
 non terminal UnaryExpression unaryExpression; //62
 non terminal String optionalSemi;
+non terminal String optionalFinal;
 non terminal String type;
+non terminal String returnType;
 
 precedence right CONDITION, COLON;
 precedence left OR;
@@ -82,9 +91,31 @@ precedence left LEFT_PAREN, RT_PAREN;
 precedence right PREFIXPLUS, PREFIXMINUS, NOT, PLUSPLUS, MINUSMINUS;
 precedence left LEFT_PAREN, RT_PAREN, LEFT_BRKT, RT_BRKT;
 
-program ::= statements:s 
-    {: RESULT = new Program(s); :}
+program ::= CLASS ID:id LEFT_BRACE fieldDeclarations:fd methodDeclarations:md RT_BRACE
+    {: RESULT = new Class(id, fd, md); :}
 ;
+
+fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
+    {: RESULT = fds.prepend(fd); :}
+    |
+    {: RESULT = new FieldDeclarations(); :}
+;
+
+fieldDeclaration ::= optionalFinal:of type:t ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration(t, id, of, oe); :}
+    |
+    type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+    {: RESULT = new FieldDeclaration(t, id, new IntLiteralExpression(i)); :} 
+;
+
+methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
+    {: RESULT = mtds.prepend(md); :}
+    |
+    {: RESULT = new MethodDeclarations(); :}
+;
+
+methodDeclaration ::= returnType:t ID:id LEFT_PAREN argDeclerations:ads RT_PAREN LEFT_BRACE statements:sts RT_BRACE optionalSemi:os
+    {: RESULT = new MethodDeclaration(t, id, ads, sts, os); :}
 
 statements ::= statement:s statements:sl
     {: RESULT = sl.prepend(s); :}
@@ -139,6 +170,11 @@ optionalSemi ::= SEMI
     {: RESULT = ""; :}
 ;
 
+optionalFinal ::= FINAL
+    {: RESULT = "final"; :}
+    |
+    {: RESULT = ""; :}
+
 type ::= INT:i
     {: RESULT = "int"; :}
     |
@@ -151,6 +187,12 @@ type ::= INT:i
     CHAR:c
     {: RESULT = "char"; :}
 ;
+
+returnType ::= type:t
+    {: RESULT = t; :}
+    |
+    VOID:v
+    {: RESULT = "void"; :}
 
 ifEnd ::= ELSE LEFT_BRACE statements:s RT_BRACE
     {: RESULT = new OptionalElseStatement(s); :}
@@ -242,6 +284,11 @@ expression ::= literalExpression:e
     expression:co CONDITION expression:e1 COLON expression:e2
     {: RESULT = new TernaryExpression(co, e1, e2); :}
 ;
+
+optionalExpression ::= ASSMNT expression:e
+    {: RESULT = e; :}
+    |
+    {: RESULT = null; :}
 
 binaryExpression ::= expression:e1 TIMES expression:e2
     {: RESULT = new BinaryExpression("*", e1, e2); :}

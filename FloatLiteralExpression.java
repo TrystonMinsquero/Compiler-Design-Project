@@ -7,5 +7,9 @@ public class FloatLiteralExpression extends LiteralExpression {
     public FloatLiteralExpression(Float f) {
         super(String.valueOf(f), "float");
     }
+
+    public float getValue() {
+        return Float.parseFloat(value);
+    }
     
 }

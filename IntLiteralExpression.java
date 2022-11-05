@@ -8,4 +8,8 @@ public class IntLiteralExpression extends LiteralExpression{
         super(String.valueOf(i), "int");
     }
 
+    public int getValue() {
+        return Integer.parseInt(value);
+    }
+
 }

@@ -22,7 +22,10 @@ FILE=	Lexer.java parser.java sym.java \
 	IntLiteralExpression.java FloatLiteralExpression.java \
 	IfStatement.java OptionalElseStatement.java WhileStatement.java \
 	CallStatement.java ReturnStatement.java NameArgs.java ReadStatement.java \
-	AddToStatement.java BlockStatement.java
+	AddToStatement.java BlockStatement.java Class.java ArgDecleration.java \
+	ArgDeclerations.java Decleration.java Declerations.java \
+	FieldDecleration.java FieldDeclerations.java MethodDecleration.java \
+	MethodDeclerations.java 
 
 run: Phase1_expressions.txt Phase1_order_of_ops.txt Phase1_statements.txt
 
