@@ -29,6 +29,8 @@ FILE=	Lexer.java parser.java sym.java \
 
 run: Phase2_empty.txt
 
+all: Lexer.java parser.java $(FILE:java=class)
+
 Phase2_empty.txt: all
 		$(JAVA) -cp $(CP) ScannerTest Phase2_empty.txt > Phase2_empty-output.txt
 		cat Phase2_empty.txt
