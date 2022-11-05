@@ -60,8 +60,8 @@ non terminal FieldDeclarations fieldDeclarations;
 non terminal FieldDeclaration fieldDeclaration;
 non terminal MethodDeclarations methodDeclarations;
 non terminal MethodDeclaration methodDeclaration;
-non terminal ArgDeclerations argDeclerations;
-non terminal ArgDecleration argDecleration;
+non terminal ArgDeclarations argDeclarations;
+non terminal ArgDeclaration argDeclaration;
 non terminal Statements statements; //51
 non terminal Statement statement; //52
 non terminal OptionalElseStatement ifEnd; //53
@@ -114,23 +114,23 @@ methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
     {: RESULT = new MethodDeclarations(); :}
 ;
 
-methodDeclaration ::= returnType:t ID:id LEFT_PAREN argDeclerations:ads RT_PAREN LEFT_BRACE statements:sts RT_BRACE optionalSemi:os
+methodDeclaration ::= returnType:t ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE statements:sts RT_BRACE optionalSemi:os
     {: RESULT = new MethodDeclaration(t, id, ads, sts, os); :}
     |
     returnType:t ID:id LEFT_PAREN RT_PAREN LEFT_BRACE statements:sts RT_BRACE optionalSemi:os
-    {: RESULT = new MethodDeclaration(t, id, new ArgDeclerations(), sts, os); :}
+    {: RESULT = new MethodDeclaration(t, id, new ArgDeclarations(), sts, os); :}
 ;
 
-argDeclerations ::= argDecleration:ad COMMA argDeclerations:ads
+argDeclarations ::= argDeclaration:ad COMMA argDeclarations:ads
     {: RESULT = ads.prepend(ad); :}
-    | argDecleration:ad
-    {: RESULT = new ArgDeclerations(ad); :}
+    | argDeclaration:ad
+    {: RESULT = new ArgDeclarations(ad); :}
 ;
 
-argDecleration ::= type:t ID:id
-    {: RESULT = new ArgDecleration(t, id); :}
+argDeclaration ::= type:t ID:id
+    {: RESULT = new ArgDeclaration(t, id); :}
     type:t ID:id LEFT_BRKT RT_BRKT
-    {: RESULT = new ArgDecleration(t, id); :}
+    {: RESULT = new ArgDeclaration(t, id, true); :}
 ;
 
 statements ::= statement:s statements:sl
