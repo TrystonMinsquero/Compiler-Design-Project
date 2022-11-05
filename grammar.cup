@@ -101,10 +101,24 @@ fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
     {: RESULT = new FieldDeclarations(); :}
 ;
 
-fieldDeclaration ::= FINAL type:t ID:id optionalExpression:oe SEMI
+fieldDeclaration ::= FINAL type:t ID:id ASSMNT expression:oe SEMI
     {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
     |
-    INT ID:id optionalExpression:oe SEMI
+    FINAL type:t ID:id SEMI
+    {: RESULT = new FieldDeclaration(t, id, "final", null); :}
+    |
+    type:t ID:id ASSMNT expression:oe SEMI
+    {: RESULT = new FieldDeclaration(t, id, "", oe); :}
+    |
+    type:t ID:id SEMI
+    {: RESULT = new FieldDeclaration(t, id, "", null); :}
+    |
+    type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+    {: RESULT = new FieldDeclaration(t, id, new IntLiteralExpression(i)); :}    
+;
+
+/*
+INT ID:id optionalExpression:oe SEMI
     {: RESULT = new FieldDeclaration("int", id, "", oe); :}
     |
     FLOAT ID:id optionalExpression:oe SEMI
@@ -127,7 +141,7 @@ fieldDeclaration ::= FINAL type:t ID:id optionalExpression:oe SEMI
     |
     CHAR ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
     {: RESULT = new FieldDeclaration("char", id, i new IntLiteralExpression(i)); :}
-;
+*/
 
 methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
     {: RESULT = mtds.prepend(md); :}
