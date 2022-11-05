@@ -113,19 +113,20 @@ fieldDeclaration ::=
     |
     CHAR ID:id SEMI
     {: RESULT = new FieldDeclaration("char", id, "", null); :}
-    |
-    INT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration("int", id, new IntLiteralExpression(i)); :}
-    |
-    FLOAT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration("float", id, new IntLiteralExpression(i)); :}
-    |
-    BOOL ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration("bool", id, new IntLiteralExpression(i)); :}
-    |
-    CHAR ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration("char", id, new IntLiteralExpression(i)); :}
-;
+    ;
+//     |
+//     INT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+//     {: RESULT = new FieldDeclaration("int", id, new IntLiteralExpression(i)); :}
+//     |
+//     FLOAT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+//     {: RESULT = new FieldDeclaration("float", id, new IntLiteralExpression(i)); :}
+//     |
+//     BOOL ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+//     {: RESULT = new FieldDeclaration("bool", id, new IntLiteralExpression(i)); :}
+//     |
+//     CHAR ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+//     {: RESULT = new FieldDeclaration("char", id, new IntLiteralExpression(i)); :}
+// ;
 /*
 {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
     |
