@@ -76,7 +76,7 @@ non terminal LiteralExpression literalExpression; //60
 non terminal BinaryExpression binaryExpression; //61
 non terminal UnaryExpression unaryExpression; //62
 non terminal String optionalSemi;
-non terminal String optionalFinal;
+// non terminal String optionalFinal;
 non terminal String type;
 non terminal String returnType;
 
@@ -101,8 +101,11 @@ fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
     {: RESULT = new FieldDeclarations(); :}
 ;
 
-fieldDeclaration ::= optionalFinal:of type:t ID:id optionalExpression:oe SEMI
-    {: RESULT = new FieldDeclaration(t, id, of, oe); :}
+fieldDeclaration ::= FINAL type:t ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
+    |
+    type:t ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration(t, id, "", oe); :}
     |
     type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
     {: RESULT = new FieldDeclaration(t, id, new IntLiteralExpression(i)); :} 
@@ -186,11 +189,11 @@ optionalSemi ::= SEMI
     {: RESULT = ""; :}
 ;
 
-optionalFinal ::= FINAL
-    {: RESULT = "final"; :}
-    |
-    {: RESULT = ""; :}
-;
+// optionalFinal ::= FINAL
+//     {: RESULT = "final"; :}
+//     |
+//     {: RESULT = ""; :}
+// ;
 
 type ::= INT:i
     {: RESULT = "int"; :}
