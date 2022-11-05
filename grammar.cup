@@ -116,6 +116,7 @@ methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
 
 methodDeclaration ::= returnType:t ID:id LEFT_PAREN argDeclerations:ads RT_PAREN LEFT_BRACE statements:sts RT_BRACE optionalSemi:os
     {: RESULT = new MethodDeclaration(t, id, ads, sts, os); :}
+;
 
 statements ::= statement:s statements:sl
     {: RESULT = sl.prepend(s); :}
@@ -174,6 +175,7 @@ optionalFinal ::= FINAL
     {: RESULT = "final"; :}
     |
     {: RESULT = ""; :}
+;
 
 type ::= INT:i
     {: RESULT = "int"; :}
@@ -193,6 +195,7 @@ returnType ::= type:t
     |
     VOID:v
     {: RESULT = "void"; :}
+;
 
 ifEnd ::= ELSE LEFT_BRACE statements:s RT_BRACE
     {: RESULT = new OptionalElseStatement(s); :}
@@ -289,6 +292,7 @@ optionalExpression ::= ASSMNT expression:e
     {: RESULT = e; :}
     |
     {: RESULT = null; :}
+;
 
 binaryExpression ::= expression:e1 TIMES expression:e2
     {: RESULT = new BinaryExpression("*", e1, e2); :}
