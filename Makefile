@@ -25,7 +25,7 @@ FILE=	Lexer.java parser.java sym.java \
 	AddToStatement.java BlockStatement.java Class.java ArgDeclaration.java \
 	ArgDeclarations.java Declaration.java Declarations.java \
 	FieldDeclaration.java FieldDeclarations.java MethodDeclaration.java \
-	MethodDeclarations.java 
+	MethodDeclarations.java
 
 run: Phase2_empty.txt
 
