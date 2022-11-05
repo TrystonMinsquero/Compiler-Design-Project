@@ -71,7 +71,7 @@ non terminal NameArgs readList; //56
 non terminal Args printList; //57
 non terminal Args printlineList; //58
 non terminal Expression expression; //59
-non terminal Expression optionalExpression; //60
+// non terminal Expression optionalExpression; //60
 non terminal LiteralExpression literalExpression; //60
 non terminal BinaryExpression binaryExpression; //61
 non terminal UnaryExpression unaryExpression; //62
@@ -338,11 +338,11 @@ expression ::= literalExpression:e
     {: RESULT = new TernaryExpression(co, e1, e2); :}
 ;
 
-optionalExpression ::= ASSMNT expression:e
-    {: RESULT = e; :}
-    |
-    {: RESULT = null; :}
-;
+// optionalExpression ::= ASSMNT expression:e
+//     {: RESULT = e; :}
+//     |
+//     {: RESULT = null; :}
+// ;
 
 binaryExpression ::= expression:e1 TIMES expression:e2
     {: RESULT = new BinaryExpression("*", e1, e2); :}
