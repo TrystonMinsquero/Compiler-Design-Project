@@ -104,11 +104,29 @@ fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
 fieldDeclaration ::= FINAL type:t ID:id optionalExpression:oe SEMI
     {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
     |
-    type:t ID:id optionalExpression:oe SEMI
-    {: RESULT = new FieldDeclaration(t, id, "", oe); :}
+    INT ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration("int", id, "", oe); :}
     |
-    type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration(t, id, new IntLiteralExpression(i)); :} 
+    FLOAT ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration("float", id, "", oe); :}
+    |
+    BOOL ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration("bool", id, "", oe); :}
+    |
+    CHAR ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration("char", id, "", oe); :}
+    |
+    INT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+    {: RESULT = new FieldDeclaration("int", id, i new IntLiteralExpression(i)); :}
+    |
+    FLOAT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+    {: RESULT = new FieldDeclaration("float", id, i new IntLiteralExpression(i)); :}
+    |
+    BOOL ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+    {: RESULT = new FieldDeclaration("bool", id, i new IntLiteralExpression(i)); :}
+    |
+    CHAR ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+    {: RESULT = new FieldDeclaration("char", id, i new IntLiteralExpression(i)); :}
 ;
 
 methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
