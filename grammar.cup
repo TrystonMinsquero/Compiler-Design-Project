@@ -125,11 +125,13 @@ argDeclerations ::= argDecleration:ad COMMA argDeclerations:ads
     {: RESULT = ads.prepend(ad); :}
     | argDecleration:ad
     {: RESULT = new ArgDeclerations(ad); :}
+;
 
 argDecleration ::= type:t ID:id
     {: RESULT = new ArgDecleration(t, id); :}
     type:t ID:id LEFT_BRKT RT_BRKT
     {: RESULT = new ArgDecleration(t, id); :}
+;
 
 statements ::= statement:s statements:sl
     {: RESULT = sl.prepend(s); :}
