@@ -55,7 +55,8 @@ terminal Float FLOATLIT;  //48
 terminal String CHARLIT;  //49
 terminal String STRINGLIT;//50
 
-non terminal Class program; //50
+non terminal Program program; //50
+non terminal Class clas;      //51
 non terminal FieldDeclarations fieldDeclarations;
 non terminal FieldDeclaration fieldDeclaration;
 non terminal MethodDeclarations methodDeclarations;
@@ -91,9 +92,12 @@ precedence left LEFT_PAREN, RT_PAREN;
 precedence right PREFIXPLUS, PREFIXMINUS, NOT, PLUSPLUS, MINUSMINUS;
 precedence left LEFT_PAREN, RT_PAREN, LEFT_BRKT, RT_BRKT;
 
-program ::= CLASS ID:id LEFT_BRACE fieldDeclarations:fd methodDeclarations:md RT_BRACE
-    {: RESULT = new Class(id, fd, md); :}
+program ::= clas:c
+    {: RESULT = new Program(c); :}
 ;
+
+clas ::= CLASS ID:id LEFT_BRACE fieldDeclarations:fd methodDeclarations:md RT_BRACE
+    {: RESULT = new Class(id, fd, md); :}
 
 fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
     {: RESULT = (FieldDeclarations) fds.prepend(fd); :}
