@@ -1,4 +1,9 @@
 public class ArgDeclarations extends Declarations{
+
+    public ArgDeclarations(ArgDeclaration ad) {
+        super(ad);
+    }
+
     public String toString(int t) {
         String ret = "";
         for(Declaration d : declerations)
