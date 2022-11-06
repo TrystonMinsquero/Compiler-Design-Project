@@ -1,8 +1,8 @@
 class Program extends Token {
-    private Class clas;
+    private Clas clas;
 
     //Constructor
-    public Program(Class c) {
+    public Program(Clas c) {
         clas = c;
     }
   

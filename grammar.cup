@@ -56,7 +56,7 @@ terminal String CHARLIT;  //49
 terminal String STRINGLIT;//50
 
 non terminal Program program; //50
-non terminal Class clas;      //51
+non terminal Clas clas;      //51
 non terminal FieldDeclarations fieldDeclarations;
 non terminal FieldDeclaration fieldDeclaration;
 non terminal MethodDeclarations methodDeclarations;
