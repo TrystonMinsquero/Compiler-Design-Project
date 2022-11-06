@@ -56,12 +56,12 @@ terminal String CHARLIT;  //49
 terminal String STRINGLIT;//50
 
 non terminal Class program; //50
-non terminal FieldDeclarations fieldDeclarations;
-non terminal FieldDeclaration fieldDeclaration;
-non terminal MethodDeclarations methodDeclarations;
-non terminal MethodDeclaration methodDeclaration;
-non terminal ArgDeclarations argDeclarations;
-non terminal ArgDeclaration argDeclaration;
+non terminal Declarations fieldDeclarations;
+non terminal Declaration fieldDeclaration;
+non terminal Declarations methodDeclarations;
+non terminal Declaration methodDeclaration;
+non terminal Declarations argDeclarations;
+non terminal Declaration argDeclaration;
 non terminal Statements statements; //51
 non terminal Statement statement; //52
 non terminal OptionalElseStatement ifEnd; //53
