@@ -98,6 +98,7 @@ program ::= clas:c
 
 clas ::= CLASS ID:id LEFT_BRACE fieldDeclarations:fd methodDeclarations:md RT_BRACE
     {: RESULT = new Class(id, fd, md); :}
+;
 
 fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
     {: RESULT = (FieldDeclarations) fds.prepend(fd); :}
