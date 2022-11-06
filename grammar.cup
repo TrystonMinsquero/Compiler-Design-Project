@@ -175,8 +175,8 @@ methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
     {: RESULT = new MethodDeclarations(); :}
 ;
 
-methodDeclaration ::= returnType:t ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE statements:sts RT_BRACE optionalSemi:os
-    {: RESULT = new MethodDeclaration(t, id, ads, sts, os); :}
+methodDeclaration ::= returnType:t ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
+    {: RESULT = new MethodDeclaration(t, id, ads, fds, sts, os); :}
     |
     returnType:t ID:id LEFT_PAREN RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
     {: RESULT = new MethodDeclaration(t, id, new ArgDeclarations(), fds, sts, os); :}
