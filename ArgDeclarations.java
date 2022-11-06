@@ -4,6 +4,10 @@ public class ArgDeclarations extends Declarations{
         super(ad);
     }
 
+    public ArgDeclarations() {
+        super();
+    }
+
     public String toString(int t) {
         String ret = "";
         for(Declaration d : declerations)
