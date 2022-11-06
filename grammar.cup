@@ -178,8 +178,8 @@ methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
 methodDeclaration ::= returnType:t ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE statements:sts RT_BRACE optionalSemi:os
     {: RESULT = new MethodDeclaration(t, id, ads, sts, os); :}
     |
-    returnType:t ID:id LEFT_PAREN RT_PAREN LEFT_BRACE statements:sts RT_BRACE optionalSemi:os
-    {: RESULT = new MethodDeclaration(t, id, new ArgDeclarations(), sts, os); :}
+    returnType:t ID:id LEFT_PAREN RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
+    {: RESULT = new MethodDeclaration(t, id, new ArgDeclarations(), fds, sts, os); :}
 ;
 
 argDeclarations ::= argDeclaration:ad COMMA argDeclarations:ads
