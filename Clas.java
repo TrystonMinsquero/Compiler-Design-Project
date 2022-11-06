@@ -1,9 +1,9 @@
-public class Clas extends Token {
+public class Class extends Token {
     protected String id;
     protected FieldDeclarations fields;
     protected MethodDeclarations methods;
     
-    public Clas(String id, FieldDeclarations fields, MethodDeclarations methods) {
+    public Class(String id, FieldDeclarations fields, MethodDeclarations methods) {
         this.id = id;
         this.fields = fields;
         this.methods = methods;
