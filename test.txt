@@ -24,14 +24,6 @@ void main()
 		int emu43[43];
 		triVals[2] = pythag(triVals);
 	};
-	print(triVals[2]);
-	
-	\\various tests
-	pythag();
-	pythag(x);
-	pythag(x, y);
-	x = pythag();
-	x = pythag(x, y);
 	
 }
 
