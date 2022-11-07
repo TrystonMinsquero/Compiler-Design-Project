@@ -1,12 +1,13 @@
 class onlyFields { 
-    int x;
+    final int x;
     int x = 2;
-    float y = 2.2;
+    final float y = 2.2;
 
     void method() {}
     void method2(int var1, int var2) {}
     int method3(int var) {
         int x = 5;
+        final char y = 'A';
         x = 5 + var;
         return x;
     }
