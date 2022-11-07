@@ -1,12 +1,21 @@
 class Program extends Token {
-    private Class clas;
+    private String classID;
+    private FieldDeclarations fields;
+    private MethodDeclarations methods;
+
 
     //Constructor
-    public Program(Class c) {
-        clas = c;
+    public Program(String className, FieldDeclarations fields, MethodDeclarations methods) {
+        classID = className;
+        this.fields = fields;
+        this.methods = methods;
     }
   
     public String toString(int t) {
-      return "Program:\n" + clas.toString(t+1) + "\n";
+        String ret = getTabs(t) + "class " + classID + " {\n";
+        ret += fields.toString(t+1);
+        ret += methods.toString(t+1);
+        ret += "}\n";
+        return ret;
     }
   }
