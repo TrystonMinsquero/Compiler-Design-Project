@@ -5,7 +5,7 @@ class onlyFields {
 
     void method() {}
     void method2(int var1, int var2) {}
-    int method3(int var) {
+    void method3(int var) {
         int x = 5;
         final char y = 'A';
         x = 5 + var;
