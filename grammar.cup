@@ -131,10 +131,10 @@ fieldDeclaration ::=
     {: RESULT = new FieldDeclaration(t, id, "", oe); :}
     |
     FINAL type:t ID:id optionalExpression:oe SEMI
-    {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
-    |
-    type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration(t, id, "", new IntLiteralExpression(i)); :};
+    {: RESULT = new FieldDeclaration(t, id, "final", oe); :};
+    // |
+    // type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+    // {: RESULT = new FieldDeclaration(t, id, "", new IntLiteralExpression(i)); :};
     // INT ID:id SEMI
     // {: RESULT = new FieldDeclaration("int", id, "", null); :}
     // |
