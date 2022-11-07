@@ -71,7 +71,7 @@ non terminal NameArgs readList; //56
 non terminal Args printList; //57
 non terminal Args printlineList; //58
 non terminal Expression expression; //59
-// non terminal Expression optionalExpression; //60
+non terminal Expression optionalExpression; //60
 non terminal LiteralExpression literalExpression; //60
 non terminal BinaryExpression binaryExpression; //61
 non terminal UnaryExpression unaryExpression; //62
@@ -102,30 +102,33 @@ fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
 ;
 
 fieldDeclaration ::= 
-    INT ID:id SEMI
-    {: RESULT = new FieldDeclaration("int", id, "", null); :}
-    |
-    FLOAT ID:id SEMI
-    {: RESULT = new FieldDeclaration("float", id, "", null); :}
-    |
-    BOOL ID:id SEMI
-    {: RESULT = new FieldDeclaration("bool", id, "", null); :}
-    |
-    CHAR ID:id SEMI
-    {: RESULT = new FieldDeclaration("char", id, "", null); :}
-    |
-    INT ID:id ASSMNT expression:e SEMI
-    {: RESULT = new FieldDeclaration("int", id, "", e); :}
-    |
-    FLOAT ID:id ASSMNT expression:e SEMI
-    {: RESULT = new FieldDeclaration("float", id, "", e); :}
-    |
-    BOOL ID:id ASSMNT expression:e SEMI
-    {: RESULT = new FieldDeclaration("bool", id, "", e); :}
-    |
-    CHAR ID:id ASSMNT expression:e SEMI
-    {: RESULT = new FieldDeclaration("char", id, "", e); :}
-    ;
+    type:t ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration(t, id, "", oe); :};
+    // INT ID:id SEMI
+    // {: RESULT = new FieldDeclaration("int", id, "", null); :}
+    // |
+    // FLOAT ID:id SEMI
+    // {: RESULT = new FieldDeclaration("float", id, "", null); :}
+    // |
+    // BOOL ID:id SEMI
+    // {: RESULT = new FieldDeclaration("bool", id, "", null); :}
+    // |
+    // CHAR ID:id SEMI
+    // {: RESULT = new FieldDeclaration("char", id, "", null); :}
+    // |
+    // INT ID:id ASSMNT expression:e SEMI
+    // {: RESULT = new FieldDeclaration("int", id, "", e); :}
+    // |
+    // FLOAT ID:id ASSMNT expression:e SEMI
+    // {: RESULT = new FieldDeclaration("float", id, "", e); :}
+    // |
+    // BOOL ID:id ASSMNT expression:e SEMI
+    // {: RESULT = new FieldDeclaration("bool", id, "", e); :}
+    // |
+    // CHAR ID:id ASSMNT expression:e SEMI
+    // {: RESULT = new FieldDeclaration("char", id, "", e); :}
+    // ;
+    
 //     |
 //     INT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
 //     {: RESULT = new FieldDeclaration("int", id, new IntLiteralExpression(i)); :}
@@ -351,6 +354,12 @@ literalExpression ::= name:n
     {: RESULT = new LiteralExpression(false); :}
 ;
 
+optionalExpression ::= ASSMNT expression:e
+    {: RESULT = e; :}
+    |
+    {: RESULT = null; :}
+;
+
 expression ::= literalExpression:e
     {: RESULT = e; :}
     |
@@ -375,12 +384,6 @@ expression ::= literalExpression:e
     expression:co CONDITION expression:e1 COLON expression:e2
     {: RESULT = new TernaryExpression(co, e1, e2); :}
 ;
-
-// optionalExpression ::= ASSMNT expression:e
-//     {: RESULT = e; :}
-//     |
-//     {: RESULT = null; :}
-// ;
 
 binaryExpression ::= expression:e1 TIMES expression:e2
     {: RESULT = new BinaryExpression("*", e1, e2); :}
