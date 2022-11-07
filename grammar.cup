@@ -102,17 +102,29 @@ fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
 ;
 
 fieldDeclaration ::= 
-    FINAL INT ID:id SEMI
-    {: RESULT = new FieldDeclaration("int", id, "final", null); :}
+    INT ID:id SEMI
+    {: RESULT = new FieldDeclaration("int", id, "", null); :}
     |
-    FINAL FLOAT ID:id SEMI
-    {: RESULT = new FieldDeclaration("float", id, "final", null); :}
+    FLOAT ID:id SEMI
+    {: RESULT = new FieldDeclaration("float", id, "", null); :}
     |
-    FINAL BOOL ID:id SEMI
-    {: RESULT = new FieldDeclaration("bool", id, "final", null); :}
+    BOOL ID:id SEMI
+    {: RESULT = new FieldDeclaration("bool", id, "", null); :}
     |
-    FINAL CHAR ID:id SEMI
-    {: RESULT = new FieldDeclaration("char", id, "final", null); :}
+    CHAR ID:id SEMI
+    {: RESULT = new FieldDeclaration("char", id, "", null); :}
+    |
+    INT ID:id ASSMNT expression:e SEMI
+    {: RESULT = new FieldDeclaration("int", id, "", e); :}
+    |
+    FLOAT ID:id SEMI
+    {: RESULT = new FieldDeclaration("float", id, "", e); :}
+    |
+    BOOL ID:id SEMI
+    {: RESULT = new FieldDeclaration("bool", id, "", e); :}
+    |
+    CHAR ID:id SEMI
+    {: RESULT = new FieldDeclaration("char", id, "", e); :}
     ;
 //     |
 //     INT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
@@ -190,7 +202,6 @@ argDeclarations ::= argDeclaration:ad COMMA argDeclarations:ads
 
 argDeclaration ::= type:t ID:id
     {: RESULT = new ArgDeclaration(t, id); :}
-    |
     type:t ID:id LEFT_BRKT RT_BRKT
     {: RESULT = new ArgDeclaration(t, id, true); :}
 ;
