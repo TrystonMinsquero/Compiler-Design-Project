@@ -12,7 +12,7 @@ public class FieldDeclaration extends Declaration {
 
     public FieldDeclaration(String type, String id, String optionalFinal, Expression optionalExpression) {
         super(type, id);
-        this.optionalFinal = optionalFinal == "" ? optionalFinal + " " : ""; // add space to make toString easier
+        this.optionalFinal = optionalFinal != "" ? optionalFinal + " " : ""; // add space to make toString easier
         this.optionalExpression = optionalExpression;
         optionalIntLiteralExpression = null;
     }
