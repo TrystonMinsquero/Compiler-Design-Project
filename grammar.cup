@@ -117,13 +117,13 @@ fieldDeclaration ::=
     INT ID:id ASSMNT expression:e SEMI
     {: RESULT = new FieldDeclaration("int", id, "", e); :}
     |
-    FLOAT ID:id SEMI
+    FLOAT ID:id ASSMNT expression:e SEMI
     {: RESULT = new FieldDeclaration("float", id, "", e); :}
     |
-    BOOL ID:id SEMI
+    BOOL ID:id ASSMNT expression:e SEMI
     {: RESULT = new FieldDeclaration("bool", id, "", e); :}
     |
-    CHAR ID:id SEMI
+    CHAR ID:id ASSMNT expression:e SEMI
     {: RESULT = new FieldDeclaration("char", id, "", e); :}
     ;
 //     |
