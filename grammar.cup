@@ -162,7 +162,7 @@ statement ::=
     name:n ASSMNT expression:e SEMI
     {: RESULT = new AssignStatement(n, e); :}
     |
-    IF LEFT_PAREN expression:e RT_PAREN LEFT_BRACE statements:s RT_BRACE ifEnd:ie
+    IF LEFT_PAREN expression:e RT_PAREN LEFT_BRACE fieldDeclarations:f statements:s RT_BRACE ifEnd:ie
     {: RESULT = new IfStatement(e, f, s, ie); :}
     |
     WHILE LEFT_PAREN expression:e RT_PAREN LEFT_BRACE fieldDeclarations:f statements:s RT_BRACE
