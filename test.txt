@@ -35,5 +35,33 @@ void main()
 	
 }
 
+float testUnmatchedIfInAClosedMatchedIf()
+{
+	{
+		if (true)
+		{
+			if (thisShouldntHaveAnElse) {
+				read(betterNot); }
+		}
+		else {
+			justAStatement = "ye";}
+	};
+}
+
+int someAdditionalRandomTests()
+{
+	printline(   );
+	read(x, y);
+	read(x);
+	print(x);
+	print(x, y);
+	x++;
+	x--;
+	x[0 + 8 || 7]++;
+	y[8 * ~7 - tensai() + tensai(16 - 32, 4) - tensai(x[6])]--;
+	\\but is comma the lowest precedence??????
+	testFunc( 6 + 7, +4 - 2);
+
+}
 
 }
