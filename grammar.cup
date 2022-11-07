@@ -61,7 +61,7 @@ non terminal FieldDeclarations fieldDeclarations;
 non terminal FieldDeclaration fieldDeclaration;
 // non terminal FieldEnd fieldEnd;
 // non terminal MethodEnd methodEnd;
-non terminal MethodDeclarations methodDeclarations;
+non terminal Declarations methodDeclarations;
 non terminal MethodDeclaration methodDeclaration;
 non terminal ArgDeclarations argDeclarations;
 non terminal ArgDeclaration argDeclaration;
@@ -221,9 +221,9 @@ INT ID:id optionalExpression:oe SEMI
 */
 
 methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
-    {: RESULT = (MethodDeclarations) mtds.prepend(md); :}
+    {: RESULT = (Declarations) mtds.prepend(md); :}
     |
-    {: RESULT = new MethodDeclarations(); :}
+    {: RESULT = (Declarations) new MemberDeclarations(); :}
 ;
 
 methodDeclaration ::= type:t ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
