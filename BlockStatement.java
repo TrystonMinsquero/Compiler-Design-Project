@@ -46,7 +46,7 @@ public class BlockStatement extends Statement{
 
     public String toString(int t) {
         String s = getTabs(t) + blockType 
-            + (condition == null ? "" : "( " + condition.toString(0) + " ) ")
+            + (condition == null ? "" : "( " + condition.toString(0) + " )")
             + (blockType != "" ? " " : "" ) + "{\n"
             + fields.toString(t+1)
             + statements.toString(t+1)
