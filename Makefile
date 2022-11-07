@@ -27,7 +27,7 @@ FILE=	Lexer.java parser.java sym.java \
 	FieldDeclaration.java FieldDeclarations.java MethodDeclaration.java \
 	MethodDeclarations.java
 
-run: test.txt
+run: Phase2_full.txt
 
 all: Lexer.java parser.java $(FILE:java=class)
 
