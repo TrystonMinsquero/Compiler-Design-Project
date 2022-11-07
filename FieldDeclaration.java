@@ -17,12 +17,12 @@ public class FieldDeclaration extends Declaration {
         optionalIntLiteralExpression = null;
     }
 
-    public FieldDeclaration(String type, String id, String optionalFinal, FieldEnd fieldRecord) {
-        super(type, id);
-        this.optionalFinal = optionalFinal == "" ? optionalFinal + " " : ""; // add space to make toString easier
-        this.optionalExpression = fieldRecord.optionalExpression();
-        optionalIntLiteralExpression = fieldRecord.optionalIntLiteralExpression();
-    }
+    // public FieldDeclaration(String type, String id, String optionalFinal, FieldEnd fieldRecord) {
+    //     super(type, id);
+    //     this.optionalFinal = optionalFinal == "" ? optionalFinal + " " : ""; // add space to make toString easier
+    //     this.optionalExpression = fieldRecord.optionalExpression();
+    //     optionalIntLiteralExpression = fieldRecord.optionalIntLiteralExpression();
+    // }
 
 
     public FieldDeclaration(String type, String id, IntLiteralExpression optionalIntLiteralExpression) {

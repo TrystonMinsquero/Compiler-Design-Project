@@ -13,13 +13,13 @@ public class MethodDeclaration extends Declaration{
         this.optionalSemi = optionalSemi;
     }
 
-    public MethodDeclaration(String returnType, String id, MethodEnd methodRecord) {
-        super(returnType, id);
-        this.argDeclarations = methodRecord.args();
-        this.fieldDeclarations = methodRecord.fields();
-        this.statements = methodRecord.statements();
-        this.optionalSemi = methodRecord.optionalSemi();
-    }
+    // public MethodDeclaration(String returnType, String id, MethodEnd methodRecord) {
+    //     super(returnType, id);
+    //     this.argDeclarations = methodRecord.args();
+    //     this.fieldDeclarations = methodRecord.fields();
+    //     this.statements = methodRecord.statements();
+    //     this.optionalSemi = methodRecord.optionalSemi();
+    // }
 
     public String toString(int t) {
         String ret = getTabs(t) + type + " " + name + "(" + argDeclarations.toString(0) + ") {\n";

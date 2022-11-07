@@ -100,12 +100,12 @@ program ::= CLASS ID:id LEFT_BRACE memberDeclarations:md RT_BRACE
 
 memberDeclarations ::= 
     fieldDeclaration:fe memberDeclarations:mds
-    {: RESULT = mds.prepend(fe); :}
+    {: RESULT = (Delcarations) mds.prepend(fe); :}
     |
     methodDeclaration:me methodDeclarations:mtds
-    {: RESULT = mtds.prepend(me); :}
+    {: RESULT = (Delcarations) mtds.prepend(me); :}
     |
-    {: RESULT = new MemberDeclarations(); :}
+    {: RESULT = (Delcarations) new MemberDeclarations(); :}
 ;
 
 // fieldsEnd ::= 

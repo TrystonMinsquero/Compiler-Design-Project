@@ -1,6 +1,6 @@
-public record MethodEnd(
-    ArgDeclarations args, 
-    FieldDeclarations fields, 
-    Statements statements, 
-    String optionalSemi) 
-    {}
+// public record MethodEnd(
+//     ArgDeclarations args, 
+//     FieldDeclarations fields, 
+//     Statements statements, 
+//     String optionalSemi) 
+//     {}
