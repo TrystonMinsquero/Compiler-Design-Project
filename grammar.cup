@@ -59,8 +59,6 @@ non terminal Program program; //50
 non terminal Declarations memberDeclarations; //51
 non terminal FieldDeclarations fieldDeclarations;
 non terminal FieldDeclaration fieldDeclaration;
-// non terminal FieldEnd fieldEnd;
-// non terminal MethodEnd methodEnd;
 non terminal Declarations methodDeclarations;
 non terminal MethodDeclaration methodDeclaration;
 non terminal ArgDeclarations argDeclarations;
@@ -136,10 +134,10 @@ fieldDeclaration ::=
     {: RESULT = new FieldDeclaration(t, id, "", oe); :}
     |
     FINAL type:t ID:id optionalExpression:oe SEMI
-    {: RESULT = new FieldDeclaration(t, id, "final", oe); :};
-    // |
-    // type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    // {: RESULT = new FieldDeclaration(t, id, "", new IntLiteralExpression(i)); :};
+    {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
+    |
+    type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+    {: RESULT = new FieldDeclaration(t, id, "", new IntLiteralExpression(i)); :};
     // INT ID:id SEMI
     // {: RESULT = new FieldDeclaration("int", id, "", null); :}
     // |
