@@ -47,13 +47,16 @@ public class MemberDeclarations extends Declarations {
         boolean printedFields = false;
         boolean printedMethods = false;
         for(Declaration d : declerations) {
-            if(!printedFields && d instanceof FieldDeclaration) {
-                ret += getTabs(t) + "Fields:\n";
-                printedFields = true;
-            }
-            if(!printedMethods && d instanceof MethodDeclaration) {
-                ret += getTabs(t) + "Methods:\n";
-                printedMethods = true;
+            if(d instanceof FieldDeclaration) {
+                if(!printedFields) {
+                    ret += getTabs(t) + "Fields:\n";
+                    printedFields = true;
+                }
+            } else if(d instanceof MethodDeclaration) {
+                if(!printedMethods) {
+                    ret += getTabs(t) + "Methods:\n";
+                    printedMethods = true;
+                }
             }
             ret += d.toString(t+1);
         }
