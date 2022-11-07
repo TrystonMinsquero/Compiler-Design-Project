@@ -224,13 +224,6 @@ type ::= INT:i
     {: RESULT = "char"; :}
 ;
 
-returnType ::= type:t
-    {: RESULT = t; :}
-    |
-    VOID:v
-    {: RESULT = "void"; :}
-;
-
 ifEnd ::= ELSE LEFT_BRACE fieldDeclarations:f statements:s RT_BRACE
     {: RESULT = new OptionalElseStatement(); :}
     |
