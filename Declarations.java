@@ -25,4 +25,11 @@ public abstract class Declarations extends Token{
         return this;
     }
     
+    public String toString(int t) {
+        String ret = "";
+        for(Declaration d : declerations)
+            ret += d.toString(t+1);
+        return ret;
+    }
+    
 }
