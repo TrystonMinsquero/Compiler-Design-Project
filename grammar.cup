@@ -190,11 +190,11 @@ methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
     {: RESULT = new MethodDeclarations(); :}
 ;
 
-methodDeclaration ::= type:t ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
-    {: RESULT = new MethodDeclaration(t, id, ads, fds, sts, os); :}
+methodDeclaration ::= VOID ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
+    {: RESULT = new MethodDeclaration("void", id, ads, fds, sts, os); :}
     |
-    type:t ID:id LEFT_PAREN RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
-    {: RESULT = new MethodDeclaration(t, id, new ArgDeclarations(), fds, sts, os); :}
+    VOID ID:id LEFT_PAREN RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
+    {: RESULT = new MethodDeclaration("void", id, new ArgDeclarations(), fds, sts, os); :}
 ;
 
 argDeclarations ::= argDeclaration:ad COMMA argDeclarations:ads
