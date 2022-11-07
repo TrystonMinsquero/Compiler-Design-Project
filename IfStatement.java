@@ -1,8 +1,8 @@
 public class IfStatement extends BlockStatement {
     private OptionalElseStatement elseStatement;
 
-    public IfStatement(FieldDeclarations f, Statements s, Expression c, OptionalElseStatement e) {
-        super(f, s);
+    public IfStatement(Expression c, FieldDeclarations f, Statements s, OptionalElseStatement e) {
+        super("if", c, f, s);
         elseStatement = e;
     }
 
