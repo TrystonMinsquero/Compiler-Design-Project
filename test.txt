@@ -5,5 +5,9 @@ class onlyFields {
 
     void method() {}
     void method2(int var1, int var2) {}
-
+    \*
+    void method3(int var) {
+        var = var + 1;
+    }
+    *\
 }
