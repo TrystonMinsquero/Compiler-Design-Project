@@ -6,11 +6,16 @@ public class AddToStatement extends Statement{
         name = n;
         expr = e;
     }
+
+    public AddToStatement(Name n, Integer num) {
+        name = n;
+        expr = new IntLiteralExpression(num);
+    }
     
     public String toString(int t) {
         String s = getTabs(t) + name.toString(0);
         if(expr instanceof IntLiteralExpression) {
-            int value = Integer.parseInt(expr.toString(0));
+            int value = ((IntLiteralExpression)expr).getValue();
             switch(value) {
                 case 1:
                     return s + "++;\n";
