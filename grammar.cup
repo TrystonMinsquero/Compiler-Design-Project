@@ -95,17 +95,17 @@ precedence right PREFIXPLUS, PREFIXMINUS, NOT, PLUSPLUS, MINUSMINUS;
 precedence left LEFT_PAREN, RT_PAREN, LEFT_BRKT, RT_BRKT;
 
 program ::= CLASS ID:id LEFT_BRACE memberDeclarations:md RT_BRACE
-    {: RESULT = new Program(id, md); :}
+    {: RESULT = new Program(id, (MemberDeclarations) md); :}
 ;
 
 memberDeclarations ::= 
     fieldDeclaration:fe memberDeclarations:mds
-    {: RESULT = (Delcarations) mds.prepend(fe); :}
+    {: RESULT = (Declarations) mds.prepend(fe); :}
     |
     methodDeclaration:me methodDeclarations:mtds
-    {: RESULT = (Delcarations) mtds.prepend(me); :}
+    {: RESULT = (Declarations) mtds.prepend(me); :}
     |
-    {: RESULT = (Delcarations) new MemberDeclarations(); :}
+    {: RESULT = (Declarations) new MemberDeclarations(); :}
 ;
 
 // fieldsEnd ::= 
