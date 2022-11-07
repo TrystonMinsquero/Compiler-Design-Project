@@ -103,7 +103,10 @@ fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
 
 fieldDeclaration ::= 
     type:t ID:id optionalExpression:oe SEMI
-    {: RESULT = new FieldDeclaration(t, id, "", oe); :};
+    {: RESULT = new FieldDeclaration(t, id, "", oe); :}
+    |
+    FINAL type:t ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration(t, id, "final", oe); :};
     // INT ID:id SEMI
     // {: RESULT = new FieldDeclaration("int", id, "", null); :}
     // |
