@@ -6,7 +6,8 @@ class onlyFields {
     void method() {}
     void method2(int var1, int var2) {}
     void method3(int var) {
-        var++;
-        return;
+        int x = 5
+        x = 5 + var;
+        return x;
     }
 }
