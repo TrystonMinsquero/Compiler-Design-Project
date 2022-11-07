@@ -56,8 +56,11 @@ terminal String CHARLIT;  //49
 terminal String STRINGLIT;//50
 
 non terminal Program program; //50
+non terminal Declerations memberDeclarations; //51
 non terminal FieldDeclarations fieldDeclarations;
 non terminal FieldDeclaration fieldDeclaration;
+// non terminal FieldEnd fieldEnd;
+// non terminal MethodEnd methodEnd;
 non terminal MethodDeclarations methodDeclarations;
 non terminal MethodDeclaration methodDeclaration;
 non terminal ArgDeclarations argDeclarations;
@@ -91,9 +94,23 @@ precedence left LEFT_PAREN, RT_PAREN;
 precedence right PREFIXPLUS, PREFIXMINUS, NOT, PLUSPLUS, MINUSMINUS;
 precedence left LEFT_PAREN, RT_PAREN, LEFT_BRKT, RT_BRKT;
 
-program ::= CLASS ID:id LEFT_BRACE fieldDeclarations:fd methodDeclarations:md RT_BRACE
-    {: RESULT = new Program(id, fd, md); :}
+program ::= CLASS ID:id LEFT_BRACE memberDeclarations:md RT_BRACE
+    {: RESULT = new Program(id, md); :}
 ;
+
+memberDeclarations ::= 
+    fieldDeclaration:fe memberDeclarations:mds
+    {: RESULT = mds.prepend(fe); :}
+    |
+    methodDeclaration:me methodDeclarations:mtds
+    {: RESULT = mtds.prepend(me); :}
+    |
+    {: RESULT = new MemberDeclarations(); :}
+;
+
+// fieldsEnd ::= 
+//     fieldEnd:fe methodDeclarations:mtds
+//     {: RESULT = new FieldsEnd(fe, mtds); :}
 
 fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
     {: RESULT = (FieldDeclarations) fds.prepend(fd); :}
@@ -101,12 +118,23 @@ fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
     {: RESULT = new FieldDeclarations(); :}
 ;
 
+// fieldEnd ::= 
+//     optionalExpression:oe SEMI
+//     {: RESULT = new FieldEnd(oe, null); :}
+//     |
+//     LEFT_BRKT INTLIT:i RT_BRKT SEMI
+//     {: RESULT = new FieldRecord(null, new IntLiteralExpression(i)); :}
+
+
 fieldDeclaration ::= 
     type:t ID:id optionalExpression:oe SEMI
     {: RESULT = new FieldDeclaration(t, id, "", oe); :}
     |
     FINAL type:t ID:id optionalExpression:oe SEMI
-    {: RESULT = new FieldDeclaration(t, id, "final", oe); :};
+    {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
+    |
+    type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+    {: RESULT = new FieldDeclaration(t, id, "", new IntLiteralExpression(i)); :};
     // INT ID:id SEMI
     // {: RESULT = new FieldDeclaration("int", id, "", null); :}
     // |
@@ -193,23 +221,20 @@ methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
     {: RESULT = new MethodDeclarations(); :}
 ;
 
-methodDeclaration ::= VOID ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
-    {: RESULT = new MethodDeclaration("void", id, ads, fds, sts, os); :}
-    |
-    VOID ID:id LEFT_PAREN RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
-    {: RESULT = new MethodDeclaration("void", id, new ArgDeclarations(), fds, sts, os); :}
-    |
-    type:t ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
+methodDeclaration ::= returnType:t ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
     {: RESULT = new MethodDeclaration(t, id, ads, fds, sts, os); :}
-    |
-    type:t ID:id LEFT_PAREN RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
-    {: RESULT = new MethodDeclaration(t, id, new ArgDeclarations(), fds, sts, os); :}
 ;
+
+// methodEnd ::=
+//     LEFT_PAREN argDeclaration:args RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
+//     {: RESULT = new MethodEnd(args, fds, sts, os); :}
 
 argDeclarations ::= argDeclaration:ad COMMA argDeclarations:ads
     {: RESULT = (ArgDeclarations) ads.prepend(ad); :}
     | argDeclaration:ad
     {: RESULT = new ArgDeclarations(ad); :}
+    |
+    {: RESULT = new ArgDeclarations(); :}
 ;
 
 argDeclaration ::= type:t ID:id

@@ -18,6 +18,12 @@ public abstract class Declarations extends Token{
         declerations.add(0, d);
         return this;
     }
+
+    public Declarations prepend(Declarations d) {
+        for(Declaration dec : d.declerations)
+            declerations.add(0, dec);
+        return this;
+    }
     
     public String toString(int t) {
         String ret = "";
