@@ -22,7 +22,7 @@ FILE=	Lexer.java parser.java sym.java \
 	IntLiteralExpression.java FloatLiteralExpression.java \
 	IfStatement.java OptionalElseStatement.java WhileStatement.java \
 	CallStatement.java ReturnStatement.java NameArgs.java ReadStatement.java \
-	AddToStatement.java BlockStatement.java Class.java ArgDeclaration.java \
+	AddToStatement.java BlockStatement.java ArgDeclaration.java \
 	ArgDeclarations.java Declaration.java Declarations.java \
 	FieldDeclaration.java FieldDeclarations.java MethodDeclaration.java \
 	MethodDeclarations.java
