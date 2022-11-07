@@ -27,8 +27,22 @@ public abstract class Declarations extends Token{
     
     public String toString(int t) {
         String ret = "";
-        for(Declaration d : declerations)
+        boolean printedFields = false;
+        boolean printedMethods = false;
+        for(Declaration d : declerations) {
+            if(d instanceof FieldDeclaration) {
+                if(!printedFields) {
+                    ret += getTabs(t) + "Fields:\n";
+                    printedFields = true;
+                }
+            } else if(d instanceof MethodDeclaration) {
+                if(!printedMethods) {
+                    ret += getTabs(t) + "Methods:\n";
+                    printedMethods = true;
+                }
+            }
             ret += d.toString(t+1);
+        }
         return ret;
     }
     
