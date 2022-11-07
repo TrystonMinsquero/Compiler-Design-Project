@@ -12,4 +12,28 @@ float pythag(float vals[])
 	return c + 0.0;
 }
 
+void main()
+{
+	float height;
+	float length;
+	float triVals[3];
+	read(height, length);
+	triVals[0] = height;
+	triVals[1] = length;
+	{
+		int emu43[43];
+		triVals[2] = pythag(triVals);
+	};
+	print(triVals[2]);
+	
+	\\various tests
+	pythag();
+	pythag(x);
+	pythag(x, y);
+	x = pythag();
+	x = pythag(x, y);
+	
+}
+
+
 }
