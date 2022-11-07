@@ -43,7 +43,7 @@ public class MemberDeclarations extends Declarations {
     // }
 
     public String toString(int t) {
-        String ret = "";
+        String ret = "Stupid";
         boolean printedFields = false;
         boolean printedMethods = false;
         for(Declaration d : declerations) {
