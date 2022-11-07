@@ -1,4 +1,4 @@
-public record FieldEnd(
-    Expression optionalExpression, 
-    IntLiteralExpression optionalIntLiteralExpression) 
-    {}
+// public record FieldEnd(
+//     Expression optionalExpression, 
+//     IntLiteralExpression optionalIntLiteralExpression) 
+//     {}

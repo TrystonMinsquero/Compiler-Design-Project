@@ -7,11 +7,11 @@ class Program extends Token {
         this.memberDeclerations = memberDeclerations;
     }
 
-    //Constructor
-    public Program(String className, FieldDeclarations fields, MethodDeclarations methods) {
-        classID = className;
-        memberDeclerations = new MemberDeclarations(fields, methods);
-    }
+    // //Constructor
+    // public Program(String className, FieldDeclarations fields, MethodDeclarations methods) {
+    //     classID = className;
+    //     memberDeclerations = new MemberDeclarations(fields, methods);
+    // }
   
     public String toString(int t) {
         String ret = getTabs(t) + "class " + classID + " {\n";
