@@ -108,12 +108,12 @@ memberDeclarations ::=
     {: RESULT = new MemberDeclarations(); :}
 ;
 
-fieldsEnd ::= 
-    fieldEnd:fe methodDeclarations:mtds
-    {: RESULT = mtds.prepend(new FieldsEnd(fe, mtds)); :}
-    |
-    methodEnd:me methodDeclarations:mtds
-    {: RESULT = mtds.prepend(new FieldsEnd(me, mtds)); :}
+// fieldsEnd ::= 
+//     fieldEnd:fe methodDeclarations:mtds
+//     {: RESULT = mtds.prepend(new FieldsEnd(fe, mtds)); :}
+//     |
+//     methodEnd:me methodDeclarations:mtds
+//     {: RESULT = mtds.prepend(new FieldsEnd(me, mtds)); :}
 
     
 
