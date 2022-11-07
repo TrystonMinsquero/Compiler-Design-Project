@@ -27,9 +27,14 @@ FILE=	Lexer.java parser.java sym.java \
 	FieldDeclaration.java FieldDeclarations.java MethodDeclaration.java \
 	MethodDeclarations.java
 
-run: Phase2_fields.txt
+run: test.txt
 
 all: Lexer.java parser.java $(FILE:java=class)
+
+test.txt: all
+		$(JAVA) -cp $(CP) ScannerTest test.txt > test-output.txt
+		cat test.txt
+		cat -n test-output.txt
 
 Phase2_empty.txt: all
 		$(JAVA) -cp $(CP) ScannerTest Phase2_empty.txt > Phase2_empty-output.txt

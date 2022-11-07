@@ -1,18 +1,5 @@
-x = x;
-x = x();
-x = x(x,x);
-x = 1;
-x = 'a';
-x = "a";
-x = 1.1;
-x = true;
-x = false;
-x = (x);
-x = ~x;
-x = -x;
-x = +x;
-x = (int)x;
-x = x+x;
-x = x*x;
-x = x>x;
-x = (x?x:x);
+class onlyFields { 
+    int x;
+    int x = 2;
+    float y = 2.2;
+}
