@@ -104,30 +104,13 @@ memberDeclarations ::=
     {: RESULT = (Declarations) mtds.prepend(me); :}
     |
     {: RESULT = (Declarations) new MemberDeclarations(); :}
-;
-
-// fieldsEnd ::= 
-//     fieldEnd:fe methodDeclarations:mtds
-//     {: RESULT = mtds.prepend(new FieldsEnd(fe, mtds)); :}
-//     |
-//     methodEnd:me methodDeclarations:mtds
-//     {: RESULT = mtds.prepend(new FieldsEnd(me, mtds)); :}
-
-    
+;    
 
 fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
     {: RESULT = (FieldDeclarations) fds.prepend(fd); :}
     |
     {: RESULT = new FieldDeclarations(); :}
 ;
-
-// fieldEnd ::= 
-//     optionalExpression:oe SEMI
-//     {: RESULT = new FieldEnd(oe, null); :}
-//     |
-//     LEFT_BRKT INTLIT:i RT_BRKT SEMI
-//     {: RESULT = new FieldRecord(null, new IntLiteralExpression(i)); :}
-
 
 fieldDeclaration ::= 
     type:t ID:id optionalExpression:oe SEMI
@@ -137,86 +120,9 @@ fieldDeclaration ::=
     {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
     |
     type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration(t, id, "", new IntLiteralExpression(i)); :};
-    // INT ID:id SEMI
-    // {: RESULT = new FieldDeclaration("int", id, "", null); :}
-    // |
-    // FLOAT ID:id SEMI
-    // {: RESULT = new FieldDeclaration("float", id, "", null); :}
-    // |
-    // BOOL ID:id SEMI
-    // {: RESULT = new FieldDeclaration("bool", id, "", null); :}
-    // |
-    // CHAR ID:id SEMI
-    // {: RESULT = new FieldDeclaration("char", id, "", null); :}
-    // |
-    // INT ID:id ASSMNT expression:e SEMI
-    // {: RESULT = new FieldDeclaration("int", id, "", e); :}
-    // |
-    // FLOAT ID:id ASSMNT expression:e SEMI
-    // {: RESULT = new FieldDeclaration("float", id, "", e); :}
-    // |
-    // BOOL ID:id ASSMNT expression:e SEMI
-    // {: RESULT = new FieldDeclaration("bool", id, "", e); :}
-    // |
-    // CHAR ID:id ASSMNT expression:e SEMI
-    // {: RESULT = new FieldDeclaration("char", id, "", e); :}
-    // ;
+    {: RESULT = new FieldDeclaration(t, id, "", new IntLiteralExpression(i)); :}
+;
     
-//     |
-//     INT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-//     {: RESULT = new FieldDeclaration("int", id, new IntLiteralExpression(i)); :}
-//     |
-//     FLOAT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-//     {: RESULT = new FieldDeclaration("float", id, new IntLiteralExpression(i)); :}
-//     |
-//     BOOL ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-//     {: RESULT = new FieldDeclaration("bool", id, new IntLiteralExpression(i)); :}
-//     |
-//     CHAR ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-//     {: RESULT = new FieldDeclaration("char", id, new IntLiteralExpression(i)); :}
-// ;
-/*
-{: RESULT = new FieldDeclaration(t, id, "final", oe); :}
-    |
-    FINAL type:t ID:id SEMI
-    {: RESULT = new FieldDeclaration(t, id, "final", null); :}
-    |
-    type:t ID:id ASSMNT expression:oe SEMI
-    {: RESULT = new FieldDeclaration(t, id, "", oe); :}
-    |
-    type:t ID:id SEMI
-    {: RESULT = new FieldDeclaration(t, id, "", null); :}
-    |
-    type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration(t, id, new IntLiteralExpression(i)); :}    
-*/
-
-/*
-INT ID:id optionalExpression:oe SEMI
-    {: RESULT = new FieldDeclaration("int", id, "", oe); :}
-    |
-    FLOAT ID:id optionalExpression:oe SEMI
-    {: RESULT = new FieldDeclaration("float", id, "", oe); :}
-    |
-    BOOL ID:id optionalExpression:oe SEMI
-    {: RESULT = new FieldDeclaration("bool", id, "", oe); :}
-    |
-    CHAR ID:id optionalExpression:oe SEMI
-    {: RESULT = new FieldDeclaration("char", id, "", oe); :}
-    |
-    INT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration("int", id, i new IntLiteralExpression(i)); :}
-    |
-    FLOAT ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration("float", id, i new IntLiteralExpression(i)); :}
-    |
-    BOOL ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration("bool", id, i new IntLiteralExpression(i)); :}
-    |
-    CHAR ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration("char", id, i new IntLiteralExpression(i)); :}
-*/
 
 methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
     {: RESULT = (Declarations) mtds.prepend(md); :}
@@ -230,10 +136,6 @@ methodDeclaration ::= type:t ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_
     VOID ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
     {: RESULT = new MethodDeclaration("void", id, ads, fds, sts, os); :}
 ;
-
-// methodEnd ::=
-//     LEFT_PAREN argDeclaration:args RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
-//     {: RESULT = new MethodEnd(args, fds, sts, os); :}
 
 argDeclarations ::= argDeclaration:ad COMMA argDeclarations:ads
     {: RESULT = (ArgDeclarations) ads.prepend(ad); :}
@@ -261,10 +163,10 @@ statement ::=
     {: RESULT = new AssignStatement(n, e); :}
     |
     IF LEFT_PAREN expression:e RT_PAREN LEFT_BRACE statements:s RT_BRACE ifEnd:ie
-    {: RESULT = new IfStatement(e, s, ie); :}
+    {: RESULT = new IfStatement(e, f, s, ie); :}
     |
-    WHILE LEFT_PAREN expression:e RT_PAREN LEFT_BRACE statements:s RT_BRACE
-    {: RESULT = new WhileStatement(e, s); :}
+    WHILE LEFT_PAREN expression:e RT_PAREN LEFT_BRACE fieldDeclarations:f statements:s RT_BRACE
+    {: RESULT = new WhileStatement(e, f, s); :}
     |
     ID:id LEFT_PAREN RT_PAREN SEMI
     {: RESULT = new CallStatement(id); :}
@@ -293,8 +195,8 @@ statement ::=
     name:n MINUSMINUS SEMI
     {: RESULT = new AddToStatement(n, new IntLiteralExpression(-1)); :}
     |
-    LEFT_BRACE statements:s RT_BRACE optionalSemi:os
-    {: RESULT = new BlockStatement(s, os); :}
+    LEFT_BRACE fieldDeclarations:fds statements:s RT_BRACE optionalSemi:os
+    {: RESULT = new BlockStatement(fds, s, os); :}
 ;
 
 optionalSemi ::= SEMI
@@ -329,10 +231,10 @@ returnType ::= type:t
     {: RESULT = "void"; :}
 ;
 
-ifEnd ::= ELSE LEFT_BRACE statements:s RT_BRACE
-    {: RESULT = new OptionalElseStatement(s); :}
-    |
+ifEnd ::= ELSE LEFT_BRACE fieldDeclarations:f statements:s RT_BRACE
     {: RESULT = new OptionalElseStatement(); :}
+    |
+    {: RESULT = null; :}
 ;
 
 

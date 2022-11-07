@@ -1,18 +1,13 @@
-public class IfStatement extends Statement {
-    private Expression condition;
-    private Statements statements;
+public class IfStatement extends BlockStatement {
     private OptionalElseStatement elseStatement;
 
-    public IfStatement(Expression c, Statements s, OptionalElseStatement e) {
-        condition = c;
-        statements = s;
+    public IfStatement(FieldDeclarations f, Statements s, Expression c, OptionalElseStatement e) {
+        super(f, s);
         elseStatement = e;
     }
 
+    @Override
     public String toString(int t) {
-        return getTabs(t) + "if ( " + condition.toString(0) + " ) {\n" 
-        + statements.toString(t+1)
-        + getTabs(t) + "}\n" 
-        + elseStatement.toString(t);
+        return super.toString(t) + (elseStatement != null ? elseStatement.toString(t) : "");
     }
 }

@@ -20,6 +20,18 @@ void main()
 	read(height, length);
 	triVals[0] = height;
 	triVals[1] = length;
+	{
+		int emu43[43];
+		triVals[2] = pythag(triVals);
+	};
+	print(triVals[2]);
+	
+	\\various tests
+	pythag();
+	pythag(x);
+	pythag(x, y);
+	x = pythag();
+	x = pythag(x, y);
 	
 }
 

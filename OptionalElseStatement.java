@@ -1,16 +1,15 @@
-public class OptionalElseStatement extends Statement {
-    private Statements statements;
+public class OptionalElseStatement extends BlockStatement {
 
     public OptionalElseStatement() {
-        statements = null;
+        super("");
     }
 
-    public OptionalElseStatement(Statements s) {
-        statements = s;
+    public OptionalElseStatement(FieldDeclarations f, Statements s) {
+        super("else", null, f, s);
     }
 
+    @Override
     public String toString(int t) {
-        return statements == null ? "" :
-        getTabs(t) + "else {\n" + statements.toString(t+1) + getTabs(t) + "}\n";
+        return blockType == "" ? "" : super.toString(t);
     }
 }
