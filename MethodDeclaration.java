@@ -14,7 +14,7 @@ public class MethodDeclaration extends Declaration{
     }
 
     public String toString(int t) {
-        String ret = getTabs(t) + type + " " + id + "(" + argDeclarations.toString(0) + ") {\n";
+        String ret = getTabs(t) + type + " " + name + "(" + argDeclarations.toString(0) + ") {\n";
         ret += fieldDeclarations.toString(t+1);
         ret += statements.toString(t+1);
         ret += getTabs(t) + "}" + optionalSemi + "\n";

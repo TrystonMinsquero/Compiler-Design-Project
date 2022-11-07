@@ -1,10 +1,10 @@
 public abstract class Declaration extends Token{
     protected String type;
-    protected String id;
+    protected String name;
 
-    public Declaration(String type, String id) {
+    public Declaration(String type, String name) {
         this.type = type;
-        this.id = id;
+        this.name = name;
     }
 
 }

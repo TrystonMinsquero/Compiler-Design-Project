@@ -25,7 +25,7 @@ public class FieldDeclaration extends Declaration {
     }
 
     public String toString(int t) {
-        String s = optionalFinal + type + " " + id;
+        String s = optionalFinal + type + " " + name;
         if(optionalIntLiteralExpression != null) {
             s += " [ " + optionalIntLiteralExpression.toString(0) + " ]";
         }

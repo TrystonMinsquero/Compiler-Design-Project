@@ -12,6 +12,6 @@ public class ArgDeclaration extends Declaration {
     }
 
     public String toString(int t) {
-        return type + " " + id + (isArray ? "[]" : "");
+        return type + " " + name + (isArray ? "[]" : "");
     }
 }
