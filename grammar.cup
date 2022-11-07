@@ -77,9 +77,7 @@ non terminal LiteralExpression literalExpression; //60
 non terminal BinaryExpression binaryExpression; //61
 non terminal UnaryExpression unaryExpression; //62
 non terminal String optionalSemi;
-// non terminal String optionalFinal;
 non terminal String type;
-non terminal String returnType;
 
 precedence right CONDITION, COLON;
 precedence left OR;
@@ -205,12 +203,6 @@ optionalSemi ::= SEMI
     {: RESULT = ""; :}
 ;
 
-// optionalFinal ::= FINAL
-//     {: RESULT = "final"; :}
-//     |
-//     {: RESULT = ""; :}
-// ;
-
 type ::= INT:i
     {: RESULT = "int"; :}
     |
@@ -225,7 +217,7 @@ type ::= INT:i
 ;
 
 ifEnd ::= ELSE LEFT_BRACE fieldDeclarations:f statements:s RT_BRACE
-    {: RESULT = new OptionalElseStatement(); :}
+    {: RESULT = new OptionalElseStatement(f, s); :}
     |
     {: RESULT = null; :}
 ;
