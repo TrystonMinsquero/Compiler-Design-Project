@@ -25,9 +25,9 @@ FILE=	Lexer.java parser.java sym.java \
 	AddToStatement.java BlockStatement.java ArgDeclaration.java \
 	ArgDeclarations.java Declaration.java Declarations.java \
 	FieldDeclaration.java FieldDeclarations.java MethodDeclaration.java \
-	MethodDeclarations.java
+	MethodDeclarations.java MemberDeclarations.java
 
-run: test.txt
+run: Phase2_empty.txt Phase2_fields.txt Phase2_methods.txt Phase2_full.txt
 
 all: Lexer.java parser.java $(FILE:java=class)
 
