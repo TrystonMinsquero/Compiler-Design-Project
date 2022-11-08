@@ -44,20 +44,20 @@ public class MemberDeclarations extends Declarations {
 
     public String toString(int t) {
         String ret = "";
-        boolean printedFields = false;
-        boolean printedMethods = false;
+        // boolean printedFields = false;
+        // boolean printedMethods = false;
         for(Declaration d : declerations) {
-            if(d instanceof FieldDeclaration) {
-                if(!printedFields) {
-                    ret += getTabs(t) + "Fields:\n";
-                    printedFields = true;
-                }
-            } else if(d instanceof MethodDeclaration) {
-                if(!printedMethods) {
-                    ret += getTabs(t) + "Methods:\n";
-                    printedMethods = true;
-                }
-            }
+            // if(d instanceof FieldDeclaration) {
+            //     if(!printedFields) {
+            //         ret += getTabs(t) + "Fields:\n";
+            //         printedFields = true;
+            //     }
+            // } else if(d instanceof MethodDeclaration) {
+            //     if(!printedMethods) {
+            //         ret += getTabs(t) + "Methods:\n";
+            //         printedMethods = true;
+            //     }
+            // }
             ret += d.toString(t+1);
         }
         return ret;
