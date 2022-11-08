@@ -21,7 +21,7 @@ class Statements extends Token {
     }
   
     public String toString(int t) {
-      String s = getTabs(t) + "Statements:\n";
+      String s = /*getTabs(t) + "Statements:\n"*/ "";
       for (Statement st : statements)
         s = s + st.toString(t+1);
       return s;
