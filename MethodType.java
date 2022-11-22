@@ -52,5 +52,19 @@ public class MethodType extends Type {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        String s = "(";
+        for (Type t : paramTypes.values()) {
+            s += t.toString() + ", ";
+        }
+        if(paramTypes.values().size() > 0) {
+            s = s.substring(0, s.length() - 2);
+        }
+        s += ") -> " + returnTypeEnum.toString();
+        return s;
+    }
+
     
 }

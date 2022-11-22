@@ -24,6 +24,6 @@ public class TernaryExpression extends Expression{
         else if(t2.isImplictly(t1))
             return t1;
         else
-            throw new ExpressionException(this, "Type mismatch " + t1 + " and " + t2);
+            throw new ExpressionException(this, "Type mismatch " + t1.toString() + " and " + t2.toString());
     }
 }
