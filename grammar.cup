@@ -185,7 +185,7 @@ statement ::=
     {: RESULT = new PrintStatement(true, pll); :}
     |
     PRINT LEFT_PAREN printList:pl RT_PAREN SEMI
-    {: RESULT = new CallStatement(false, pl); :}
+    {: RESULT = new PrintStatement(false, pl); :}
     |
     name:n PLUSPLUS SEMI
     {: RESULT = new AddToStatement(n, new IntLiteralExpression(1)); :}
