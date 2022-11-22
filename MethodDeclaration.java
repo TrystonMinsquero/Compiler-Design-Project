@@ -42,8 +42,6 @@ public class MethodDeclaration extends Declaration{
         fieldDeclarations.analyzeType();
         statements.analyzeType();
         checkReturnStatements();
-
-
         symbolTable.endScope();
     }
 

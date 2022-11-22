@@ -59,7 +59,7 @@ public class BlockStatement extends Statement{
         symbolTable.startScope();
         if (condition != null) {
             condition.analyzeType();
-            if (condition.getType().isImplictly(Type.BOOL)) {
+            if (!condition.getType().isImplictly(Type.BOOL)) {
                 throw new StatementException(this, "Condition must be boolean");
             }
         }
