@@ -29,7 +29,7 @@ FILE=	Lexer.java parser.java sym.java \
 	TypeCheckingTest.java Type.java SymbolTable.java ParseException.java \
 	MethodType.java ExpressionException.java DeclarationException.java
 
-run: badLogic toThings
+run: badLogic toThings redefining returns valid
 
 all: Lexer.java parser.java $(FILE:java=class)
 
@@ -60,9 +60,6 @@ badLogic: all
 		$(JAVA) -cp $(CP) TypeCheckingTest incompatBinary.as > incompatBinary-output.txt
 		cat incompatBinary.as
 		cat -n incompatBinary-output.txt
-		$(JAVA) -cp $(CP) TypeCheckingTest reassignFinal.as > reassignFinal-output.txt
-		cat reassignFinal.as
-		cat -n reassignFinal-output.txt
 		
 	
 toThings: all
@@ -86,6 +83,36 @@ toThings: all
 		cat -n intArrayToBoolArray-output.txt
 
 		
+redefines: all
+		$(JAVA) -cp $(CP) TypeCheckingTest reassignFinal.as > reassignFinal-output.txt
+		cat reassignFinal.as
+		cat -n reassignFinal-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest redefMethod.as > redefMethod-output.txt
+		cat redefMethod.as
+		cat -n redefMethod-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest redefVar.as > redefVar-output.txt
+		cat redefVar.as
+		cat -n redefVar-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest redefVarAsMethod.as > redefVarAsMethod-output.txt
+		cat redefVarAsMethod.as
+		cat -n redefVarAsMethod-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest callNonExistFunc.as > callNonExistFunc-output.txt
+		cat callNonExistFunc.as
+		cat -n callNonExistFunc-output.txt
+
+
+returns: all
+		$(JAVA) -cp $(CP) TypeCheckingTest noReturn.as > noReturn-output.txt
+		cat noReturn.as
+		cat -n noReturn-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest returnTypeBad.as > returnTypeBad-output.txt
+		cat returnTypeBad.as
+		cat -n returnTypeBad-output.txt
+
+valid: all
+		$(JAVA) -cp $(CP) TypeCheckingTest fullValidProgram.as > fullValidProgram-output.txt
+		cat fullValidProgram.as
+		cat -n fullValidProgram-output.txt
 
 
 
