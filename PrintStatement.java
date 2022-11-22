@@ -14,7 +14,6 @@ public class PrintStatement extends CallStatement {
 
     @Override
     public void analyzeType() throws ParseException {
-        super.analyzeType();
         List<Expression> args = arguments.getArgs();
         if(newline == false && args.size() < 1) {
             throw new StatementException(this, "print() called with no arguments");
