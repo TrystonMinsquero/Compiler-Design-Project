@@ -15,30 +15,36 @@ public class BinaryExpression extends Expression {
 
     @Override
     public Type getType() throws ParseException {
-        if(op.equals("+"))
-            if(e1.getType().isString() || e2.getType().isString())
-                return Type.STRING;        
-        if("+-*/".contains(op)){
-            if(!e1.getType().isNumeric())
-                throw new ExpressionException(this, e1.toString(0) + " is not numeric");
-            if(!e2.getType().isNumeric())
-                throw new ExpressionException(this, e2.toString(0) + " is not numeric");
-            TypeEnum t1 = e1.getType().getTypeEnum();
-            TypeEnum t2 = e2.getType().getTypeEnum();
-            if (t1 == TypeEnum.INT && t2 == TypeEnum.INT) {
-                return Type.INT;
-            } else if (t1 == TypeEnum.FLOAT || t2 == TypeEnum.FLOAT) {
-                return Type.FLOAT;
-            }
+        Type t1 = e1.getType();
+        Type t2 = e2.getType();
+        switch(op) {
+            case "+":
+                if(t1.isString() && t2.isImplictly(Type.STRING))
+                    return Type.STRING;
+            case "-":
+            case "*":
+            case "/":
+                if(t1.isImplictly(Type.INT) && t2.isImplictly(Type.INT))
+                    return Type.INT;
+                else if(t1.isImplictly(Type.FLOAT) || t2.isImplictly(Type.FLOAT))
+                    return Type.FLOAT;
+                throw new ExpressionException(this, "Type mismatch " + t1.toString() + " and " + t2.toString());
+            case "<>":
+            case "==":
+            case "<":
+            case ">":
+            case "<=":
+            case ">=":
+                if(t1.isNumeric() && t2.isNumeric())
+                    return Type.BOOL;
+                throw new ExpressionException(this, "Type mismatch " + t1.toString() + " and " + t2.toString());
+            case "&&":
+            case "||":
+                if(t1.isImplictly(Type.BOOL) && t2.isImplictly(Type.BOOL))
+                    return Type.BOOL;
+                throw new ExpressionException(this, "Type mismatch " + t1.toString() + " and " + t2.toString());
+            default:
+                throw new ExpressionException(this, "Unknown operator " + op);            
         }
-        if("==<>=".contains(op)) {
-            if(e1.getType().isNumeric() && e2.getType().isNumeric())
-                return Type.BOOL;
-        }
-        if("&&||".contains(op)) {
-            if(e1.getType().isBoolean() && e2.getType().isBoolean())
-                return Type.BOOL;
-        }
-        throw new ExpressionException(this, "Invalid operands for operator " + op);
     }
 }
