@@ -182,10 +182,10 @@ statement ::=
     {: RESULT = new ReadStatement(rl); :}
     |
     PRINTLN LEFT_PAREN printlineList:pll RT_PAREN SEMI
-    {: RESULT = new CallStatement("printline", pll); :}
+    {: RESULT = new PrintStatement(true, pll); :}
     |
     PRINT LEFT_PAREN printList:pl RT_PAREN SEMI
-    {: RESULT = new CallStatement("print", pl); :}
+    {: RESULT = new CallStatement(false, pl); :}
     |
     name:n PLUSPLUS SEMI
     {: RESULT = new AddToStatement(n, new IntLiteralExpression(1)); :}
