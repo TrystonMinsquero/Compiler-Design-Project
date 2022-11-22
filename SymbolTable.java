@@ -36,9 +36,11 @@ public class SymbolTable {
     public MethodType getMethod(String s, List<Type> args) throws ParseException {
         for (HashMap<String, Type> map : table) {
             if (map.containsKey(s) && map.get(s).isMethod()) {
-                if (map.get(s) instanceof MethodType methodType) {
-                    if(methodType.checkArgs(args))
+                if (map.get(s) instanceof MethodType) {
+                    MethodType methodType = (MethodType) map.get(s);
+                    if (methodType.checkArgs(args)) {
                         return methodType;
+                    }
                 }
             }
         }
