@@ -22,31 +22,55 @@ FILE=	Lexer.java parser.java sym.java \
 	IntLiteralExpression.java FloatLiteralExpression.java \
 	IfStatement.java OptionalElseStatement.java WhileStatement.java \
 	CallStatement.java ReturnStatement.java NameArgs.java ReadStatement.java \
-	AddToStatement.java BlockStatement.java
+	AddToStatement.java BlockStatement.java ArgDeclaration.java \
+	ArgDeclarations.java Declaration.java Declarations.java \
+	FieldDeclaration.java FieldDeclarations.java MethodDeclaration.java \
+	MethodDeclarations.java MemberDeclarations.java
 
-run: Phase1_expressions.txt Phase1_order_of_ops.txt Phase1_statements.txt
+run: Phase2_empty.txt Phase2_fields.txt Phase2_methods.txt Phase2_full.txt
 
 all: Lexer.java parser.java $(FILE:java=class)
 
 test.txt: all
 		$(JAVA) -cp $(CP) ScannerTest test.txt > test-output.txt
 		cat test.txt
-		cat -n output.txt
-		
-Phase1_expressions.txt: all
-		$(JAVA) -cp $(CP) ScannerTest Phase1_expressions.txt > Phase1_expressions-output.txt
-		cat Phase1_expressions.txt
-		cat -n output.txt
+		cat -n test-output.txt
 
-Phase1_order_of_ops.txt: all
-		$(JAVA) -cp $(CP) ScannerTest Phase1_order_of_ops.txt > Phase1_order_of_ops-output.txt
-		cat Phase1_order_of_ops.txt
-		cat -n output.txt
+Phase2_empty.txt: all
+		$(JAVA) -cp $(CP) ScannerTest Phase2_empty.txt > Phase2_empty-output.txt
+		cat Phase2_empty.txt
+		cat -n Phase2_empty-output.txt
 
-Phase1_statements.txt: all
-		$(JAVA) -cp $(CP) ScannerTest Phase1_statements.txt > Phase1_statements-output.txt
-		cat Phase1_statements.txt
-		cat -n output.txt
+Phase2_fields.txt: all
+		$(JAVA) -cp $(CP) ScannerTest Phase2_fields.txt > Phase2_fields-output.txt
+		cat Phase2_fields.txt
+		cat -n Phase2_fields-output.txt
+
+Phase2_full.txt: all
+		$(JAVA) -cp $(CP) ScannerTest Phase2_full.txt > Phase2_full-output.txt
+		cat Phase2_full.txt
+		cat -n Phase2_full-output.txt
+
+Phase2_methods.txt: all
+		$(JAVA) -cp $(CP) ScannerTest Phase2_methods.txt > Phase2_methods-output.txt
+		cat Phase2_methods.txt
+		cat -n Phase2_methods-output.txt
+
+# Part 2 Phase 1 Tests
+# Phase1_expressions.txt: all
+# 		$(JAVA) -cp $(CP) ScannerTest Phase1_expressions.txt > Phase1_expressions-output.txt
+# 		cat Phase1_expressions.txt
+# 		cat -n output.txt
+
+# Phase1_order_of_ops.txt: all
+# 		$(JAVA) -cp $(CP) ScannerTest Phase1_order_of_ops.txt > Phase1_order_of_ops-output.txt
+# 		cat Phase1_order_of_ops.txt
+# 		cat -n output.txt
+
+# Phase1_statements.txt: all
+# 		$(JAVA) -cp $(CP) ScannerTest Phase1_statements.txt > Phase1_statements-output.txt
+# 		cat Phase1_statements.txt
+# 		cat -n output.txt
 
 # Part 1 tests
 # basicTerminals.txt: all

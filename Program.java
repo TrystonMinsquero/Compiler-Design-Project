@@ -1,13 +1,22 @@
-//Program.java
-
 class Program extends Token {
-    private Statements statements;
-    //Constructor
-    public Program(Statements s) {
-        statements = s;
+    private String classID;
+    private MemberDeclarations memberDeclerations;
+
+    public Program(String className, MemberDeclarations memberDeclerations) {
+        this.classID = className;
+        this.memberDeclerations = memberDeclerations;
     }
+
+    // //Constructor
+    // public Program(String className, FieldDeclarations fields, MethodDeclarations methods) {
+    //     classID = className;
+    //     memberDeclerations = new MemberDeclarations(fields, methods);
+    // }
   
     public String toString(int t) {
-      return "Program:\n" + statements.toString(t+1) + "\n";
+        String ret = getTabs(t) + "class " + classID + " {\n";
+        ret += memberDeclerations.toString(t+1);
+        ret += "}\n";
+        return ret;
     }
   }

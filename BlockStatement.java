@@ -1,20 +1,56 @@
 public class BlockStatement extends Statement{
-    private Statements statements;
+    protected String blockType;
+    protected Expression condition;
+    protected FieldDeclarations fields;
+    protected Statements statements;
     private String semiColon;
 
     public BlockStatement(String optionalSemiColon) {
+        blockType = "";
+        condition = null;
+        fields = new FieldDeclarations();
         statements = new Statements();
         semiColon = optionalSemiColon;
     }
 
-    public BlockStatement(Statements s, String optionalSemiColon) {
+    public BlockStatement(FieldDeclarations f, Statements s, String optionalSemiColon) {
+        blockType = "";
+        condition = null;
+        fields = f;
         statements = s;
         semiColon = optionalSemiColon;
     }
 
+    public BlockStatement(String b, Expression c, FieldDeclarations f, Statements s, String optionalSemiColon) {
+        blockType = b;
+        condition = c;
+        fields = f;
+        statements = s;
+        semiColon = optionalSemiColon;
+    }
+
+    public BlockStatement(String b, Expression c, FieldDeclarations f, Statements s) {
+        blockType = b;
+        condition = c;
+        fields = f;
+        statements = s;
+        semiColon = "";
+    }
+
+
+    public BlockStatement(FieldDeclarations f, Statements s) {
+        fields = f;
+        statements = s;
+        semiColon = "";
+    }
+
     public String toString(int t) {
-        return getTabs(t) + "{\n" 
-            + statements.toString(t+1) 
+        String s = getTabs(t) + blockType 
+            + (condition == null ? "" : "( " + condition.toString(0) + " )")
+            + (blockType != "" ? " " : "" ) + "{\n"
+            + fields.toString(t+1)
+            + statements.toString(t+1)
             + getTabs(t) + "}" + semiColon + "\n";
+        return s;
     }
 }

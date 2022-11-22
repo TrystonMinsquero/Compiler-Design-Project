@@ -1,4 +1,5 @@
 public class IntLiteralExpression extends LiteralExpression{
+    private Integer integer;
 
     public IntLiteralExpression(String s, String type) {
         super(s, type);
@@ -6,6 +7,11 @@ public class IntLiteralExpression extends LiteralExpression{
 
     public IntLiteralExpression(Integer i) {
         super(String.valueOf(i), "int");
+        integer = i;
+    }
+
+    public int getValue() {
+        return integer.intValue();
     }
 
 }

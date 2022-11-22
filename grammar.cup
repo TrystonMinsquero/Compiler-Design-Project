@@ -56,6 +56,13 @@ terminal String CHARLIT;  //49
 terminal String STRINGLIT;//50
 
 non terminal Program program; //50
+non terminal Declarations memberDeclarations; //51
+non terminal FieldDeclarations fieldDeclarations;
+non terminal FieldDeclaration fieldDeclaration;
+non terminal Declarations methodDeclarations;
+non terminal MethodDeclaration methodDeclaration;
+non terminal ArgDeclarations argDeclarations;
+non terminal ArgDeclaration argDeclaration;
 non terminal Statements statements; //51
 non terminal Statement statement; //52
 non terminal OptionalElseStatement ifEnd; //53
@@ -65,6 +72,7 @@ non terminal NameArgs readList; //56
 non terminal Args printList; //57
 non terminal Args printlineList; //58
 non terminal Expression expression; //59
+non terminal Expression optionalExpression; //60
 non terminal LiteralExpression literalExpression; //60
 non terminal BinaryExpression binaryExpression; //61
 non terminal UnaryExpression unaryExpression; //62
@@ -82,8 +90,64 @@ precedence left LEFT_PAREN, RT_PAREN;
 precedence right PREFIXPLUS, PREFIXMINUS, NOT, PLUSPLUS, MINUSMINUS;
 precedence left LEFT_PAREN, RT_PAREN, LEFT_BRKT, RT_BRKT;
 
-program ::= statements:s 
-    {: RESULT = new Program(s); :}
+program ::= CLASS ID:id LEFT_BRACE memberDeclarations:md RT_BRACE
+    {: RESULT = new Program(id, (MemberDeclarations) md); :}
+;
+
+memberDeclarations ::= 
+    fieldDeclaration:fe memberDeclarations:mds
+    {: RESULT = (Declarations) mds.prepend(fe); :}
+    |
+    methodDeclaration:me methodDeclarations:mtds
+    {: RESULT = (Declarations) mtds.prepend(me); :}
+    |
+    {: RESULT = (Declarations) new MemberDeclarations(); :}
+;    
+
+fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
+    {: RESULT = (FieldDeclarations) fds.prepend(fd); :}
+    |
+    {: RESULT = new FieldDeclarations(); :}
+;
+
+fieldDeclaration ::= 
+    type:t ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration(t, id, "", oe); :}
+    |
+    FINAL type:t ID:id optionalExpression:oe SEMI
+    {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
+    |
+    type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
+    {: RESULT = new FieldDeclaration(t, id, "", new IntLiteralExpression(i)); :}
+;
+    
+
+methodDeclarations ::= methodDeclaration:md methodDeclarations:mtds
+    {: RESULT = (Declarations) mtds.prepend(md); :}
+    |
+    {: RESULT = (Declarations) new MemberDeclarations(); :}
+;
+
+methodDeclaration ::= type:t ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
+    {: RESULT = new MethodDeclaration(t, id, ads, fds, sts, os); :}
+    |
+    VOID ID:id LEFT_PAREN argDeclarations:ads RT_PAREN LEFT_BRACE fieldDeclarations:fds statements:sts RT_BRACE optionalSemi:os
+    {: RESULT = new MethodDeclaration("void", id, ads, fds, sts, os); :}
+;
+
+argDeclarations ::= argDeclaration:ad COMMA argDeclarations:ads
+    {: RESULT = (ArgDeclarations) ads.prepend(ad); :}
+    | argDeclaration:ad
+    {: RESULT = new ArgDeclarations(ad); :}
+    |
+    {: RESULT = new ArgDeclarations(); :}
+;
+
+argDeclaration ::= type:t ID:id
+    {: RESULT = new ArgDeclaration(t, id); :}
+    |
+    type:t ID:id LEFT_BRKT RT_BRKT
+    {: RESULT = new ArgDeclaration(t, id, true); :}
 ;
 
 statements ::= statement:s statements:sl
@@ -96,11 +160,11 @@ statement ::=
     name:n ASSMNT expression:e SEMI
     {: RESULT = new AssignStatement(n, e); :}
     |
-    IF LEFT_PAREN expression:e RT_PAREN LEFT_BRACE statements:s RT_BRACE ifEnd:ie
-    {: RESULT = new IfStatement(e, s, ie); :}
+    IF LEFT_PAREN expression:e RT_PAREN LEFT_BRACE fieldDeclarations:f statements:s RT_BRACE ifEnd:ie
+    {: RESULT = new IfStatement(e, f, s, ie); :}
     |
-    WHILE LEFT_PAREN expression:e RT_PAREN LEFT_BRACE statements:s RT_BRACE
-    {: RESULT = new WhileStatement(e, s); :}
+    WHILE LEFT_PAREN expression:e RT_PAREN LEFT_BRACE fieldDeclarations:f statements:s RT_BRACE
+    {: RESULT = new WhileStatement(e, f, s); :}
     |
     ID:id LEFT_PAREN RT_PAREN SEMI
     {: RESULT = new CallStatement(id); :}
@@ -129,8 +193,8 @@ statement ::=
     name:n MINUSMINUS SEMI
     {: RESULT = new AddToStatement(n, new IntLiteralExpression(-1)); :}
     |
-    LEFT_BRACE statements:s RT_BRACE optionalSemi:os
-    {: RESULT = new BlockStatement(s, os); :}
+    LEFT_BRACE fieldDeclarations:fds statements:s RT_BRACE optionalSemi:os
+    {: RESULT = new BlockStatement(fds, s, os); :}
 ;
 
 optionalSemi ::= SEMI
@@ -152,10 +216,10 @@ type ::= INT:i
     {: RESULT = "char"; :}
 ;
 
-ifEnd ::= ELSE LEFT_BRACE statements:s RT_BRACE
-    {: RESULT = new OptionalElseStatement(s); :}
+ifEnd ::= ELSE LEFT_BRACE fieldDeclarations:f statements:s RT_BRACE
+    {: RESULT = new OptionalElseStatement(f, s); :}
     |
-    {: RESULT = new OptionalElseStatement(); :}
+    {: RESULT = null; :}
 ;
 
 
@@ -216,6 +280,12 @@ literalExpression ::= name:n
     |
     FALSE
     {: RESULT = new LiteralExpression(false); :}
+;
+
+optionalExpression ::= ASSMNT expression:e
+    {: RESULT = e; :}
+    |
+    {: RESULT = null; :}
 ;
 
 expression ::= literalExpression:e
