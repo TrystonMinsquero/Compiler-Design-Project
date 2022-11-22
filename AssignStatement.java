@@ -22,10 +22,10 @@ public class AssignStatement extends Statement {
         if(type == null) {
             throw new StatementException(this, "Variable " + name.getId() + " not found");
         }
-        if(!type.equals(expr.getType())) {
-            throw new StatementException(this, "Variable " + name.getId() + " is not of type " + expr.getType());
-        }
         if(type.isFinal())
             throw new StatementException(this, "Variable " + name.getId() + " is final");
+        if(!expr.getType().isImplictly(type)) {
+            throw new StatementException(this, "Variable " + name.getId() + " cannot be coerced to " + expr.getType());
+        }
     }
 }
