@@ -20,13 +20,6 @@ public class CallStatement extends Statement {
 
     @Override
     public void analyzeType() throws ParseException {
-        switch(name) {
-            case "print":
-            case "printline":
-                ((PrintStatement)this).analyzeType();
-                break;
-        }
-
         MethodType type = (MethodType) symbolTable.get(name);
         if (type == null) {
             throw new StatementException(this, "Method " + name + " not found");
