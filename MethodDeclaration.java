@@ -36,8 +36,8 @@ public class MethodDeclaration extends Declaration{
 
     @Override
     public void analyzeType() throws ParseException {
-        symbolTable.startScope();
         symbolTable.addSymbol(name, getType());        
+        symbolTable.startScope();
         argDeclarations.analyzeType();
         fieldDeclarations.analyzeType();
         statements.analyzeType();
