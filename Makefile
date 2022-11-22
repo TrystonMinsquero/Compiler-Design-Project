@@ -29,7 +29,7 @@ FILE=	Lexer.java parser.java sym.java \
 	TypeCheckingTest.java Type.java SymbolTable.java ParseException.java \
 	MethodType.java ExpressionException.java DeclarationException.java
 
-run: badfiles
+run: badLogic toThings
 
 all: Lexer.java parser.java $(FILE:java=class)
 
@@ -38,7 +38,7 @@ test.txt: all
 		cat test.txt
 		cat -n test-output.txt
 
-badfiles: all
+badLogic: all
 		$(JAVA) -cp $(CP) TypeCheckingTest badDec.as > badDec-output.txt
 		cat badDec.as
 		cat -n badDec-output.txt
@@ -57,6 +57,35 @@ badfiles: all
 		$(JAVA) -cp $(CP) TypeCheckingTest badTernaryTypes.as > badTernaryTypes-output.txt
 		cat badTernaryTypes.as
 		cat -n badTernaryTypes-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest incompatBinary.as > incompatBinary-output.txt
+		cat incompatBinary.as
+		cat -n incompatBinary-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest reassignFinal.as > reassignFinal-output.txt
+		cat reassignFinal.as
+		cat -n reassignFinal-output.txt
+		
+	
+toThings: all
+		$(JAVA) -cp $(CP) TypeCheckingTest boolToFloat.as > boolToFloat-output.txt
+		cat boolToFloat.as
+		cat -n boolToFloat-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest boolToInt.as > boolToInt-output.txt
+		cat boolToInt.as
+		cat -n boolToInt-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest charToFloat.as > charToFloat-output.txt
+		cat charToFloat.as
+		cat -n charToFloat-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest charToInt.as > charToInt-output.txt
+		cat charToInt.as
+		cat -n charToInt-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest floatToInt.as > floatToInt-output.txt
+		cat floatToInt.as
+		cat -n floatToInt-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest intArrayToBoolArray.as > intArrayToBoolArray-output.txt
+		cat intArrayToBoolArray.as
+		cat -n intArrayToBoolArray-output.txt
+
+		
 
 
 
