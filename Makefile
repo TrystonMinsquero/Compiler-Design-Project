@@ -25,14 +25,16 @@ FILE=	Lexer.java parser.java sym.java \
 	AddToStatement.java BlockStatement.java ArgDeclaration.java \
 	ArgDeclarations.java Declaration.java Declarations.java \
 	FieldDeclaration.java FieldDeclarations.java MethodDeclaration.java \
-	MethodDeclarations.java MemberDeclarations.java
+	MethodDeclarations.java MemberDeclarations.java TypeEnum.java \
+	TypeCheckingTest.java Type.java SymbolTable.java ParseException.java \
+	MethodType.java ExpressionException.java DeclarationException.java
 
 run: test.txt
 
 all: Lexer.java parser.java $(FILE:java=class)
 
 test.txt: all
-		$(JAVA) -cp $(CP) ScannerTest test.txt > test-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest test.txt > test-output.txt
 		cat test.txt
 		cat -n test-output.txt
 
