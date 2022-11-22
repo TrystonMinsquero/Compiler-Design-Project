@@ -13,5 +13,10 @@ public class FloatLiteralExpression extends LiteralExpression {
     public float getValue() {
         return floatValue.floatValue();
     }
+
+    @Override
+    public Type getType() throws ParseException {
+        return Type.FLOAT;
+    }
     
 }

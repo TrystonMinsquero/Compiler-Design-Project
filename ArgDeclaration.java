@@ -14,4 +14,18 @@ public class ArgDeclaration extends Declaration {
     public String toString(int t) {
         return type + " " + name + (isArray ? "[]" : "");
     }
+
+    @Override
+    public void analyzeType() throws ParseException {
+        if (getType() == null) {
+            throw new ParseException("Undefined type");
+        }
+        symbolTable.addSymbol(name, getType());
+    }
+
+    @Override
+    public Type getType() throws ParseException {
+        return new Type(Type.parseTypeEnum(type), isArray);
+    }
+    
 }

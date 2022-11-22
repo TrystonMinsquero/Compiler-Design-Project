@@ -33,4 +33,20 @@ public class Args extends Token {
         }
         return s;
     }
+
+    @Override
+    public void analyzeType() throws ParseException {
+        for (Expression e : args) {
+            e.analyzeType();
+        }
+        
+    }
+
+    public List<Type> getTypes() throws ParseException {
+        List<Type> types = new LinkedList<Type>();
+        for (Expression e : args) {
+            types.add(e.getType());
+        }
+        return types;
+    }
 }

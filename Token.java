@@ -1,5 +1,7 @@
 abstract class Token {
 
+    protected static SymbolTable symbolTable;
+
     protected String getTabs(int t)
     {
         String tabs = "";
@@ -9,4 +11,6 @@ abstract class Token {
     }
   
     public abstract String toString(int t);
+
+    public abstract void analyzeType() throws ParseException;
   }

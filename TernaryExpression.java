@@ -12,4 +12,16 @@ public class TernaryExpression extends Expression{
     public String toString(int t) {
         return "(" + condition.toString(0) + " ? " + trueExpr.toString(0) + " : " + falseExpr.toString(0) + ")";
     }
+
+    @Override
+    public Type getType() throws ParseException {
+        if(!condition.getType().equals(Type.BOOL))
+            throw new ExpressionException(this, condition.toString(0) + " is not boolean");
+        Type t1 = trueExpr.getType();
+        Type t2 = falseExpr.getType();
+        if(t1.equals(t2))
+            return t1;
+        else
+            throw new ExpressionException(this, "Type mismatch " + t1 + " and " + t2);
+    }
 }

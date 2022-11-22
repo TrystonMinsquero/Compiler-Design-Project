@@ -46,7 +46,7 @@ public class MemberDeclarations extends Declarations {
         String ret = "";
         // boolean printedFields = false;
         // boolean printedMethods = false;
-        for(Declaration d : declerations) {
+        for(Declaration d : declarations) {
             // if(d instanceof FieldDeclaration) {
             //     if(!printedFields) {
             //         ret += getTabs(t) + "Fields:\n";

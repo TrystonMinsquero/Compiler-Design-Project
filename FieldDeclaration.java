@@ -42,4 +42,33 @@ public class FieldDeclaration extends Declaration {
         }
         return s + ";\n";
     }
+
+    @Override
+    public void analyzeType() throws ParseException {
+        if(optionalIntLiteralExpression != null) {
+            optionalIntLiteralExpression.analyzeType();
+            if(!optionalIntLiteralExpression.getType().equals(Type.INT)) {
+                throw new DeclarationException(this, "Array size must be an int (is " + optionalIntLiteralExpression.getType() + ")");
+            }
+            symbolTable.addSymbol(name, getType());
+            return;
+        }
+        else if(optionalExpression != null) {
+            optionalExpression.analyzeType();
+            if(!optionalExpression.getType().equals(Type.parseType(type))) {
+                throw new DeclarationException(this, "Type mismatch");
+            }
+        }
+        symbolTable.addSymbol(name, getType());
+    }
+
+    @Override
+    public Type getType() throws ParseException {
+        if(optionalIntLiteralExpression != null) {
+            return new Type(Type.parseTypeEnum(type), optionalIntLiteralExpression.getValue());
+        }
+        else {
+            return new Type(Type.parseTypeEnum(type), optionalFinal != "");
+        }
+    }
 }

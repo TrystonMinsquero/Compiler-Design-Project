@@ -16,5 +16,12 @@ public class FunctionalExpression extends Expression {
         return "(" + id + "(" + args.toString(0) + "))";
     }
 
-    
+    @Override
+    public Type getType() throws ParseException {
+        MethodType mt = symbolTable.getMethod(id, args.getTypes());
+        if (mt == null) {
+            throw new ExpressionException(this, "Method " + id + " not found");
+        }
+        return mt.getReturnType();
+    }
 }

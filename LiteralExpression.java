@@ -20,4 +20,9 @@ public class LiteralExpression extends Expression{
     public String toString(int t) {
         return "(" + value + ")";
     }
+    
+    @Override
+    public Type getType() throws ParseException {
+        return Type.parseType(type);
+    }
 }

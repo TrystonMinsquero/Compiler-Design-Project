@@ -7,4 +7,10 @@ public abstract class Declaration extends Token{
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public abstract Type getType() throws ParseException;
+
 }

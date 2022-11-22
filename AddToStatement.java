@@ -26,4 +26,17 @@ public class AddToStatement extends Statement{
         return s + " += " + expr.toString(0) + ";\n";
     }
     
+    @Override
+    public void analyzeType() throws ParseException {
+        Type type = symbolTable.get(name.getId());
+        if(type == null) {
+            throw new StatementException(this, "Variable " + name.getId() + " not found");
+        }
+        if(!type.isNumeric()) {
+            throw new StatementException(this, "Variable " + name.getId() + " is not numeric");
+        }
+        if(type.isFinal())
+            throw new StatementException(this, "Variable " + name.getId() + " is final");
+        expr.analyzeType();
+    }
 }

@@ -53,4 +53,20 @@ public class BlockStatement extends Statement{
             + getTabs(t) + "}" + semiColon + "\n";
         return s;
     }
+
+    @Override
+    public void analyzeType() throws ParseException {
+        symbolTable.startScope();
+        if (condition != null) {
+            condition.analyzeType();
+            if (condition.getType() != Type.BOOL) {
+                throw new StatementException(this, "Condition must be boolean");
+            }
+        }
+        fields.analyzeType();
+        statements.analyzeType();
+        symbolTable.endScope();
+
+        
+    }
 }

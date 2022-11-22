@@ -19,4 +19,11 @@ class Program extends Token {
         ret += "}\n";
         return ret;
     }
+
+    public void analyzeType() throws ParseException {
+        symbolTable = new SymbolTable();
+        symbolTable.startScope();
+        memberDeclerations.analyzeType();
+        symbolTable.endScope();
+    }
   }

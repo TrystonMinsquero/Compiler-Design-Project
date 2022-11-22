@@ -20,4 +20,31 @@ public class Name extends Token{
     public String toString() {
         return indexExpr == null ? id : id + "[" + indexExpr.toString(0) + "]";
     }
+
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void analyzeType() throws ParseException {
+        if (symbolTable.get(id) == null) {
+            throw new ParseException("Undefined variable " + id);
+        }
+    }
+
+    public Type getType() throws ParseException {
+        Type t = symbolTable.get(id);
+        if (t == null) {
+            throw new ParseException("Undefined variable");
+        }
+        if(indexExpr != null) {
+            if(!t.isArray()) {
+                throw new ParseException("Variable is not an array");
+            }
+            if(indexExpr.getType() != Type.INT) {
+                throw new ParseException("Array index must be an integer");
+            }
+        }
+        return t;
+    }
 }

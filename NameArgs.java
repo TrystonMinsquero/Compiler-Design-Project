@@ -33,4 +33,12 @@ public class NameArgs extends Token {
         }
         return s;
     }
+
+    @Override
+    public void analyzeType() throws ParseException {
+        for (Name name : args) {
+            name.analyzeType();
+        }
+        
+    }
 }

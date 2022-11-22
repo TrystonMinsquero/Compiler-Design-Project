@@ -14,4 +14,9 @@ public class IntLiteralExpression extends LiteralExpression{
         return integer.intValue();
     }
 
+    @Override
+    public Type getType() throws ParseException {
+        return Type.INT;
+    }
+
 }

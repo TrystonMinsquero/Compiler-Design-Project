@@ -3,25 +3,25 @@ import java.util.List;
 
 public abstract class Declarations extends Token{
 
-    protected List<Declaration> declerations;
+    protected List<Declaration> declarations;
     
     public Declarations() {
-        declerations = new LinkedList<Declaration>();
+        declarations = new LinkedList<Declaration>();
     }
 
     public Declarations(Declaration d) {
-        declerations = new LinkedList<Declaration>();
-        declerations.add( d);
+        declarations = new LinkedList<Declaration>();
+        declarations.add( d);
     }
 
     public Declarations prepend(Declaration d) {
-        declerations.add(0, d);
+        declarations.add(0, d);
         return this;
     }
 
     public Declarations prepend(Declarations d) {
-        for(Declaration dec : d.declerations)
-            declerations.add(0, dec);
+        for(Declaration dec : d.declarations)
+            declarations.add(0, dec);
         return this;
     }
     
@@ -29,7 +29,7 @@ public abstract class Declarations extends Token{
         String ret = "";
         boolean printedFields = false;
         boolean printedMethods = false;
-        for(Declaration d : declerations) {
+        for(Declaration d : declarations) {
             if(d instanceof FieldDeclaration) {
                 if(!printedFields) {
                     ret += getTabs(t) + "Fields:\n";
@@ -44,6 +44,11 @@ public abstract class Declarations extends Token{
             ret += d.toString(t+1);
         }
         return ret;
+    }
+
+    public void analyzeType() throws ParseException {
+        for(Declaration d : declarations)
+            d.analyzeType();
     }
     
 }

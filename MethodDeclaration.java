@@ -28,4 +28,19 @@ public class MethodDeclaration extends Declaration{
         ret += getTabs(t) + "}" + optionalSemi + "\n";
         return ret;
     }
+
+    @Override
+    public Type getType() throws ParseException {
+        return new MethodType(Type.parseTypeEnum(type), argDeclarations.getArgs());
+    }
+
+    @Override
+    public void analyzeType() throws ParseException {
+        symbolTable.startScope();
+        symbolTable.addSymbol(name, new MethodType(Type.parseTypeEnum(type), argDeclarations.getArgs()));        
+        argDeclarations.analyzeType();
+        fieldDeclarations.analyzeType();
+        statements.analyzeType();
+        symbolTable.endScope();
+    }
 }

@@ -26,4 +26,12 @@ class Statements extends Token {
         s = s + st.toString(t+1);
       return s;
     }
+
+    @Override
+    public void analyzeType() throws ParseException {
+      for (Statement statement : statements) {
+        statement.analyzeType();
+      }
+      
+    }
   }

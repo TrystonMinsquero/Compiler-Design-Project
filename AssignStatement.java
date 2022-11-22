@@ -13,5 +13,19 @@ public class AssignStatement extends Statement {
     }
 
     public String toString(int t) {
-        return getTabs(t) + name.toString(0) + " = " + expr.toString(0) + ";\n"; }
+        return getTabs(t) + name.toString(0) + " = " + expr.toString(0) + ";\n"; 
+    }
+
+    @Override
+    public void analyzeType() throws ParseException {
+        Type type = symbolTable.get(name.getId());
+        if(type == null) {
+            throw new StatementException(this, "Variable " + name.getId() + " not found");
+        }
+        if(!type.equals(expr.getType())) {
+            throw new StatementException(this, "Variable " + name.getId() + " is not of type " + expr.getType());
+        }
+        if(type.isFinal())
+            throw new StatementException(this, "Variable " + name.getId() + " is final");
+    }
 }
