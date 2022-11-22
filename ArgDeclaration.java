@@ -25,7 +25,7 @@ public class ArgDeclaration extends Declaration {
 
     @Override
     public Type getType() throws ParseException {
-        return new Type(Type.parseTypeEnum(type), isArray);
+        return new Type(Type.parseTypeEnum(type), isArray ? 0 : -1); 
     }
     
 }
