@@ -8,6 +8,9 @@ public class Type {
     public static final Type BOOL = new Type(TypeEnum.BOOL);
     public static final Type STRING = new Type(TypeEnum.STRING);
     public static final Type VOID = new Type(TypeEnum.VOID);
+    public static final Type CHAR = new Type(TypeEnum.CHAR);
+    public static final Type METHOD = new Type(TypeEnum.METHOD);
+    public static final Type CLASS = new Type(TypeEnum.CLASS);
     
     //#region Constructors
 
@@ -82,6 +85,14 @@ public class Type {
 
     public boolean isFloat() {
         return typeEnum == TypeEnum.FLOAT && !isArray();
+    }
+
+    public boolean isChar() {
+        return typeEnum == TypeEnum.CHAR && !isArray();
+    }
+
+    public boolean isClass() {
+        return typeEnum == TypeEnum.CLASS && !isArray();
     }
 
 //#endregion
