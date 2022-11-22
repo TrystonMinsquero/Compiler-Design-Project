@@ -10,8 +10,12 @@ public class BinaryExpression extends Expression {
     }
 
     public String toString(int t) {
+        try {
+            return "\n" + getTabs(t+1) + e1.toString(t+1) + " " + op + " " + e2.toString(t+1) + " : " + getType().toString() + "\n" ;
+        } catch (Exception e) {
+            return "\n" + getTabs(t+1) + e1.toString(t+1) + " " + op + " " + e2.toString(t+1) + " : (undefined)" + "\n" ;
+        }
         // return "(" + e1.toString(0) + " " + op + " " + e2.toString(0) + ")";
-        return "(\n" + getTabs(t+1) + e1.toString(t+1) + " " + op + " " + e2.toString(t+1) + "\n" + getTabs(t) + ")";
     }
 
     @Override
