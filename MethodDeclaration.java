@@ -37,10 +37,25 @@ public class MethodDeclaration extends Declaration{
     @Override
     public void analyzeType() throws ParseException {
         symbolTable.startScope();
-        symbolTable.addSymbol(name, new MethodType(Type.parseTypeEnum(type), argDeclarations.getArgs()));        
+        symbolTable.addSymbol(name, getType());        
         argDeclarations.analyzeType();
         fieldDeclarations.analyzeType();
         statements.analyzeType();
+        checkReturnStatements();
+
+
         symbolTable.endScope();
+    }
+
+    private void checkReturnStatements() throws ParseException {
+        Type returnType = ((MethodType)getType()).getReturnType();
+        Type evaluatedReturnType = statements.evaluateReturnType(returnType);
+        if (evaluatedReturnType == null && !returnType.isVoid()) {
+            throw new DeclarationException(this, "Missing return statement");
+        }
+        if (evaluatedReturnType != null && !evaluatedReturnType.isImplictly(returnType)) {
+            throw new DeclarationException(this, "Return type (" + evaluatedReturnType.toString() + ") does not match method type (" + returnType.toString() + ")");
+        }
+        
     }
 }

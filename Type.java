@@ -7,6 +7,7 @@ public class Type {
     public static final Type FLOAT = new Type(TypeEnum.FLOAT);
     public static final Type BOOL = new Type(TypeEnum.BOOL);
     public static final Type STRING = new Type(TypeEnum.STRING);
+    public static final Type VOID = new Type(TypeEnum.VOID);
     
     //#region Constructors
 

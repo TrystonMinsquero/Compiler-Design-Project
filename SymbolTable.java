@@ -48,13 +48,11 @@ public class SymbolTable {
     }
     
     public TypeEnum getReturnType() throws ParseException {
-        TypeEnum returnType = null;
-        for(Type value : table.getFirst().values()) {
-            if(returnType != null && value.getTypeEnum() == TypeEnum.METHOD) {
-                throw new ParseException("Two methods in the same scope");
-            }
-            if(value.getTypeEnum() == TypeEnum.METHOD) {
-                returnType = ((MethodType)value).getReturnTypeEnum();
+        for (HashMap<String, Type> map : table) {
+            for(Type t : map.values()) {
+                if(t.isMethod()) {
+                    return t.getMethodType().getReturnTypeEnum();
+                }
             }
         }
         throw new ParseException("Not in a method");

@@ -32,8 +32,16 @@ public class ReturnStatement extends Statement {
         if (expr != null) {
             expr.analyzeType();
             if (!expr.getType().isImplictly(returnType)) {
-                throw new StatementException(this, "Return type " + expr.getType() + " does not match function return type " + returnType);
+                throw new StatementException(this, "Return type " + expr.getType().toString() + " does not match function return type " + returnType.toString());
             }
+        }
+    }
+
+    public Type getType() throws ParseException {
+        if (expr == null) {
+            return Type.VOID;
+        } else {
+            return expr.getType();
         }
     }
 }

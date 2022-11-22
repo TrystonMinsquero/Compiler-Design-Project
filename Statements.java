@@ -32,6 +32,31 @@ class Statements extends Token {
       for (Statement statement : statements) {
         statement.analyzeType();
       }
-      
+    }
+
+    public Type evaluateReturnType(Type returnType) throws ParseException {
+      Type evaluatedType = null;
+      for (Statement statement : statements) {
+        if (statement instanceof ReturnStatement) {
+          Type type = ((ReturnStatement) statement).getType();
+          if(!type.isImplictly(returnType)) {
+            throw new StatementException(statement, "Return type " + type.toString() + " does not match function return type " + returnType.toString());
+          }
+          if (evaluatedType == null) {
+            evaluatedType = type;
+          }
+        }
+        
+        if (statement instanceof BlockStatement) {
+          Type blockType = ((BlockStatement) statement).evaluateReturnType(returnType);
+          if (blockType != null) {
+            if (evaluatedType == null) {
+              evaluatedType = blockType;
+            }
+            // we already know blockType is implityly returnType from evaluateReturnType
+          }
+        }
+      }
+      return evaluatedType;
     }
   }

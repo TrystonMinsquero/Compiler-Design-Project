@@ -59,14 +59,16 @@ public class BlockStatement extends Statement{
         symbolTable.startScope();
         if (condition != null) {
             condition.analyzeType();
-            if (condition.getType() != Type.BOOL) {
+            if (condition.getType().isImplictly(Type.BOOL)) {
                 throw new StatementException(this, "Condition must be boolean");
             }
         }
         fields.analyzeType();
         statements.analyzeType();
         symbolTable.endScope();
+    }
 
-        
+    public Type evaluateReturnType(Type returnType) throws ParseException {
+        return statements.evaluateReturnType(returnType);
     }
 }
