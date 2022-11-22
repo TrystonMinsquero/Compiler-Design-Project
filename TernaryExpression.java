@@ -16,7 +16,7 @@ public class TernaryExpression extends Expression{
     @Override
     public Type getType() throws ParseException {
         if(!condition.getType().isImplictly(Type.BOOL))
-            throw new ExpressionException(this, condition.toString(0) + " is not boolean");
+            throw new ExpressionException(this, condition.toString(0) + " cannot be converted to boolean");
         Type t1 = trueExpr.getType();
         Type t2 = falseExpr.getType();
         if(t1.isImplictly(t2))

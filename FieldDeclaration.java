@@ -45,30 +45,29 @@ public class FieldDeclaration extends Declaration {
 
     @Override
     public void analyzeType() throws ParseException {
-        if(optionalIntLiteralExpression != null) {
-            optionalIntLiteralExpression.analyzeType();
-            if(!optionalIntLiteralExpression.getType().equals(Type.INT)) {
-                throw new DeclarationException(this, "Array size must be an int (is " + optionalIntLiteralExpression.getType() + ")");
-            }
-            symbolTable.addSymbol(name, getType());
-            return;
-        }
-        else if(optionalExpression != null) {
-            optionalExpression.analyzeType();
-            if(!optionalExpression.getType().equals(Type.parseType(type))) {
-                throw new DeclarationException(this, "Type mismatch");
-            }
-        }
-        symbolTable.addSymbol(name, getType());
+        Type t = getType();
+        if(t != null)
+            symbolTable.addSymbol(name, t);
     }
 
     @Override
     public Type getType() throws ParseException {
+        
+        TypeEnum typeEnum = Type.parseTypeEnum(type);
         if(optionalIntLiteralExpression != null) {
-            return new Type(Type.parseTypeEnum(type), optionalIntLiteralExpression.getValue());
+            optionalIntLiteralExpression.analyzeType();
+            Type t = optionalIntLiteralExpression.getType();
+            if(!t.isImplictly(Type.INT)) {
+                throw new DeclarationException(this, "Array size must be an int (currently is " + t.toString() + ")");
+            }
+            return new Type(typeEnum, optionalIntLiteralExpression.getValue());
         }
-        else {
-            return new Type(Type.parseTypeEnum(type), optionalFinal != "");
+        else if(optionalExpression != null) {
+            optionalExpression.analyzeType();
+            if(!optionalExpression.getType().isImplictly(typeEnum)) {
+                throw new DeclarationException(this, "Type mismatch with " + typeEnum.toString() + " and " + optionalExpression.getType().toString());
+            }
         }
+        return new Type(typeEnum, !optionalFinal.equals(""));
     }
 }
