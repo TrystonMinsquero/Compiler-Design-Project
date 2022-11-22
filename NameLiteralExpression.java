@@ -17,7 +17,7 @@ public class NameLiteralExpression extends LiteralExpression{
             return t;
         }
         if(!t.isArray()) {
-            throw new ExpressionException(this, "Variable is not an array");
+            throw new ParseException("Variable is not an array", symbolTable);
         }
         if(!name.getIndexExpr().getType().isImplictly(Type.INT)) {
             throw new ExpressionException(this, "Array index must be an integer");
