@@ -11,7 +11,7 @@ public class BinaryExpression extends Expression {
 
     public String toString(int t) {
         // return "(" + e1.toString(0) + " " + op + " " + e2.toString(0) + ")";
-        return "(\n" + getTabs(t+1) + e1.toString(0) + " " + op + " " + e2.toString(0) + "\n" + getTabs(t) + ")\n";
+        return "(\n" + getTabs(t+1) + e1.toString(t+1) + " " + op + " " + e2.toString(t+1) + "\n" + getTabs(t) + ")";
     }
 
     @Override
