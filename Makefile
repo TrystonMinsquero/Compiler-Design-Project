@@ -29,7 +29,7 @@ FILE=	Lexer.java parser.java sym.java \
 	TypeCheckingTest.java Type.java SymbolTable.java ParseException.java \
 	MethodType.java ExpressionException.java DeclarationException.java
 
-run: test.txt badfiles
+run: badfiles
 
 all: Lexer.java parser.java $(FILE:java=class)
 
@@ -39,22 +39,22 @@ test.txt: all
 		cat -n test-output.txt
 
 badfiles: all
-		$(JAVA) -cp $(CP) ScannerTest badDec.as > badDec-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest badDec.as > badDec-output.txt
 		cat badDec.as
 		cat -n badDec-output.txt
-		$(JAVA) -cp $(CP) ScannerTest badInc.as > badInc-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest badInc.as > badInc-output.txt
 		cat badInc.as
 		cat -n badInc-output.txt
-		$(JAVA) -cp $(CP) ScannerTest badNegation.as > badNegation-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest badNegation.as > badNegation-output.txt
 		cat badNegation.as
 		cat -n badNegation-output.txt
-		$(JAVA) -cp $(CP) ScannerTest badString.as > badString-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest badString.as > badString-output.txt
 		cat badString.as
 		cat -n badString-output.txt
-		$(JAVA) -cp $(CP) ScannerTest badTernaryCond.as > badTernaryCond-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest badTernaryCond.as > badTernaryCond-output.txt
 		cat badTernaryCond.as
 		cat -n badTernaryCond-output.txt
-		$(JAVA) -cp $(CP) ScannerTest badTernaryTypes.as > badTernaryTypes-output.txt
+		$(JAVA) -cp $(CP) TypeCheckingTest badTernaryTypes.as > badTernaryTypes-output.txt
 		cat badTernaryTypes.as
 		cat -n badTernaryTypes-output.txt
 
