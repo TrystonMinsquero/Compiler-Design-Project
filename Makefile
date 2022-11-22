@@ -29,7 +29,7 @@ FILE=	Lexer.java parser.java sym.java \
 	TypeCheckingTest.java Type.java SymbolTable.java ParseException.java \
 	MethodType.java ExpressionException.java DeclarationException.java
 
-run: badLogic toThings redefining returns valid
+run: redefines returns valid
 
 all: Lexer.java parser.java $(FILE:java=class)
 
