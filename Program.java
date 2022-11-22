@@ -22,8 +22,8 @@ class Program extends Token {
 
     public void analyzeType() throws ParseException {
         symbolTable = new SymbolTable();
-        symbolTable.addSymbol(classID, getType());
         symbolTable.startScope();
+        symbolTable.addSymbol(classID, getType());
         memberDeclerations.analyzeType();
         symbolTable.endScope();
     }
