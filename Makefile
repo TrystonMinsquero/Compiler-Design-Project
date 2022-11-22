@@ -27,7 +27,7 @@ FILE=	Lexer.java parser.java sym.java \
 	FieldDeclaration.java FieldDeclarations.java MethodDeclaration.java \
 	MethodDeclarations.java MemberDeclarations.java
 
-run: Phase2_empty.txt Phase2_fields.txt Phase2_methods.txt Phase2_full.txt
+run: test.txt
 
 all: Lexer.java parser.java $(FILE:java=class)
 
@@ -36,25 +36,32 @@ test.txt: all
 		cat test.txt
 		cat -n test-output.txt
 
-Phase2_empty.txt: all
-		$(JAVA) -cp $(CP) ScannerTest Phase2_empty.txt > Phase2_empty-output.txt
-		cat Phase2_empty.txt
-		cat -n Phase2_empty-output.txt
+badDec.as: all
+		$(JAVA) -cp $(CP) ScannerTest badDec.as > badDec-output.txt
+		cat badDec.as
+		cat -n badDec-output.txt
 
-Phase2_fields.txt: all
-		$(JAVA) -cp $(CP) ScannerTest Phase2_fields.txt > Phase2_fields-output.txt
-		cat Phase2_fields.txt
-		cat -n Phase2_fields-output.txt
 
-Phase2_full.txt: all
-		$(JAVA) -cp $(CP) ScannerTest Phase2_full.txt > Phase2_full-output.txt
-		cat Phase2_full.txt
-		cat -n Phase2_full-output.txt
+# Part 2 Phase 2 Tests
+# Phase2_empty.txt: all
+# 		$(JAVA) -cp $(CP) ScannerTest Phase2_empty.txt > Phase2_empty-output.txt
+# 		cat Phase2_empty.txt
+# 		cat -n Phase2_empty-output.txt
 
-Phase2_methods.txt: all
-		$(JAVA) -cp $(CP) ScannerTest Phase2_methods.txt > Phase2_methods-output.txt
-		cat Phase2_methods.txt
-		cat -n Phase2_methods-output.txt
+# Phase2_fields.txt: all
+# 		$(JAVA) -cp $(CP) ScannerTest Phase2_fields.txt > Phase2_fields-output.txt
+# 		cat Phase2_fields.txt
+# 		cat -n Phase2_fields-output.txt
+
+# Phase2_full.txt: all
+# 		$(JAVA) -cp $(CP) ScannerTest Phase2_full.txt > Phase2_full-output.txt
+# 		cat Phase2_full.txt
+# 		cat -n Phase2_full-output.txt
+
+# Phase2_methods.txt: all
+# 		$(JAVA) -cp $(CP) ScannerTest Phase2_methods.txt > Phase2_methods-output.txt
+# 		cat Phase2_methods.txt
+# 		cat -n Phase2_methods-output.txt
 
 # Part 2 Phase 1 Tests
 # Phase1_expressions.txt: all
