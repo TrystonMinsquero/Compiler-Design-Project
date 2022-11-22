@@ -29,6 +29,11 @@ public class ReturnStatement extends Statement {
         if (returnType != TypeEnum.VOID && expr == null) {
             throw new StatementException(this, "Return statement without expression in non-void function");
         }
-        expr.analyzeType();
+        if (expr != null) {
+            expr.analyzeType();
+            if (!expr.getType().isImplictly(returnType)) {
+                throw new StatementException(this, "Return type " + expr.getType() + " does not match function return type " + returnType);
+            }
+        }
     }
 }

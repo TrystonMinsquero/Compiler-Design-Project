@@ -56,19 +56,31 @@ public class Type {
     }
 
     public boolean isNumeric() {
-        return typeEnum == TypeEnum.INT || typeEnum == TypeEnum.FLOAT;
+        return (typeEnum == TypeEnum.INT || typeEnum == TypeEnum.FLOAT) && !isArray();
     }
 
     public boolean isBoolean() {
-        return typeEnum == TypeEnum.BOOL;
+        return typeEnum == TypeEnum.BOOL && !isArray();
     }
 
     public boolean isString() {
-        return typeEnum == TypeEnum.STRING;
+        return typeEnum == TypeEnum.STRING && !isArray();
     }
 
     public boolean isPrimitive() {
-        return typeEnum != TypeEnum.METHOD || typeEnum != TypeEnum.VOID;
+        return typeEnum != TypeEnum.METHOD && typeEnum != TypeEnum.VOID && !isArray();
+    }
+
+    public boolean isVoid() {
+        return typeEnum == TypeEnum.VOID && !isArray();
+    }
+
+    public boolean isInt() {
+        return typeEnum == TypeEnum.INT && !isArray();
+    }
+
+    public boolean isFloat() {
+        return typeEnum == TypeEnum.FLOAT && !isArray();
     }
 
 //#endregion
@@ -86,7 +98,21 @@ public class Type {
     }
 
     public boolean equalsType(Type t) {
-        return this.typeEnum == t.typeEnum;
+        return this.typeEnum == t.typeEnum && !(this.isArray() ^ t.isArray());
+    }
+
+    public boolean isImplictly(TypeEnum targetTypeEnum) {
+        return isImplictly(new Type(targetTypeEnum));
+    }
+
+    public boolean isImplictly(Type targetType) {
+        if (this.equalsType(targetType))
+            return true;
+        if (this.isInt() && targetType.isFloat())
+            return true;
+        if(targetType.isString() && !this.isArray())
+            return true;
+        return false;
     }
 
 }

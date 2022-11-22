@@ -15,9 +15,9 @@ public class UnaryExpression extends Expression {
     @Override
     public Type getType() throws ParseException {
         if(op.equals("~")) {
-            if(!expr.getType().isBoolean())
-                throw new ExpressionException(this, expr.toString(0) + " is not boolean");
-            return Type.BOOL;
+            if(expr.getType().isImplictly(Type.BOOL))
+                return Type.BOOL;
+            throw new ExpressionException(this, expr.toString(0) + "cannot be coercised to a boolean");
         }
         else if (op.equals("+") || op.equals("-")) {
             if(!expr.getType().isNumeric())

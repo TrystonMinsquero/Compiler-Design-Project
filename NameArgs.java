@@ -38,6 +38,16 @@ public class NameArgs extends Token {
     public void analyzeType() throws ParseException {
         for (Name name : args) {
             name.analyzeType();
+            Type t = name.getType();
+            if(t.isFinal()) {
+                throw new StatementException("Cannot read a final variable");
+            }
+            if(t.isArray() && name.getIndexExpr() == null) {
+                throw new StatementException("Cannot read a non-dereferenced array");
+            }
+            if(!t.isPrimitive()) {
+                throw new StatementException("Cannot read a non-primitive (method) variable");
+            }
         }
         
     }

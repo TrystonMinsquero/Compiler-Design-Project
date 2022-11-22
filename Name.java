@@ -25,6 +25,10 @@ public class Name extends Token{
         return id;
     }
 
+    public Expression getIndexExpr() {
+        return indexExpr;
+    }
+
     @Override
     public void analyzeType() throws ParseException {
         if (symbolTable.get(id) == null) {
@@ -41,9 +45,10 @@ public class Name extends Token{
             if(!t.isArray()) {
                 throw new ParseException("Variable is not an array");
             }
-            if(indexExpr.getType() != Type.INT) {
+            if(!indexExpr.getType().isImplictly(Type.INT)) {
                 throw new ParseException("Array index must be an integer");
             }
+            return new Type(t.getTypeEnum()); // make it no longer an array
         }
         return t;
     }

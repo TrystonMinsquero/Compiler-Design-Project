@@ -49,4 +49,8 @@ public class Args extends Token {
         }
         return types;
     }
+
+    public List<Expression> getArgs() {
+        return args;
+    }
 }

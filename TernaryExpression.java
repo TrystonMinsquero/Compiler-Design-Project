@@ -15,11 +15,13 @@ public class TernaryExpression extends Expression{
 
     @Override
     public Type getType() throws ParseException {
-        if(!condition.getType().equals(Type.BOOL))
+        if(!condition.getType().isImplictly(Type.BOOL))
             throw new ExpressionException(this, condition.toString(0) + " is not boolean");
         Type t1 = trueExpr.getType();
         Type t2 = falseExpr.getType();
-        if(t1.equals(t2))
+        if(t1.isImplictly(t2))
+            return t2;
+        else if(t2.isImplictly(t1))
             return t1;
         else
             throw new ExpressionException(this, "Type mismatch " + t1 + " and " + t2);
