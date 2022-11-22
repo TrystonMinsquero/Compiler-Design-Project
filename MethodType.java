@@ -31,7 +31,7 @@ public class MethodType extends Type {
         }
         int i = 0;
         for (Type t : paramTypes.values()) {
-            if (!t.equals(args.get(i))) {
+            if (!args.get(i).isImplictly(t)) {
                 return false;
             }
             i++;
