@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class ArgDeclarations extends Declarations{
 
@@ -10,8 +10,8 @@ public class ArgDeclarations extends Declarations{
         super();
     }
 
-    public HashMap<String, Type> getArgs() throws ParseException {
-        HashMap<String, Type> args = new HashMap<String, Type>();
+    public LinkedHashMap<String, Type> getArgs() throws ParseException {
+        LinkedHashMap<String, Type> args = new LinkedHashMap<String, Type>();
         for (Declaration d : declarations) {
             args.put(d.getName(), d.getType());
         }

@@ -1,17 +1,17 @@
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class MethodType extends Type {
     private TypeEnum returnTypeEnum;
-    private HashMap<String, Type> paramTypes;
+    private LinkedHashMap<String, Type> paramTypes;
 
     public MethodType(TypeEnum type) {
         super(TypeEnum.METHOD);
         returnTypeEnum = type;
-        paramTypes = new HashMap<String, Type>();
+        paramTypes = new LinkedHashMap<String, Type>();
     }
 
-    public MethodType(TypeEnum type, HashMap<String, Type> args) {
+    public MethodType(TypeEnum type, LinkedHashMap<String, Type> args) {
         super(TypeEnum.METHOD);
         returnTypeEnum = type;
         this.paramTypes = args;
