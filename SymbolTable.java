@@ -67,12 +67,11 @@ public class SymbolTable {
         int i = 0;
         Iterator<HashMap<String, Type>> it = table.descendingIterator();
         while (it.hasNext()) {
-            s += getTabs(i) + "Scope " + i + " {\n";
+            s += getTabs(i) + "Scope " + i + ":\n";
             HashMap<String, Type> map = it.next();
             for (String key : map.keySet()) {
                 s += getTabs(i+1) + key + " : " + map.get(key) + "\n";
             }
-            s += getTabs(i) + "}\n";
             i++;
         }
         return s;

@@ -261,7 +261,7 @@ printlineList ::= expression:e COMMA printlineList:pll
 ;
 
 literalExpression ::= name:n
-    {: RESULT = new LiteralExpression(n); :}
+    {: RESULT = new NameLiteralExpression(n); :}
     |
     FLOATLIT:f
     {: RESULT = new FloatLiteralExpression(f); :}

@@ -12,23 +12,12 @@ public class LiteralExpression extends Expression{
         this.type = type;
     }
 
-    public LiteralExpression(Name n) {
-        this.value = n.getId();
-        this.type = "variable";
-    }
-
     public String toString(int t) {
         return "(" + value + ")";
     }
     
     @Override
     public Type getType() throws ParseException {
-        if(type.equals("variable")) {
-            Type t = symbolTable.get(value);
-            if(t == null)
-                throw new ExpressionException(this, "Variable " + value + " not found");
-            return t;
-        }
         return Type.parseType(type);
     }
 }
