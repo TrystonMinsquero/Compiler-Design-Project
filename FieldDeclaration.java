@@ -8,13 +8,13 @@ public class FieldDeclaration extends Declaration {
 
     // expression is null if regular variable decleration
     // otherwise it is the int that is the size of the array
-    private IntLiteralExpression optionalIntLiteralExpression;
+    private IntLiteralExpression optionalArraySizeExpr;
 
     public FieldDeclaration(String type, String id, String optionalFinal, Expression optionalExpression) {
         super(type, id);
         this.optionalFinal = optionalFinal != "" ? optionalFinal + " " : ""; // add space to make toString easier
         this.optionalExpression = optionalExpression;
-        optionalIntLiteralExpression = null;
+        optionalArraySizeExpr = null;
     }
 
     // public FieldDeclaration(String type, String id, String optionalFinal, FieldEnd fieldRecord) {
@@ -27,15 +27,15 @@ public class FieldDeclaration extends Declaration {
 
     public FieldDeclaration(String type, String id, IntLiteralExpression optionalIntLiteralExpression) {
         super(type, id);
-        this.optionalIntLiteralExpression = optionalIntLiteralExpression;
+        this.optionalArraySizeExpr = optionalIntLiteralExpression;
         optionalFinal = "";
         optionalExpression = null;
     }
 
     public String toString(int t) {
         String s = getTabs(t) + optionalFinal + type + " " + name;
-        if(optionalIntLiteralExpression != null) {
-            s += " [ " + optionalIntLiteralExpression.toString(0) + " ]";
+        if(optionalArraySizeExpr != null) {
+            s += " [ " + optionalArraySizeExpr.toString(0) + " ]";
         }
         else if (optionalExpression != null) {
             s += " = " + optionalExpression.toString(0);
@@ -54,13 +54,16 @@ public class FieldDeclaration extends Declaration {
     public Type getType() throws ParseException {
         
         TypeEnum typeEnum = Type.parseTypeEnum(type);
-        if(optionalIntLiteralExpression != null) {
-            optionalIntLiteralExpression.analyzeType();
-            Type t = optionalIntLiteralExpression.getType();
+        if(optionalArraySizeExpr != null) { // is array
+            optionalArraySizeExpr.analyzeType();
+            Type t = optionalArraySizeExpr.getType();
             if(!t.isImplictly(Type.INT)) {
                 throw new DeclarationException(this, "Array size must be an int (currently is " + t.toString() + ")");
             }
-            return new Type(typeEnum, optionalIntLiteralExpression.getValue());
+            if(optionalArraySizeExpr.getValue() < 0) {
+                throw new DeclarationException(this, "Array size must be positive (currently is " + optionalArraySizeExpr.getValue() + ")");
+            }
+            return new Type(typeEnum, optionalArraySizeExpr.getValue());
         }
         else if(optionalExpression != null) {
             optionalExpression.analyzeType();

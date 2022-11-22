@@ -118,7 +118,7 @@ fieldDeclaration ::=
     {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
     |
     type:t ID:id LEFT_BRKT INTLIT:i RT_BRKT SEMI
-    {: RESULT = new FieldDeclaration(t, id, "", new IntLiteralExpression(i)); :}
+    {: RESULT = new FieldDeclaration(t, id, new IntLiteralExpression(i)); :}
 ;
     
 
