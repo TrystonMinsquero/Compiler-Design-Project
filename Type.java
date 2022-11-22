@@ -115,4 +115,11 @@ public class Type {
         return false;
     }
 
+    @Override
+    public String toString() {
+        if (isArray())
+            return typeEnum.toString() + "[]";
+        return typeEnum.toString();
+    }
+
 }
