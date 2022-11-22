@@ -7,7 +7,7 @@ public class PrintStatement extends CallStatement {
         super("print" + (n ? "line" : ""));
         newline = n;
     }
-    public PrintStatement(Args a, boolean n) {
+    public PrintStatement(boolean n, Args a) {
         super("print" + (n ? "line" : ""), a);
         newline = n;
     }
