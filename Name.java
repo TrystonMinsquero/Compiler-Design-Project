@@ -50,6 +50,6 @@ public class Name extends Token{
             }
             return new Type(t.getTypeEnum()); // make it no longer an array
         }
-        return new Type(t.getTypeEnum(), 0);
+        return new Type(t.getTypeEnum());
     }
 }
