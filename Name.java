@@ -39,11 +39,11 @@ public class Name extends Token{
     public Type getType() throws ParseException {
         Type t = symbolTable.get(id);
         if (t == null) {
-            throw new ParseException("Undefined variable", symbolTable);
+            throw new ParseException("Undefined variable");
         }
         if(indexExpr != null) {
             if(!t.isArray()) {
-                throw new ParseException("Variable " + id + " is not an array (is " + t.toString(), symbolTable);
+                throw new ParseException("Variable " + id + " is not an array (is " + t.toString());
             }
             if(!indexExpr.getType().isImplictly(Type.INT)) {
                 throw new ParseException("Array index must be an integer");

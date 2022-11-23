@@ -47,7 +47,7 @@ public class SymbolTable {
             }
         }
         throw new ParseException("Method " + s + " not found with given arguments\n"
-                + "Arguments: " + Arrays.toString(args.toArray()), this);
+                + "Arguments: " + Arrays.toString(args.toArray()));
     }
     
     public TypeEnum getReturnType() throws ParseException {
