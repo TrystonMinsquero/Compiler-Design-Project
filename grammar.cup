@@ -78,7 +78,7 @@ non terminal BinaryExpression binaryExpression; //61
 non terminal UnaryExpression unaryExpression; //62
 non terminal String optionalSemi;
 non terminal String type;
-non terminal boolean isArray;
+non terminal Boolean isArray;
 
 precedence right CONDITION, COLON;
 precedence left OR;
@@ -149,9 +149,9 @@ argDeclaration ::= type:t ID:id isArray:a
 ;
 
 isArray ::= LEFT_BRKT RT_BRKT
-    {: RESULT = true; :}
+    {: RESULT = new Boolean(true); :}
     |
-    {: RESULT = false; :}
+    {: RESULT = new Boolean(false); :}
 ;
 
 statements ::= statement:s statements:sl
