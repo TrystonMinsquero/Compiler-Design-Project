@@ -50,6 +50,11 @@ public class Name extends Token{
     }
 
     public Type getType() throws ParseException {
-        return symbolTable.get(id);
+        analyzeType();
+        Type t = symbolTable.get(id);
+        if(indexExpr != null) {
+            return new Type(t.getTypeEnum()); // make it no longer an array
+        }
+        return t;
     }
 }
