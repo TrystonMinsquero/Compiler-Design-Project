@@ -152,7 +152,7 @@ isArray ::= LEFT_BRKT RT_BRKT
     {: RESULT = true; :}
     |
     {: RESULT = false; :}
-
+;
 
 statements ::= statement:s statements:sl
     {: RESULT = sl.prepend(s); :}
