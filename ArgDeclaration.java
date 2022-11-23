@@ -20,7 +20,6 @@ public class ArgDeclaration extends Declaration {
         if (getType() == null) {
             throw new ParseException("Undefined type");
         }
-        System.out.println("ArgDeclaration: " + name + " " + getType());
         symbolTable.addSymbol(name, getType());
     }
 

@@ -49,7 +49,7 @@ public class TypeCheckingTest{
             System.err.println("All good!");
           } catch (ParseException u) {
             System.err.println(u.toString());
-            System.err.println("Symbol Table:\n" + Token.symbolTable.toString());
+            // System.err.println("Symbol Table:\n" + Token.symbolTable.toString());
           }
         }
     }
