@@ -14,16 +14,8 @@ public class NameLiteralExpression extends LiteralExpression{
             throw new ExpressionException(this, "Symbol " + name.getId() + " is not defined");
         }
         System.out.println("NameLiteralExpression: " + name.toString() + " " + t.toString());
-        if(name.getIndexExpr() == null) {
-            return t;
-        }
-        if(!t.isArray()) {
-            throw new ParseException("Variable is " + name.getId() + " not an array (is " + t.toString() + ")");
-        }
-        if(!name.getIndexExpr().getType().isImplictly(Type.INT)) {
-            throw new ExpressionException(this, "Array index must be an integer");
-        }
-        return new Type(t.getTypeEnum()); // make it no longer an array
+        
+        return t; // make it no longer an array
     }
     
 }
