@@ -34,7 +34,6 @@ public class Name extends Token{
         if(getType() == null) {
             throw new ParseException("Undefined variable " + id);
         }
-
     }
 
     public Type getType() throws ParseException {
