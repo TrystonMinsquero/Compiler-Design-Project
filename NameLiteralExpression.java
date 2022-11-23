@@ -13,6 +13,7 @@ public class NameLiteralExpression extends LiteralExpression{
         if (t == null) {
             throw new ExpressionException(this, "Symbol " + name.getId() + " is not defined");
         }
+        System.out.println("NameLiteralExpression: " + name.toString() + " " + t.toString());
         if(name.getIndexExpr() == null) {
             return t;
         }
