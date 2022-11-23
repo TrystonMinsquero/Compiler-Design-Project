@@ -42,10 +42,6 @@ public class Name extends Token{
         if (t == null) {
             throw new ParseException("Undefined variable " + id);
         }
-        if(t.isArray() && indexExpr == null) {
-            System.out.println("Name: " + id + " " + indexExpr + " " + t.toString());
-            throw new ParseException("Array " + id + " must be indexed");
-        }
         if(!t.isArray() && indexExpr != null) {
             throw new ParseException("Variable " + id + " cannot be indexed");
         }
