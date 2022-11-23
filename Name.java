@@ -31,25 +31,25 @@ public class Name extends Token{
 
     @Override
     public void analyzeType() throws ParseException {
-        if (symbolTable.get(id) == null) {
+        Type t = getType();
+        if (t == null) {
             throw new ParseException("Undefined variable " + id);
+        }
+        if(t.isArray() && indexExpr == null) {
+            throw new ParseException("Array " + id + " must be indexed");
+        }
+        if(!t.isArray() && indexExpr != null) {
+            throw new ParseException("Variable " + id + " cannot be indexed");
+        }
+        if(indexExpr != null) {
+            indexExpr.analyzeType();
+            if(!indexExpr.getType().isImplictly(Type.INT)) {
+                throw new ParseException("Array index must be an integer");
+            }
         }
     }
 
     public Type getType() throws ParseException {
-        Type t = symbolTable.get(id);
-        if (t == null) {
-            throw new ParseException("Undefined variable");
-        }
-        if(indexExpr != null) {
-            if(!t.isArray()) {
-                throw new ParseException("Variable " + id + " is not an array (is " + t.toString());
-            }
-            if(!indexExpr.getType().isImplictly(Type.INT)) {
-                throw new ParseException("Array index must be an integer");
-            }
-            return new Type(t.getTypeEnum()); // make it no longer an array
-        }
-        return new Type(t.getTypeEnum());
+        return symbolTable.get(id);
     }
 }
