@@ -31,7 +31,14 @@ public class Name extends Token{
 
     @Override
     public void analyzeType() throws ParseException {
-        Type t = getType();
+        if(getType() == null) {
+            throw new ParseException("Undefined variable " + id);
+        }
+
+    }
+
+    public Type getType() throws ParseException {
+        Type t = symbolTable.get(id);
         if (t == null) {
             throw new ParseException("Undefined variable " + id);
         }
@@ -45,14 +52,7 @@ public class Name extends Token{
             indexExpr.analyzeType();
             if(!indexExpr.getType().isImplictly(Type.INT)) {
                 throw new ParseException("Array index must be an integer");
-            }
-        }
-    }
-
-    public Type getType() throws ParseException {
-        analyzeType();
-        Type t = symbolTable.get(id);
-        if(indexExpr != null) {
+            }            
             return new Type(t.getTypeEnum()); // make it no longer an array
         }
         return t;
