@@ -78,6 +78,7 @@ non terminal BinaryExpression binaryExpression; //61
 non terminal UnaryExpression unaryExpression; //62
 non terminal String optionalSemi;
 non terminal String type;
+non terminal boolean isArray;
 
 precedence right CONDITION, COLON;
 precedence left OR;
@@ -143,12 +144,15 @@ argDeclarations ::= argDeclaration:ad COMMA argDeclarations:ads
     {: RESULT = new ArgDeclarations(); :}
 ;
 
-argDeclaration ::= type:t ID:id
-    {: RESULT = new ArgDeclaration(t, id); :}
-    |
-    type:t ID:id LEFT_BRKT RT_BRKT
-    {: RESULT = new ArgDeclaration(t, id, true); :}
+argDeclaration ::= type:t ID:id isArray:a
+    {: RESULT = new ArgDeclaration(t, id, a); :}
 ;
+
+isArray ::= LEFT_BRKT RT_BRKT
+    {: RESULT = true; :}
+    |
+    {: RESULT = false; :}
+
 
 statements ::= statement:s statements:sl
     {: RESULT = sl.prepend(s); :}
