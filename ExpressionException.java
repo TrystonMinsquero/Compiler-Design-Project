@@ -1,10 +1,7 @@
 public class ExpressionException extends ParseException {
     
     protected Expression expression;
-    public ExpressionException(String message) {
-        super(message);
-    }
-
+    
     public ExpressionException(Expression e, String message) {
         super(message);
         expression = e;

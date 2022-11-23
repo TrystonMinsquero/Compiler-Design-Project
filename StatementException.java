@@ -1,8 +1,5 @@
 public class StatementException extends ParseException {
     protected Statement statement;
-    public StatementException(String message) {
-        super(message);
-    }
 
     public StatementException(Statement s, String message) {
         super(message);

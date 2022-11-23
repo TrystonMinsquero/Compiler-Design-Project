@@ -40,13 +40,13 @@ public class NameArgs extends Token {
             name.analyzeType();
             Type t = name.getType();
             if(t.isFinal()) {
-                throw new StatementException("Cannot read a final variable");
+                throw new ParseException("Cannot read a final variable");
             }
             if(t.isArray() && name.getIndexExpr() == null) {
-                throw new StatementException("Cannot read a non-dereferenced array");
+                throw new ParseException("Cannot read a non-dereferenced array");
             }
             if(!t.isPrimitive()) {
-                throw new StatementException("Cannot read a non-primitive (method) variable");
+                throw new ParseException("Cannot read a non-primitive (method) variable");
             }
         }
         
