@@ -28,7 +28,7 @@ public class BinaryExpression extends Expression {
                     return Type.INT;
                 else if(t1.isImplictly(Type.FLOAT) || t2.isImplictly(Type.FLOAT))
                     return Type.FLOAT;
-                throw new ExpressionException(this, "Type mismatch " + t1.toString() + " and " + t2.toString());
+                throw new ExpressionException(this, "Can't apply " + op + " on " + t1.toString() + " and " + t2.toString());
             case "<>":
             case "==":
             case "<":
@@ -37,12 +37,12 @@ public class BinaryExpression extends Expression {
             case ">=":
                 if(t1.isNumeric() && t2.isNumeric())
                     return Type.BOOL;
-                throw new ExpressionException(this, "Type mismatch " + t1.toString() + " and " + t2.toString());
+                throw new ExpressionException(this, "Can't apply " + op + " on " + t1.toString() + " and " + t2.toString());
             case "&&":
             case "||":
                 if(t1.isImplictly(Type.BOOL) && t2.isImplictly(Type.BOOL))
                     return Type.BOOL;
-                throw new ExpressionException(this, "Type mismatch " + t1.toString() + " and " + t2.toString());
+                throw new ExpressionException(this, "Can't apply " + op + " on " + t1.toString() + " and " + t2.toString());
             default:
                 throw new ExpressionException(this, "Unknown operator " + op);            
         }
