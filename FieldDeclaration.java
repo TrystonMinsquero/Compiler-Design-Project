@@ -46,6 +46,7 @@ public class FieldDeclaration extends Declaration {
     @Override
     public void analyzeType() throws ParseException {
         Type t = getType();
+        System.out.println("Got " + name + " " + t.toString());
         if(t != null)
             symbolTable.addSymbol(name, t);
     }

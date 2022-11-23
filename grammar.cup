@@ -111,8 +111,14 @@ fieldDeclarations ::= fieldDeclaration:fd fieldDeclarations:fds
 ;
 
 fieldDeclaration ::= 
+    type:t ID:id SEMI
+    {: RESULT = new FieldDeclaration(t, id, "", null); :}
+    |
     type:t ID:id optionalExpression:oe SEMI
     {: RESULT = new FieldDeclaration(t, id, "", oe); :}
+    |
+    FINAL type:t ID:id SEMI
+    {: RESULT = new FieldDeclaration(t, id, "final", null); :}
     |
     FINAL type:t ID:id optionalExpression:oe SEMI
     {: RESULT = new FieldDeclaration(t, id, "final", oe); :}
@@ -284,8 +290,6 @@ literalExpression ::= name:n
 
 optionalExpression ::= ASSMNT expression:e
     {: RESULT = e; :}
-    |
-    {: RESULT = null; :}
 ;
 
 expression ::= literalExpression:e
